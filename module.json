@@ -1,0 +1,10 @@
+{
+    "id": "legal",
+    "name": "Legal pages",
+    "description": "Adds legal pages",
+    "keywords": ["legal"],
+    "version": "1.0.0",
+    "humhub": {
+        "minVersion": "1.2.6"
+    }
+}

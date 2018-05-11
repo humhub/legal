@@ -11,13 +11,11 @@ use humhub\widgets\FooterMenu;
 
 ?>
 
-<?php $this->beginContent('@humhub/views/layouts/main.php') ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?= $content; ?>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?= $content; ?>
         </div>
-        <?= FooterMenu::widget(); ?>
     </div>
-<?php $this->endContent(); ?>
+    <?= FooterMenu::widget(); ?>
+</div>

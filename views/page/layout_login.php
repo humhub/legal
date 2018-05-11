@@ -11,19 +11,18 @@ use humhub\libs\Html;
 
 ?>
 
-<?php $this->beginContent('@user/views/layouts/main.php') ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <?= Html::a('<i class="fa fa-arrow-left"></i> Go back to login', ['/'], ['class' => 'btn btn-default pull-right']); ?>
-                <div class="text-center">
-                    <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
-                    <br>
-                </div>
-
-                <br/><br/><br/>
-                <?= $content; ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
+                <br>
             </div>
+            <?= Html::a('<i class="fa fa-arrow-left"></i> Go back to login', ['/'], ['class' => 'btn btn-default pull-right']); ?>
+
+            <br/><br/><br/>
+            <?= $content; ?>
         </div>
     </div>
-<?php $this->endContent(); ?>
+</div>
+

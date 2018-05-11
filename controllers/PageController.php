@@ -24,11 +24,11 @@ class PageController extends Controller
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-#            $this->layout = '@user/views/layouts/main';
             if (Yii::$app->user->isGuest) {
-                $this->layout = '@legal/views/page/layout_login';
+                $this->layout = '@user/views/layouts/main';
+                $this->subLayout = '@legal/views/page/layout_login';
             } else {
-                $this->layout = '@legal/views/page/layout_standard';
+                $this->subLayout = '@legal/views/page/layout_standard';
             }
             return true;
         }

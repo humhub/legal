@@ -23,9 +23,6 @@ class Module extends \humhub\components\Module
     }
 
 
-    /**
-     *
-     */
     public function getDefaultLanguage()
     {
         return 'en';

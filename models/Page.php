@@ -21,6 +21,7 @@ class Page extends ActiveRecord
     const PAGE_KEY_IMPRINT = 'imprint';
     const PAGE_KEY_TERMS = 'terms';
     const PAGE_KEY_PRIVACY_PROTECTION = 'privacy';
+    const PAGE_KEY_COOKIE_NOTICE  = 'cookies';
 
     /**
      * @inheritdoc
@@ -91,11 +92,17 @@ class Page extends ActiveRecord
             static::PAGE_KEY_IMPRINT => Yii::t('LegalModule.base', 'Imprint'),
             static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and conditions'),
             static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy protection'),
+            static::PAGE_KEY_COOKIE_NOTICE => Yii::t('LegalModule.base', 'Cookie Notice'),
         ];
     }
 
     public static function getDefaultPageTitle($pageKey)
     {
+        if ($pageKey == 'cookies') {
+            // In case of cookies, the title is the button label
+            return Yii::t('LegalModule.base', 'Got it!');
+        }
+
         return self::getPages()[$pageKey];
     }
 

@@ -61,7 +61,7 @@ class PageController extends Controller
      */
     public function canManagePages()
     {
-        if (Yii::$app->user->identity->isSystemAdmin()) {
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->isSystemAdmin()) {
             return true;
         }
 

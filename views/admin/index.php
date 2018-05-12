@@ -24,7 +24,6 @@ use yii\helpers\Html;
 
     <?= $form->field($model, 'enabledPages')->checkboxList(Page::getPages()); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
-    <?= $form->field($model, 'showCookiePopup')->checkbox(); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>

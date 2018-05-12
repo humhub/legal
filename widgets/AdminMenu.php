@@ -29,8 +29,13 @@ class AdminMenu extends \humhub\widgets\BaseMenu
 
         foreach (Page::getPages() as $key => $pageTitle) {
 
+            $typeText = Yii::t('LegalModule.base', 'Page:');
+            if ($key == Page::PAGE_KEY_COOKIE_NOTICE) {
+                $typeText = '';
+            }
+
             $this->addItem([
-                'label' => Yii::t('LegalModule.base', $pageTitle),
+                'label' => $typeText . ' ' . $pageTitle,
                 'url' => Url::to(['/legal/admin/page', 'pageKey' => $key]),
                 'sortOrder' => 100,
                 'isActive' => (Yii::$app->controller->action->id === 'page' && Yii::$app->request->get('pageKey') == $key),

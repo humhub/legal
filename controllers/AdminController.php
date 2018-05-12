@@ -69,9 +69,15 @@ class AdminController extends Controller
             $languages[$lKey] = (($pages[$lKey]->isNewRecord) ? '' : '*') . $lTitle . ' (' . $lKey . ')';
         }
 
+        $view = 'page';
+        if ($pageKey == Page::PAGE_KEY_COOKIE_NOTICE) {
+            $view = 'page_cookies';
+        }
 
-        return $this->render('page', ['pages' => $pages, 'languages' => $languages, 'defaultLanguage' => $this->module->getDefaultLanguage()]);
+
+        return $this->render($view, ['pages' => $pages, 'languages' => $languages, 'defaultLanguage' => $this->module->getDefaultLanguage()]);
     }
+
 
     /**
      * @param $pageKey

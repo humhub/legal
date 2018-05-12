@@ -8,6 +8,8 @@
 namespace humhub\modules\legal;
 
 use humhub\modules\legal\models\Page;
+use humhub\modules\legal\widgets\CookieNote;
+use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\helpers\Url;
 
@@ -27,6 +29,11 @@ class Events
 
         $sortOrder = 100;
         foreach (Page::getPages() as $pageKey => $title) {
+            if ($pageKey === Page::PAGE_KEY_COOKIE_NOTICE) {
+                // Cookie notice is not a navigation page
+                continue;
+            }
+
             $page = Page::getPage($pageKey);
             if ($page !== null) {
                 $sortOrder += 10;
@@ -40,5 +47,10 @@ class Events
 
     }
 
-
+    public function onLayoutAddonInit($event)
+    {
+        /** @var LayoutAddons $layoutAddons */
+        $layoutAddons = $event->sender;
+        $layoutAddons->addWidget(CookieNote::class);
+    }
 }

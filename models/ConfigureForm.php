@@ -14,7 +14,6 @@ use yii\base\Model;
 class ConfigureForm extends Model
 {
     public $enabledPages;
-    public $showCookiePopup;
     public $defaultLanguage;
 
     /**
@@ -36,7 +35,6 @@ class ConfigureForm extends Model
         return [
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
             'enabledPages' => Yii::t('LegalModule.base', 'Enabled pages'),
-            'showCookiePopup' => Yii::t('LegalModule.base', 'Show cookie popup'),
         ];
     }
 

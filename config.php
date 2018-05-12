@@ -1,6 +1,7 @@
 <?php /** @noinspection MissedFieldInspection */
 
 use humhub\widgets\FooterMenu;
+use humhub\widgets\LayoutAddons;
 
 /**
  * @link https://www.humhub.org/
@@ -13,7 +14,8 @@ return [
     'class' => 'humhub\modules\legal\Module',
     'namespace' => 'humhub\modules\legal',
     'events' => [
-        ['class' => FooterMenu::className(), 'event' => FooterMenu::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onFooterMenuInit']],
+        ['class' => FooterMenu::class, 'event' => FooterMenu::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onFooterMenuInit']],
+        ['class' => LayoutAddons::class, 'event' => LayoutAddons::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onLayoutAddonInit']]
     ]
 ];
 ?>

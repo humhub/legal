@@ -5,34 +5,23 @@
  * @license https://www.humhub.com/licences
  */
 
-/* @var $this \humhub\components\View */
+use humhub\widgets\MarkdownView;
+use yii\bootstrap\Html;
 
+/* @var $this \humhub\components\View */
+/* @var $page \humhub\modules\legal\models\Page */
+/* @var $canManagePages boolean */
 ?>
 
-<!--
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        </div>
-    </div>
-</div>
--->
 <div class="panel">
-    <div class="panel-heading">Imprint</div>
-    <div class="panel-body">
-
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-        dsgasdg<br/>
-
+    <div class="panel-heading">
+        <?php if ($canManagePages): ?>
+            <?= Html::a('Edit this page', ['/legal/admin/page', 'pageKey' => $page->page_key], ['class' => 'btn btn-default pull-right', 'data-ui-loader' => '']); ?>
+        <?php endif; ?>
+        <?= $page->title; ?>
     </div>
-
-
+    <div class="panel-body">
+        <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+    </div>
 </div>
 

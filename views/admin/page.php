@@ -15,6 +15,7 @@
 
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
+use humhub\widgets\MarkdownField;
 use yii\bootstrap\ActiveForm;
 
 ?>
@@ -35,7 +36,7 @@ use yii\bootstrap\ActiveForm;
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
         <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput(); ?>
-            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->textarea(['rows' => 20]); ?>
+            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles['.$languageKey.']', 'rows' => 10]); ?>
         </div>
     <?php endforeach; ?>
 

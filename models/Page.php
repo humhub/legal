@@ -2,18 +2,21 @@
 
 namespace humhub\modules\legal\models;
 
+use humhub\components\ActiveRecord;
+use humhub\modules\legal\Module;
 use Yii;
 
 /**
  * This is the model class for table "legal_page".
  *
+ * @property integer $id
  * @property string $page_key
  * @property string $language
  * @property string $title
  * @property string $content
  * @property integer $last_update
  */
-class Page extends \yii\db\ActiveRecord
+class Page extends ActiveRecord
 {
     const PAGE_KEY_IMPRINT = 'imprint';
     const PAGE_KEY_TERMS = 'terms';
@@ -28,8 +31,15 @@ class Page extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * @inheritdoc
+     */
     public function beforeSave($insert)
     {
+        if (empty($this->title)) {
+            $this->title = static::getDefaultPageTitle($this->page_key);
+        }
+
         if (empty($this->content)) {
             if (!$this->isNewRecord) {
                 $this->delete();
@@ -48,14 +58,6 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'content'], 'safe']
-            /*
-            [['page_key', 'language', 'title', 'content'], 'required'],
-            [['content'], 'string'],
-            [['last_update'], 'integer'],
-            [['page_key'], 'string', 'max' => 15],
-            [['language'], 'string', 'max' => 10],
-            [['title'], 'string', 'max' => 255],
-            */
         ];
     }
 
@@ -90,5 +92,31 @@ class Page extends \yii\db\ActiveRecord
             static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and conditions'),
             static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy protection'),
         ];
+    }
+
+    public static function getDefaultPageTitle($pageKey)
+    {
+        return self::getPages()[$pageKey];
+    }
+
+    /**
+     * @param string $pageKey
+     * @param string $language
+     * @return Page|null the page or null
+     */
+    public static function getPage($pageKey, $language = null)
+    {
+        if ($language === null) {
+            $language = Yii::$app->language;
+        }
+
+        $page = Page::findOne(['language' => $language, 'page_key' => $pageKey]);
+        if ($page === null) {
+            /** @var Module $module */
+            $module = Yii::$app->getModule('legal');
+            $page = Page::findOne(['language' => $module->getDefaultLanguage(), 'page_key' => $pageKey]);
+        }
+
+        return $page;
     }
 }

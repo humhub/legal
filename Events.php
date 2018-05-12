@@ -7,6 +7,7 @@
 
 namespace humhub\modules\legal;
 
+use humhub\modules\legal\models\Page;
 use Yii;
 use yii\helpers\Url;
 
@@ -24,26 +25,18 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        $event->sender->addItem(array(
-            'label' => Yii::t('base', 'Data Protection'),
-            'url' => Url::toRoute('/legal/page/view'),
-            'sortOrder' => 100,
-        ));
-        $event->sender->addItem(array(
-            'label' => Yii::t('base', 'Terms and Conditions'),
-            'url' => Url::toRoute('/legal/page/view'),
-            'sortOrder' => 100,
-        ));
-        $event->sender->addItem(array(
-            'label' => Yii::t('base', 'Imprint'),
-            'url' => Url::toRoute('/legal/page/view'),
-            'sortOrder' => 200,
-        ));
-        $event->sender->addItem(array(
-            'label' => Yii::t('base', 'Cookies'),
-            'url' => Url::toRoute('/legal/page/view'),
-            'sortOrder' => 300,
-        ));
+        $sortOrder = 100;
+        foreach (Page::getPages() as $pageKey => $title) {
+            $page = Page::getPage($pageKey);
+            if ($page !== null) {
+                $sortOrder += 10;
+                $event->sender->addItem(array(
+                    'label' => $page->title,
+                    'url' => Url::to(['/legal/page/view', 'pageKey' => $pageKey]),
+                    'sortOrder' => $sortOrder,
+                ));
+            }
+        }
 
     }
 

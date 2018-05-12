@@ -31,7 +31,7 @@ class AdminMenu extends \humhub\widgets\BaseMenu
 
             $this->addItem([
                 'label' => Yii::t('LegalModule.base', $pageTitle),
-                'url' => Url::to(['/legal/admin/page', 'pageKey' => $key, 'language' => $defaultLanguage]),
+                'url' => Url::to(['/legal/admin/page', 'pageKey' => $key]),
                 'sortOrder' => 100,
                 'isActive' => (Yii::$app->controller->action->id === 'page' && Yii::$app->request->get('pageKey') == $key),
             ]);

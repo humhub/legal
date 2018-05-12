@@ -36,15 +36,24 @@ class AdminController extends Controller
         return $this->render('index', ['model' => $model]);
     }
 
-    public function actionPage($pageKey, $language)
+    public function actionPage($pageKey)
     {
         $pages = $this->getPages($pageKey);
 
+        $pageFiles = Yii::$app->request->post('PageFiles');
+        if (!is_array($pageFiles)) {
+            $pageFiles = [];
+        }
+
         $saved = false;
         foreach ($pages as $page) {
+            /** @var Page $page */
             if ($page->load(Yii::$app->request->post('Page'), $page->language)) {
                 if (!$page->save()) {
                     print "not saved";
+                }
+                if (isset($pageFiles[$page->language])) {
+                    $page->fileManager->attach($pageFiles[$page->language]);
                 }
                 $saved = true;
             }

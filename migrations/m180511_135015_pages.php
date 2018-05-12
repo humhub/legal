@@ -12,12 +12,15 @@ class m180511_135015_pages extends Migration
     public function safeUp()
     {
         $this->createTable('legal_page', [
+            'id' => $this->primaryKey(),
             'page_key' => $this->string(15)->notNull(),
             'language' => $this->string(10)->notNull(),
             'title' => $this->string()->notNull(),
             'content' => $this->text()->notNull(),
             'last_update' => $this->integer(),
         ]);
+
+        $this->createIndex('legal_page_uni', 'legal_page', ['page_key', 'language'], true);
     }
 
     public function safeDown()

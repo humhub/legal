@@ -8,6 +8,7 @@
 namespace humhub\modules\legal\controllers;
 
 use humhub\components\Controller;
+use humhub\modules\legal\models\Page;
 use humhub\modules\legal\Module;
 use Yii;
 
@@ -37,9 +38,34 @@ class PageController extends Controller
     }
 
 
-    public function actionView()
+    /**
+     * @param $pageKey
+     * @return string
+     * @throws \HttpException
+     */
+    public function actionView($pageKey)
     {
-        return $this->render('view');
+        $page = Page::getPage($pageKey);
+        if ($page === null) {
+            throw new \HttpException('404', 'Could not find page!');
+        }
+
+        return $this->render('view', [
+            'page' => $page,
+            'canManagePages' => $this->canManagePages()
+        ]);
+    }
+
+    /**
+     * @return bool can Manage pages
+     */
+    public function canManagePages()
+    {
+        if (Yii::$app->user->identity->isSystemAdmin()) {
+            return true;
+        }
+
+        return false;
     }
 
 }

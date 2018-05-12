@@ -7,6 +7,7 @@
 
 namespace humhub\modules\legal;
 
+use Yii;
 use yii\helpers\Url;
 
 class Module extends \humhub\components\Module
@@ -22,10 +23,42 @@ class Module extends \humhub\components\Module
         ]);
     }
 
+    /**
+     * @return array of page keys
+     */
+    public function getEnabledPages()
+    {
+        if (empty($this->settings->get('enabledPages'))) {
+            return [];
+        }
 
+        return explode(',', $this->settings->get('enabledPages'));
+    }
+
+
+    /**
+     * @param $pageKey
+     * @return bool
+     */
+    public function isPageEnabled($pageKey)
+    {
+        if (in_array($pageKey, $this->getEnabledPages())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return string
+     */
     public function getDefaultLanguage()
     {
-        return 'en';
+        if (empty($this->settings->get('defaultLanguage'))) {
+            return Yii::$app->language;
+        }
+
+        return $this->settings->get('defaultLanguage');
     }
 
 

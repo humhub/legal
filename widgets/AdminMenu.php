@@ -33,6 +33,7 @@ class AdminMenu extends \humhub\widgets\BaseMenu
             if ($key == Page::PAGE_KEY_COOKIE_NOTICE) {
                 $typeText = '';
             }
+            $typeText = '';
 
             $this->addItem([
                 'label' => $typeText . ' ' . $pageTitle,

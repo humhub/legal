@@ -29,7 +29,7 @@ class Events
 
         $sortOrder = 100;
         foreach (Page::getPages() as $pageKey => $title) {
-            if ($pageKey === Page::PAGE_KEY_COOKIE_NOTICE) {
+            if (!$module->isPageEnabled($pageKey) || $pageKey === Page::PAGE_KEY_COOKIE_NOTICE) {
                 // Cookie notice is not a navigation page
                 continue;
             }
@@ -49,6 +49,13 @@ class Events
 
     public function onLayoutAddonInit($event)
     {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+
+        if (!$module->isPageEnabled(Page::PAGE_KEY_COOKIE_NOTICE)) {
+            return;
+        }
+
         /** @var LayoutAddons $layoutAddons */
         $layoutAddons = $event->sender;
         $layoutAddons->addWidget(CookieNote::class);

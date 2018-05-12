@@ -46,7 +46,7 @@ class PageController extends Controller
     public function actionView($pageKey)
     {
         $page = Page::getPage($pageKey);
-        if ($page === null) {
+        if ($page === null || !$this->module->isPageEnabled($pageKey)) {
             throw new \HttpException('404', 'Could not find page!');
         }
 

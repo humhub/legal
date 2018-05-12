@@ -9,6 +9,7 @@ namespace humhub\modules\legal\models;
 
 use humhub\modules\legal\Module;
 use Yii;
+use yii\base\Exception;
 use yii\base\Model;
 
 class ConfigureForm extends Model
@@ -22,8 +23,8 @@ class ConfigureForm extends Model
     public function rules()
     {
         return [
-#            [['activatedPages', 'supportDescription'], 'string'],
-            #           ['menuLocation', 'in', 'range' => array_keys(static::getMenuLocations())],
+            [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
+            [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())]
         ];
     }
 
@@ -50,30 +51,29 @@ class ConfigureForm extends Model
 
     public function loadSettings()
     {
-        /*
-        $settings = $this->getModule()->settings;
-
-        $this->supportTitle = $this->getModule()->getSupportTitle();
-        $this->supportDescription = $settings->get('supportDescription');
-        $this->menuLocation = $this->getModule()->getMenuLocation();
-        */
+        $this->defaultLanguage = $this->getModule()->getDefaultLanguage();
+        $this->enabledPages = $this->getModule()->getEnabledPages();
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function saveSettings()
     {
-        /*
         $settings = $this->getModule()->settings;
 
+        if (!is_array($this->enabledPages)) {
+            $this->enabledPages = [];
+        }
+
         try {
-            $settings->set('supportTitle', $this->supportTitle);
-            $settings->set('supportDescription', $this->supportDescription);
-            $settings->set('menuLocation', $this->menuLocation);
+            $settings->set('defaultLanguage', $this->defaultLanguage);
+            $settings->set('enabledPages', implode(',', $this->enabledPages));
         } catch (Exception $e) {
             Yii::error($e->getMessage());
             return false;
         }
-        */
 
         return true;
     }

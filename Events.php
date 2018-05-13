@@ -11,9 +11,11 @@ use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\user\models\forms\Registration;
+use humhub\modules\user\models\User;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\helpers\Url;
+use yii\web\UserEvent;
 
 
 /**
@@ -109,5 +111,13 @@ class Events
         ];
     }
 
+    public static function onRegistrationAfterRegistration(UserEvent $event)
+    {
+        /** @var User $user */
+        $user = $event->identity;
 
+        $model = new RegistrationChecks(['user' => $user]);
+        $model->load(Yii::$app->request->post());
+        $model->save();
+    }
 }

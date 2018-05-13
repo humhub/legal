@@ -11,6 +11,7 @@ use humhub\libs\Html;
 use humhub\modules\legal\Module;
 use humhub\modules\user\models\User;
 use Yii;
+use yii\base\Exception;
 use yii\base\Model;
 
 /* @var $this \humhub\components\View */
@@ -72,13 +73,13 @@ class RegistrationChecks extends Model
         $privacyPage = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
         if ($privacyPage !== null && $module->isPageEnabled(Page::PAGE_KEY_PRIVACY_PROTECTION)) {
             $link = Html::a($privacyPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_PRIVACY_PROTECTION]);
-            $hints['dataPrivacyCheck'] = $spacing. Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
+            $hints['dataPrivacyCheck'] = $spacing . Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
         }
 
         $termsPage = Page::getPage(Page::PAGE_KEY_TERMS);
         if ($termsPage !== null && $module->isPageEnabled(Page::PAGE_KEY_TERMS)) {
             $link = Html::a($termsPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_TERMS]);
-            $hints['termsCheck'] = $spacing. Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
+            $hints['termsCheck'] = $spacing . Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
         }
 
         return $hints;
@@ -99,7 +100,41 @@ class RegistrationChecks extends Model
     }
 
 
-    public function save() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save()
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
 
+        if ($this->user === null) {
+            if (Yii::$app->user->isGuest) {
+                throw new Exception('Could not save with valid user object!');
+            }
+            $this->user = Yii::$app->user->getIdentity();
+        }
+
+        if (!$this->validate()) {
+            return false;
+        }
+
+        if ($this->showTermsCheck()) {
+            $module->settings->user($this->user)->set('acceptedTerms', true);
+            $module->settings->user($this->user)->set('acceptedTermsTime', time());
+        }
+
+        if ($this->showPrivacyCheck()) {
+            $module->settings->user($this->user)->set('acceptedPrivacy', true);
+            $module->settings->user($this->user)->set('acceptedPrivacyTime', time());
+        }
+
+        if ($module->showAgeCheck()) {
+            $module->settings->user($this->user)->set('acceptedAge', true);
+            $module->settings->user($this->user)->set('acceptedAgeTime', time());
+        }
+
+        return true;
     }
 }

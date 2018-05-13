@@ -8,15 +8,15 @@
 namespace humhub\modules\legal;
 
 use humhub\modules\legal\models\Page;
+use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\CookieNote;
+use humhub\modules\user\models\forms\Registration;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\helpers\Url;
 
 
 /**
- * Description of WikiEvents
- *
  * @author luke
  */
 class Events
@@ -39,7 +39,7 @@ class Events
                 $sortOrder += 10;
                 $event->sender->addItem(array(
                     'label' => $page->title,
-                    'url' => Url::to(['/legal/page/view', 'pageKey' => $pageKey]),
+                    'url' => Url::to(['/legal/page/view', 'pageKey' => $pageKey], true),
                     'sortOrder' => $sortOrder,
                 ));
             }
@@ -60,4 +60,54 @@ class Events
         $layoutAddons = $event->sender;
         $layoutAddons->addWidget(CookieNote::class);
     }
+
+
+    public function onRegistrationFormInit($event)
+    {
+        /** @var Registration $hForm */
+        $hForm = $event->sender;
+
+        $hForm->models['RegistrationChecks'] = new RegistrationChecks();
+    }
+
+    public function onRegistrationFormRender($event)
+    {
+        /** @var Registration $hForm */
+        $hForm = $event->sender;
+
+        /** @var RegistrationChecks $model */
+        $model = $hForm->models['RegistrationChecks'];
+
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+
+        $elements = [];
+
+        if ($model->showTermsCheck()) {
+            $elements['termsCheck'] = [
+                'type' => 'checkbox',
+                'class' => 'form-control',
+            ];
+        }
+        if ($model->showPrivacyCheck()) {
+            $elements['dataPrivacyCheck'] = [
+                'type' => 'checkbox',
+                'class' => 'form-control',
+            ];
+        }
+
+        if ($module->showAgeCheck()) {
+            $elements['ageCheck'] = [
+                'type' => 'checkbox',
+                'class' => 'form-control',
+            ];
+        }
+
+        $hForm->definition['elements']['RegistrationChecks'] = [
+            'type' => 'form',
+            'elements' => $elements
+        ];
+    }
+
+
 }

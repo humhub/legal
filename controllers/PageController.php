@@ -11,6 +11,7 @@ use humhub\components\Controller;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\Module;
 use Yii;
+use yii\web\HttpException;
 
 
 /**
@@ -41,13 +42,13 @@ class PageController extends Controller
     /**
      * @param $pageKey
      * @return string
-     * @throws \HttpException
+     * @throws HttpException
      */
     public function actionView($pageKey)
     {
         $page = Page::getPage($pageKey);
         if ($page === null || !$this->module->isPageEnabled($pageKey)) {
-            throw new \HttpException('404', 'Could not find page!');
+            throw new HttpException('404', 'Could not find page!');
         }
 
         return $this->render('view', [

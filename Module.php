@@ -61,5 +61,12 @@ class Module extends \humhub\components\Module
         return $this->settings->get('defaultLanguage');
     }
 
+    /**
+     * @return bool
+     */
+    public function showAgeCheck()
+    {
+        return (boolean)$this->settings->get('showAgeCheck', false);
+    }
 
 }

@@ -6,13 +6,19 @@
  */
 
 /* @var $this \humhub\components\View */
+/* @var $module \humhub\modules\legal\Module */
 ?>
 <?php
 
 use humhub\modules\legal\models\Page;
-use humhub\modules\legal\models\RegistrationChecks;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+
+$enabledPages = [];
+foreach (Page::getPages() as $key => $title) {
+    $disabledWarning = (Page::getPage($key, $module->getDefaultLanguage()) === null) ? Yii::t('LegalModule.base', '(Disabled - please add content in default language!)') : '';
+    $enabledPages[$key] = $title . ' ' . $disabledWarning;
+}
 
 ?>
 
@@ -23,7 +29,7 @@ use yii\helpers\Html;
 
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
-    <?= $form->field($model, 'enabledPages')->checkboxList(Page::getPages()); ?>
+    <?= $form->field($model, 'enabledPages')->checkboxList($enabledPages); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
 
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>

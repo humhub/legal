@@ -17,7 +17,6 @@ class ConfigureForm extends Model
     public $enabledPages;
     public $defaultLanguage;
     public $showAgeCheck;
-    public $showForExistingUsers;
 
     /**
      * @inheritdoc
@@ -27,7 +26,7 @@ class ConfigureForm extends Model
         return [
             [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
-            [['showAgeCheck', 'showForExistingUsers'], 'boolean']
+            [['showAgeCheck'], 'boolean']
         ];
     }
 
@@ -40,7 +39,6 @@ class ConfigureForm extends Model
             'enabledPages' => Yii::t('LegalModule.base', 'Enabled pages and features'),
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
             'showAgeCheck' => Yii::t('LegalModule.base', 'Show age check (16+)'),
-            'showForExistingUsers' => Yii::t('LegalModule.base', 'Show legal notice also for existing members')
         ];
     }
 
@@ -76,7 +74,7 @@ class ConfigureForm extends Model
         try {
             $settings->set('defaultLanguage', $this->defaultLanguage);
             $settings->set('enabledPages', implode(',', $this->enabledPages));
-            $settings->set('showAgeCheck', (boolean) $this->showAgeCheck);
+            $settings->set('showAgeCheck', (boolean)$this->showAgeCheck);
         } catch (Exception $e) {
             Yii::error($e->getMessage());
             return false;

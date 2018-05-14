@@ -15,6 +15,7 @@
 
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
+use humhub\modules\legal\models\RegistrationChecks;
 use humhub\widgets\MarkdownField;
 use yii\bootstrap\ActiveForm;
 
@@ -24,7 +25,7 @@ use yii\bootstrap\ActiveForm;
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
 <div class="panel-body">
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
-    <br />
+    <br/>
     <?php if ($pageKey === Page::PAGE_KEY_LEGAL_UPDATE): ?>
         <p><?= Yii::t('LegalModule.base', 'This box is shown when an existing user has to (re-) accept changes to Terms &amp; Conditions and/or the Privacy protection.'); ?></p>
     <?php elseif ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
@@ -34,7 +35,7 @@ use yii\bootstrap\ActiveForm;
     <?php elseif ($pageKey === Page::PAGE_KEY_IMPRINT): ?>
         <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and shows your imprint.'); ?></p>
     <?php endif; ?>
-    <br />
+    <br/>
 
     <div class="pull-right">
         <strong><?= Yii::t('LegalModule.base', 'Page language:'); ?></strong>
@@ -52,11 +53,19 @@ use yii\bootstrap\ActiveForm;
         </div>
     <?php endforeach; ?>
 
+    <?php if ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
+        <?= Html::a(Yii::t('LegalModule.base', 'Reset already accepted'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+    <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
+        <?= Html::a(Yii::t('LegalModule.base', 'Reset already accepted'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+    <?php endif; ?>
+
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
+
 
     <script>
         showLanguage();

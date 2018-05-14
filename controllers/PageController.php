@@ -93,7 +93,6 @@ class PageController extends Controller
 
     }
 
-
     /**
      * @return bool can Manage pages
      */

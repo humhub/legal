@@ -8,10 +8,13 @@
 namespace humhub\modules\legal\controllers;
 
 use humhub\modules\admin\components\Controller;
+use humhub\modules\content\models\ContentContainerSetting;
 use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\legal\models\Page;
+use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\Module;
 use Yii;
+use yii\web\HttpException;
 
 
 /**
@@ -81,6 +84,30 @@ class AdminController extends Controller
             'defaultLanguage' => $this->module->getDefaultLanguage(),
             'pageKey' => $pageKey
         ]);
+    }
+
+
+    /**
+     * @param $key
+     * @return $this|void|\yii\web\Response
+     * @throws HttpException
+     */
+    public function actionReset($key)
+    {
+
+        if (!in_array($key, [RegistrationChecks::SETTING_KEY_PRIVACY, RegistrationChecks::SETTING_KEY_TERMS])) {
+            throw new HttpException(500, 'Invalid key!');
+        }
+
+        /** @var Module $module */
+        $module = $this->module;
+        $module->settings->delete($key);
+
+        ContentContainerSetting::deleteAll(['module_id' => 'legal', 'name' => $key]);
+        ContentContainerSetting::deleteAll(['module_id' => 'legal', 'name' => $key . 'Time']);
+
+        $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
+        return $this->redirect(['index']);
     }
 
 

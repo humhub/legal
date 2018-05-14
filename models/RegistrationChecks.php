@@ -23,6 +23,10 @@ use yii\base\Model;
 class RegistrationChecks extends Model
 {
 
+    const SETTING_KEY_TERMS = 'acceptedTerms';
+    const SETTING_KEY_PRIVACY = 'acceptedPrivacy';
+    const SETTING_KEY_AGE = 'acceptedAge';
+
     public $ageCheck;
     public $termsCheck;
     public $dataPrivacyCheck;
@@ -89,14 +93,49 @@ class RegistrationChecks extends Model
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
-        return (Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION) && $module->isPageEnabled(Page::PAGE_KEY_PRIVACY_PROTECTION));
+        if (Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION) && $module->isPageEnabled(Page::PAGE_KEY_PRIVACY_PROTECTION)) {
+            if ($this->user === null || empty($module->settings->user($this->user)->get(static::SETTING_KEY_PRIVACY))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function showTermsCheck()
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
-        return (Page::getPage(Page::PAGE_KEY_TERMS) && $module->isPageEnabled(Page::PAGE_KEY_TERMS));
+        if (Page::getPage(Page::PAGE_KEY_TERMS) && $module->isPageEnabled(Page::PAGE_KEY_TERMS)) {
+            if ($this->user === null || empty($module->settings->user($this->user)->get(static::SETTING_KEY_TERMS))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    public function showAgeCheck()
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+        if ($module->showAgeCheck()) {
+            if ($this->user === null || empty($module->settings->user($this->user)->get(static::SETTING_KEY_AGE))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public function hasOpenCheck()
+    {
+        if ($this->showAgeCheck() || $this->showTermsCheck() || $this->showPrivacyCheck()) {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -121,18 +160,18 @@ class RegistrationChecks extends Model
         }
 
         if ($this->showTermsCheck()) {
-            $module->settings->user($this->user)->set('acceptedTerms', true);
-            $module->settings->user($this->user)->set('acceptedTermsTime', time());
+            $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS . 'Time', time());
         }
 
         if ($this->showPrivacyCheck()) {
-            $module->settings->user($this->user)->set('acceptedPrivacy', true);
-            $module->settings->user($this->user)->set('acceptedPrivacyTime', time());
+            $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY . 'Time', time());
         }
 
         if ($module->showAgeCheck()) {
-            $module->settings->user($this->user)->set('acceptedAge', true);
-            $module->settings->user($this->user)->set('acceptedAgeTime', time());
+            $module->settings->user($this->user)->set(static::SETTING_KEY_AGE, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_AGE . 'Time', time());
         }
 
         return true;

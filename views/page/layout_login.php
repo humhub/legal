@@ -18,7 +18,10 @@ use humhub\libs\Html;
                 <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
                 <br>
             </div>
-            <?= Html::a('<i class="fa fa-arrow-left"></i> Go back to login', ['/'], ['class' => 'btn btn-default pull-right']); ?>
+
+            <?php if ($this->context->action->id != 'update'): ?>
+                <?= Html::a('<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Go back'), ['/'], ['class' => 'btn btn-default pull-right']); ?>
+            <?php endif; ?>
 
             <br/><br/><br/>
             <?= $content; ?>

@@ -14,6 +14,7 @@ use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\widgets\LayoutAddons;
 use Yii;
+use yii\base\ActionEvent;
 use yii\helpers\Url;
 use yii\web\UserEvent;
 
@@ -23,6 +24,8 @@ use yii\web\UserEvent;
  */
 class Events
 {
+
+    const SESSION_KEY_LEGAL_CHECK = 'legalModuleChecked';
 
     public function onFooterMenuInit($event)
     {
@@ -61,8 +64,57 @@ class Events
             $layoutAddons->addWidget(CookieNote::class);
         }
 
+    }
 
 
+    public function onBeforeControllerAction(ActionEvent $event)
+    {
+        if (Yii::$app->user->isGuest) {
+            return;
+        }
+
+        // Legal already checked
+        if (!empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_CHECK))) {
+            return;
+        }
+
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+
+        // Legal update enabled?
+        if (!$module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) || Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) === null) {
+            return;
+        }
+
+        // Allow user delete action
+        if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'account' && $event->action->id === 'delete') {
+            return;
+        }
+        if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'auth') {
+            return;
+        }
+        if ($event->action->controller->module->id === 'mail' && $event->action->controller->id === 'mail') {
+            return;
+        }
+        if ($event->action->controller->id === 'poll') {
+            return;
+        }
+
+        $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
+        if (!$registrationCheck->hasOpenCheck()) {
+            Yii::$app->session->set(static::SESSION_KEY_LEGAL_CHECK, 'true');
+            return;
+        }
+
+        // Allow legal module usage
+        if ($event->action->controller->module->id === 'legal') {
+            $event->sender->layout = '@user/views/layouts/main';
+            $event->sender->subLayout = '@legal/views/page/layout_login';
+            return;
+        }
+
+        $event->isValid = false;
+        $event->result = Yii::$app->response->redirect(['/legal/page/update']);
     }
 
 

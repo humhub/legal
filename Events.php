@@ -31,7 +31,7 @@ class Events
 
         $sortOrder = 100;
         foreach (Page::getPages() as $pageKey => $title) {
-            if (!$module->isPageEnabled($pageKey) || $pageKey === Page::PAGE_KEY_COOKIE_NOTICE) {
+            if (!$module->isPageEnabled($pageKey) || !in_array($pageKey, Page::getFooterMenuPages())) {
                 // Cookie notice is not a navigation page
                 continue;
             }
@@ -54,13 +54,15 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        if (!$module->isPageEnabled(Page::PAGE_KEY_COOKIE_NOTICE)) {
-            return;
-        }
-
         /** @var LayoutAddons $layoutAddons */
         $layoutAddons = $event->sender;
-        $layoutAddons->addWidget(CookieNote::class);
+
+        if ($module->isPageEnabled(Page::PAGE_KEY_COOKIE_NOTICE)) {
+            $layoutAddons->addWidget(CookieNote::class);
+        }
+
+
+
     }
 
 
@@ -111,6 +113,10 @@ class Events
         ];
     }
 
+    /**
+     * @param UserEvent $event
+     * @throws \yii\base\Exception
+     */
     public static function onRegistrationAfterRegistration(UserEvent $event)
     {
         /** @var User $user */

@@ -25,6 +25,10 @@ use yii\bootstrap\ActiveForm;
 <div class="panel-body">
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
+    <br/>
+    <p><?= Yii::t('LegalModule.base', 'Define here a text which is shown as small overlay to inform users about cookie usage. The text should contain a link to your "Privacy protection" page.'); ?></p>
+    <br/>
+
     <div class="pull-right">
         <strong><?= Yii::t('LegalModule.base', 'Box language:'); ?></strong>
         <?= Html::dropDownList('lang', $defaultLanguage, $languages, ['class' => 'form-input', 'data-ui-select2' => '', 'id' => 'pageLangSelector']); ?>

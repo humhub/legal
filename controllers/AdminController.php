@@ -75,7 +75,12 @@ class AdminController extends Controller
         }
 
 
-        return $this->render($view, ['pages' => $pages, 'languages' => $languages, 'defaultLanguage' => $this->module->getDefaultLanguage()]);
+        return $this->render($view, [
+            'pages' => $pages,
+            'languages' => $languages,
+            'defaultLanguage' => $this->module->getDefaultLanguage(),
+            'pageKey' => $pageKey
+        ]);
     }
 
 

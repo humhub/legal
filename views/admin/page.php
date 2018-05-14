@@ -24,6 +24,17 @@ use yii\bootstrap\ActiveForm;
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
 <div class="panel-body">
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
+    <br />
+    <?php if ($pageKey === Page::PAGE_KEY_LEGAL_UPDATE): ?>
+        <p><?= Yii::t('LegalModule.base', 'This box is shown when an existing user has to (re-) accept changes to Terms &amp; Conditions and/or the Privacy protection.'); ?></p>
+    <?php elseif ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and should shows your privacy protection statement.'); ?></p>
+    <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and should contains your terms and conditions.'); ?></p>
+    <?php elseif ($pageKey === Page::PAGE_KEY_IMPRINT): ?>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and shows your imprint.'); ?></p>
+    <?php endif; ?>
+    <br />
 
     <div class="pull-right">
         <strong><?= Yii::t('LegalModule.base', 'Page language:'); ?></strong>
@@ -33,10 +44,11 @@ use yii\bootstrap\ActiveForm;
     <br/>
     <br/>
     <br/>
+
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
         <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput(); ?>
-            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles['.$languageKey.']', 'rows' => 10]); ?>
+            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles[' . $languageKey . ']', 'rows' => 10]); ?>
         </div>
     <?php endforeach; ?>
 

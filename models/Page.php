@@ -21,7 +21,8 @@ class Page extends ActiveRecord
     const PAGE_KEY_IMPRINT = 'imprint';
     const PAGE_KEY_TERMS = 'terms';
     const PAGE_KEY_PRIVACY_PROTECTION = 'privacy';
-    const PAGE_KEY_COOKIE_NOTICE  = 'cookies';
+    const PAGE_KEY_COOKIE_NOTICE = 'cookies';
+    const PAGE_KEY_LEGAL_UPDATE = 'update';
 
     /**
      * @inheritdoc
@@ -93,7 +94,16 @@ class Page extends ActiveRecord
             static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and conditions'),
             static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy protection'),
             static::PAGE_KEY_COOKIE_NOTICE => Yii::t('LegalModule.base', 'Cookie Notice'),
+            static::PAGE_KEY_LEGAL_UPDATE => Yii::t('LegalModule.base', 'Legal Update'),
         ];
+    }
+
+    /**
+     * @return array list of footer menu pages
+     */
+    public static function getFooterMenuPages()
+    {
+        return [static::PAGE_KEY_TERMS, static::PAGE_KEY_TERMS, static::PAGE_KEY_IMPRINT];
     }
 
     public static function getDefaultPageTitle($pageKey)

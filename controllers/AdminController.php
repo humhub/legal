@@ -52,6 +52,7 @@ class AdminController extends Controller
         foreach ($pages as $page) {
             /** @var Page $page */
             if ($page->load(Yii::$app->request->post('Page'), $page->language)) {
+                $page->save();
                 if (isset($pageFiles[$page->language])) {
                     $page->fileManager->attach($pageFiles[$page->language]);
                 }

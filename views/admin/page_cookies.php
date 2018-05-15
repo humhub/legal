@@ -40,7 +40,7 @@ use yii\bootstrap\ActiveForm;
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
         <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles[' . $languageKey . ']', 'rows' => 5])->label(Yii::t('LegalModule.base', 'Box content')); ?>
-            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput()->label(Yii::t('LegalModule.base.', 'Accept button label')); ?>
+            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput()->label(Yii::t('LegalModule.base', 'Accept button label')); ?>
         </div>
     <?php endforeach; ?>
 

@@ -27,14 +27,15 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
     <br/>
     <?php if ($pageKey === Page::PAGE_KEY_LEGAL_UPDATE): ?>
-        <p><?= Yii::t('LegalModule.base', 'This box is shown when an existing user has to (re-) accept changes to Terms &amp; Conditions and/or the Privacy protection.'); ?></p>
+        <p><?= Yii::t('LegalModule.base', 'Informs the users that you have changed your Privacy Policy or your Terms and Conditions. In order to trigger it, the „Reset confirmation“-Option of said legal documents need to be activated.'); ?></p>
     <?php elseif ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
-        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and should shows your privacy protection statement.'); ?></p>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and the registration process. You can add a different text for every available language.'); ?> <?= Yii::t('LegalModule.base', 'If you update your Privacy Policy you can use the „Reset confirmation“-Option to inform your users and invite them to reagree. '); ?></p>
     <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
-        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and should contains your terms and conditions.'); ?></p>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and the registration process. You can add a different text for every available language.'); ?> <?= Yii::t('LegalModule.base', 'If you update your Terms and Conditions you can use the „Reset confirmation“-Option to inform your users and invite them to reagree. '); ?></p>
     <?php elseif ($pageKey === Page::PAGE_KEY_IMPRINT): ?>
-        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and shows your imprint.'); ?></p>
+        <p><?= Yii::t('LegalModule.base', 'This page is added to the footer navigation and the registration process. You can add a different text for every available language.'); ?></p>
     <?php endif; ?>
+
     <br/>
 
     <div class="pull-right">
@@ -54,9 +55,9 @@ use yii\bootstrap\ActiveForm;
     <?php endforeach; ?>
 
     <?php if ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
-        <?= Html::a(Yii::t('LegalModule.base', 'Reset already accepted'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+        <?= Html::a(Yii::t('LegalModule.base', 'Reset confirmation'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
     <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
-        <?= Html::a(Yii::t('LegalModule.base', 'Reset already accepted'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+        <?= Html::a(Yii::t('LegalModule.base', 'Reset confirmation'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS], ['class' => 'btn btn-danger btn-sm pull-right', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
     <?php endif; ?>
 
 

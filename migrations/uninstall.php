@@ -12,7 +12,7 @@ class uninstall extends Migration
 
     public function up()
     {
-        $this->dropTable('legal_pages');
+        $this->dropTable('legal_page');
     }
 
     public function down()

@@ -61,8 +61,8 @@ class RegistrationChecks extends Model
     {
         return [
             'ageCheck' => Yii::t('LegalModule.base', 'I am older than 16 years'),
-            'termsCheck' => Yii::t('LegalModule.base', 'I accept the terms and conditions'),
-            'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I understand and accept the data privacy conditions')
+            'termsCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy'),
+            'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Terms and Conditions')
         ];
     }
 

@@ -38,7 +38,7 @@ class ConfigureForm extends Model
         return [
             'enabledPages' => Yii::t('LegalModule.base', 'Enabled pages and features'),
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
-            'showAgeCheck' => Yii::t('LegalModule.base', 'Show age check (16+)'),
+            'showAgeCheck' => Yii::t('LegalModule.base', 'Show age verification (16+)'),
         ];
     }
 

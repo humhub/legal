@@ -1,17 +1,21 @@
 ## Description
 
-Adds legal checks and pages to your HumHub installation. 
+Adds several editable legal options to your installation like an imprint and a privacy policy. It does not include demo content.
 
 
 ### Features
 
-- Legal pages in footer navigation (Imprint, Data protection, Terms and Conditions)
-- Multi language support
-- EU cookie law notice
-- Handles existing user and legal texts updates
+- Supports multi-language (legal texts can be assigned for every language supported by HumHub)
+- Adds shortlinks to your legal pages into the footer navigation (Imprint, Privacy Policy, Terms and Conditions)
+- Adds shortlinks to the registration page and the registrations emails
+- Adds confirmation checkboxes to the registration page e.g. agreeing to the Terms and Conditions
+- Adds an age verification to the registration page
+- Gives you the possibility to display a notice about Cookies (multi-language)
+- Gives you the possibility to force users to agree to updates in regards to your Privacy Policy, Terms and Conditions etc. - users will be denied access to the network if they do not comply 
 
 
-__Author:__ Lucas Bartholemy
+
+__Author:__ HumHub
 __Author website:__ [www.humhub.org](http://www.humhub.org)
 
 

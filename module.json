@@ -1,7 +1,7 @@
 {
     "id": "legal",
-    "name": "Legal pages",
-    "description": "Adds legal pages",
+    "name": "Legal Tools",
+    "description": "Adds several editable legal options, like an imprint and a privacy policy.",
     "keywords": ["legal"],
     "version": "1.0.0",
     "humhub": {

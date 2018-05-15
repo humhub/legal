@@ -80,7 +80,7 @@ class Page extends ActiveRecord
     public function attributeHints()
     {
         return [
-            'content' => Yii::t('LegalModule.base', 'Leave empty to delete this page for the selected language.'),
+            'content' => Yii::t('LegalModule.base', 'Will be used as default, if the legal texts are not available in the user‘s language.'),
         ];
     }
 
@@ -91,9 +91,9 @@ class Page extends ActiveRecord
     {
         return [
             static::PAGE_KEY_IMPRINT => Yii::t('LegalModule.base', 'Imprint'),
-            static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and conditions'),
-            static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy protection'),
-            static::PAGE_KEY_COOKIE_NOTICE => Yii::t('LegalModule.base', 'Cookie Notice'),
+            static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and Conditions'),
+            static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy Policy'),
+            static::PAGE_KEY_COOKIE_NOTICE => Yii::t('LegalModule.base', 'Cookie notification'),
             static::PAGE_KEY_LEGAL_UPDATE => Yii::t('LegalModule.base', 'Legal Update'),
         ];
     }
@@ -103,7 +103,7 @@ class Page extends ActiveRecord
      */
     public static function getFooterMenuPages()
     {
-        return [static::PAGE_KEY_TERMS, static::PAGE_KEY_TERMS, static::PAGE_KEY_IMPRINT];
+        return [static::PAGE_KEY_TERMS, static::PAGE_KEY_PRIVACY_PROTECTION, static::PAGE_KEY_IMPRINT];
     }
 
     public static function getDefaultPageTitle($pageKey)

@@ -26,7 +26,7 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
     <br/>
-    <p><?= Yii::t('LegalModule.base', 'Define here a text which is shown as small overlay to inform users about cookie usage. The text should contain a link to your "Privacy protection" page.'); ?></p>
+    <p><?= Yii::t('LegalModule.base', 'Adds an overlay which informs the users about the use of cookies. You can add a different text for every available language.'); ?></p>
     <br/>
 
     <div class="pull-right">

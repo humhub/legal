@@ -69,4 +69,14 @@ class Module extends \humhub\components\Module
         return (boolean)$this->settings->get('showAgeCheck', false);
     }
 
+    public function getName()
+    {
+        return Yii::t('LegalModule.base', 'Legal Tools');
+    }
+
+    public function getDescription()
+    {
+        return Yii::t('LegalModule.base', 'Adds several editable legal options, like an imprint and a privacy policy.');
+    }
+
 }

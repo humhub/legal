@@ -48,7 +48,7 @@ class ConfigureForm extends Model
     public function attributeHints()
     {
         return [
-            'defaultLanguage' => Yii::t('LegalModule.base', 'Will be used as default, if the legal texts are not available in the user‘s language.')
+            'defaultLanguage' => Yii::t('LegalModule.base', 'Will be used as default, if the legal texts are not available in the users language.')
         ];
     }
 

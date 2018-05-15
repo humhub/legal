@@ -53,7 +53,7 @@ return [
     'Terms and Conditions' => '',
     'This page is added to the footer navigation and the registration process. You can add a different text for every available language.' => '',
     'Title' => '',
-    'Will be used as default, if the legal texts are not available in the user‘s language.' => '',
+    'Will be used as default, if the legal texts are not available in the users language.' => '',
     'Will be used as default, if the legal texts are not available in the userâ€˜s language.' => '',
     'Accept' => 'Akzeptieren',
 ];

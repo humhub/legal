@@ -27,7 +27,7 @@ class Events
 
     const SESSION_KEY_LEGAL_CHECK = 'legalModuleChecked';
 
-    public function onFooterMenuInit($event)
+    public static function onFooterMenuInit($event)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
@@ -52,7 +52,7 @@ class Events
 
     }
 
-    public function onLayoutAddonInit($event)
+    public static function onLayoutAddonInit($event)
     {
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
@@ -67,7 +67,7 @@ class Events
     }
 
 
-    public function onBeforeControllerAction(ActionEvent $event)
+    public static function onBeforeControllerAction(ActionEvent $event)
     {
         if (Yii::$app->user->isGuest) {
             return;
@@ -118,7 +118,7 @@ class Events
     }
 
 
-    public function onRegistrationFormInit($event)
+    public static function onRegistrationFormInit($event)
     {
         /** @var Registration $hForm */
         $hForm = $event->sender;
@@ -126,7 +126,7 @@ class Events
         $hForm->models['RegistrationChecks'] = new RegistrationChecks();
     }
 
-    public function onRegistrationFormRender($event)
+    public static function onRegistrationFormRender($event)
     {
         /** @var Registration $hForm */
         $hForm = $event->sender;

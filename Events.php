@@ -171,6 +171,11 @@ class Events
      */
     public static function onRegistrationAfterRegistration(UserEvent $event)
     {
+        // Do not store on console request
+        if (Yii::$app->request->isConsoleRequest) {
+            return;
+        }
+
         /** @var User $user */
         $user = $event->identity;
 

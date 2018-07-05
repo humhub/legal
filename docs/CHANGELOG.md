@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.6  (July 5, 2018)
+-----------------------
+- Fix: LDAP Sync issues
+
+
 1.0.5  (June 5, 2018)
 -----------------------
 - Fix: Swapped registration check labels

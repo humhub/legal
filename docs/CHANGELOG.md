@@ -1,6 +1,12 @@
 Changelog
 =========
 
+
+1.0.7  (July 10, 2018)
+-----------------------
+- Fix: LDAP Sync issues
+
+
 1.0.6  (July 5, 2018)
 -----------------------
 - Fix: LDAP Sync issues

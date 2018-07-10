@@ -120,6 +120,11 @@ class Events
 
     public static function onRegistrationFormInit($event)
     {
+        // Do not store on console request
+        if (Yii::$app->request->isConsoleRequest) {
+            return;
+        }
+
         /** @var Registration $hForm */
         $hForm = $event->sender;
 
@@ -128,6 +133,11 @@ class Events
 
     public static function onRegistrationFormRender($event)
     {
+        // Do not store on console request
+        if (Yii::$app->request->isConsoleRequest) {
+            return;
+        }
+
         /** @var Registration $hForm */
         $hForm = $event->sender;
 

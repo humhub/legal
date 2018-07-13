@@ -8,7 +8,10 @@ Assets::register($this);
 ?>
 
 <div id="ccMessageText" style="display:none">
-    <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+    <div style="max-height:300px;overflow:auto">
+        <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+    </div>
+
 </div>
 
 

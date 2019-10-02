@@ -3,7 +3,7 @@
     "name": "Legal Tools",
     "description": "Adds several editable legal options, like an imprint and a privacy policy.",
     "keywords": ["legal"],
-    "version": "1.0.8",
+    "version": "1.0.9",
     "humhub": {
         "minVersion": "1.2.6"
     },

@@ -76,13 +76,13 @@ class RegistrationChecks extends Model
 
         $privacyPage = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
         if ($privacyPage !== null && $module->isPageEnabled(Page::PAGE_KEY_PRIVACY_PROTECTION)) {
-            $link = Html::a($privacyPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_PRIVACY_PROTECTION]);
+            $link = Html::a($privacyPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_PRIVACY_PROTECTION], ['data-pjax-prevent' => 1, 'target' => '_blank']);
             $hints['dataPrivacyCheck'] = $spacing . Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
         }
 
         $termsPage = Page::getPage(Page::PAGE_KEY_TERMS);
         if ($termsPage !== null && $module->isPageEnabled(Page::PAGE_KEY_TERMS)) {
-            $link = Html::a($termsPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_TERMS]);
+            $link = Html::a($termsPage->title, ['/legal/page/view', 'pageKey' => Page::PAGE_KEY_TERMS], ['data-pjax-prevent' => 1, 'target' => '_blank']);
             $hints['termsCheck'] = $spacing . Yii::t('LegalModule.base', 'More information: {link}', ['link' => $link]);
         }
 

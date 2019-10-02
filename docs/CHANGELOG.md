@@ -1,9 +1,17 @@
 Changelog
 =========
 
+1.0.9  (October 2, 2019)
+------------------------
+
+- Fix #3: Registration form checkboxes links
+- Enh: Updated translations
+
+
 1.0.8  (July 10, 2018)
 -----------------------
 - Fix: Added max-height for cookie content + button white space wrap
+
 
 1.0.7  (July 10, 2018)
 -----------------------

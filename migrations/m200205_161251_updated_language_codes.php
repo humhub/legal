@@ -19,12 +19,12 @@ class m200205_161251_updated_language_codes extends Migration
         $this->update('legal_page', ['language' => 'nn-NO'], ['language' => 'nn_no']);
         $this->update('legal_page', ['language' => 'pt-BR'], ['language' => 'pt_br']);
 
-        $this->update('setting', ['defaultLanguage' => 'en-US'], ['defaultLanguage' => 'en', 'module_id' => 'legal']);
-        $this->update('setting', ['defaultLanguage' => 'en-GB'], ['defaultLanguage' => 'en_gb', 'module_id' => 'legal']);
-        $this->update('setting', ['defaultLanguage' => 'fa-IR'], ['defaultLanguage' => 'fa_ir', 'module_id' => 'legal']);
-        $this->update('setting', ['defaultLanguage' => 'nb-NO'], ['defaultLanguage' => 'nb_no', 'module_id' => 'legal']);
-        $this->update('setting', ['defaultLanguage' => 'nn-NO'], ['defaultLanguage' => 'nn_no', 'module_id' => 'legal']);
-        $this->update('setting', ['defaultLanguage' => 'pt-BR'], ['defaultLanguage' => 'pt_br', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'en-US'], ['name' => 'defaultLanguage', 'value' => 'en', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'en-GB'], ['name' => 'defaultLanguage', 'value' => 'en_gb', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'fa-IR'], ['name' => 'defaultLanguage', 'value' => 'fa_ir', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'nb-NO'], ['name' => 'defaultLanguage', 'value' => 'nb_no', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'nn-NO'], ['name' => 'defaultLanguage', 'value' => 'nn_no', 'module_id' => 'legal']);
+        $this->update('setting', ['value' => 'pt-BR'], ['name' => 'defaultLanguage', 'value' => 'pt_br', 'module_id' => 'legal']);
     }
 
     /**

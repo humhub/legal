@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.1.0  (February 5, 2020)
+-------------------------
+
+- Enh: Updated translations
+- Enh: Use updated language codes
+- Enh: Increased min. Humhub Version to 1.4   
+
+
 1.0.9  (October 2, 2019)
 ------------------------
 

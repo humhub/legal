@@ -68,7 +68,7 @@ use yii\bootstrap\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 
-    <script>
+    <script <?= Html::nonce() ?>>
         showLanguage();
         $("#pageLangSelector").select2().on("select2:select", function (e) {
             showLanguage();

@@ -1,5 +1,6 @@
 <?php
 
+use humhub\libs\Html;
 use humhub\modules\legal\assets\Assets;
 use humhub\widgets\MarkdownView;
 
@@ -15,7 +16,7 @@ Assets::register($this);
 </div>
 
 
-<script>
+<script <?= Html::nonce() ?>>
     window.addEventListener("load", function () {
         window.cookieconsent.initialise({
             "palette": {

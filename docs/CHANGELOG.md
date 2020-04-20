@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1.1  (April 20, 2020)
+-------------------------
+
+- Enh: 1.5 defer support
+- Enh: Added script nonce support
+
 1.1.0  (February 5, 2020)
 -------------------------
 

@@ -7,6 +7,7 @@
 
 namespace humhub\modules\legal\controllers;
 
+use humhub\components\access\ControllerAccess;
 use humhub\components\Controller;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
@@ -23,7 +24,14 @@ use yii\web\HttpException;
  */
 class PageController extends Controller
 {
+    /**
+     * @inheritDoc
+     */
+    public $access = ControllerAccess::class;
 
+    /**
+     * @inheritDoc
+     */
     public function beforeAction($action)
     {
         if (Yii::$app->user->isGuest) {

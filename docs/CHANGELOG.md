@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1.2  (August 4, 2020)
+-------------------------
+
+- Fix #8: 1.6 controller support
+- Enh: Updated translations
+
+
 1.1.1  (April 20, 2020)
 -------------------------
 

@@ -14,7 +14,7 @@ use Yii;
 use yii\base\Exception;
 use yii\base\Model;
 
-/* @var $this \humhub\components\View */
+/* @var $this \humhub\modules\ui\view\components\View */
 
 /**
  * Class RegistrationChecks

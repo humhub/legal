@@ -9,7 +9,7 @@ use humhub\libs\Html;
 use humhub\widgets\ActiveForm;
 use humhub\widgets\MarkdownView;
 
-/* @var $this \humhub\components\View */
+/* @var $this \humhub\modules\ui\view\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
 /* @var $model \humhub\modules\legal\models\RegistrationChecks */
 /* @var $module \humhub\modules\legal\Module */

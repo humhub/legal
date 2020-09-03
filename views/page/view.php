@@ -8,7 +8,7 @@
 use humhub\widgets\MarkdownView;
 use yii\bootstrap\Html;
 
-/* @var $this \humhub\components\View */
+/* @var $this \humhub\modules\ui\view\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
 /* @var $canManagePages boolean */
 ?>

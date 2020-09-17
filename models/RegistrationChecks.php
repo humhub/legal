@@ -60,7 +60,7 @@ class RegistrationChecks extends Model
     public function attributeLabels()
     {
         return [
-            'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->defaultAge()]),
+            'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->getDefaultAge()]),
             'termsCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Terms and Conditions'),
             'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy')
         ];

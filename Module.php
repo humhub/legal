@@ -70,7 +70,7 @@ class Module extends \humhub\components\Module
     /**
      * @return string
      */
-    public function defaultAge()
+    public function getDefaultAge()
     {
         return $this->settings->get('defaultAge', '');
     }

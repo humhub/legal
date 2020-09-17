@@ -14,7 +14,6 @@ use yii\base\Model;
 
 class ConfigureForm extends Model
 {
-    const REGEX_AGE = '/^(1[89]|[2-9]\d)$';
 
     public $enabledPages;
     public $defaultLanguage;
@@ -31,6 +30,7 @@ class ConfigureForm extends Model
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
             [['showAgeCheck'], 'boolean'],
             [['defaultAge'], 'string'],
+            ['defaultAge', 'integer', 'min' => 0, 'max' => 99]
         ];
     }
 
@@ -88,27 +88,6 @@ class ConfigureForm extends Model
         }
 
         return true;
-    }
-
-    public function validateAge()
-    {
-        if (empty($this->defaultAge)) {
-            return;
-        }
-
-        preg_match_all(static::REGEX_AGE, $this->defaultAge, $matches, PREG_SET_ORDER);
-        $result = '';
-        $defaultAge = [];
-        foreach ($matches as $match) {
-            if (in_array($match[1], $defaultAge, true)) {
-               continue;
-            }
-
-            $defaultAge[] = $match[1];
-            $result .= $match[1].':'.$match[2].$match[3].';';
-        }
-
-        $this->defaultAge = $result;
     }
 
     /**

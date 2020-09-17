@@ -31,7 +31,7 @@ foreach (Page::getPages() as $key => $title) {
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
 
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>
-    <?= $form->field($model, 'defaultAge')->textInput(); ?>
+    <?= $form->field($model, 'defaultAge')->textInput()->hint(\Yii::t('LegalModule.base', 'Please enter a number value.')); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>

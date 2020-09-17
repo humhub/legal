@@ -62,7 +62,7 @@ class ConfigureForm extends Model
         $this->defaultLanguage = $this->getModule()->getDefaultLanguage();
         $this->enabledPages = $this->getModule()->getEnabledPages();
         $this->showAgeCheck = $this->getModule()->showAgeCheck();
-        $this->defaultAge = $this->getModule()->defaultAge();
+        $this->defaultAge = $this->getModule()->getDefaultAge();
         return true;
     }
 

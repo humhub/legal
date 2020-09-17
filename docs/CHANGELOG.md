@@ -2,6 +2,7 @@ Changelog
 =========
 
 1.1.3 (TBA)
+-------------------------
 - Enh: Make default age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10)
 
 1.1.2  (August 4, 2020)

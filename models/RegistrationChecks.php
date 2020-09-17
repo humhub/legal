@@ -60,7 +60,7 @@ class RegistrationChecks extends Model
     public function attributeLabels()
     {
         return [
-            'ageCheck' => Yii::t('LegalModule.base', 'I am older than 16 years'),
+            'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->defaultAge()]),
             'termsCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Terms and Conditions'),
             'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy')
         ];
@@ -115,7 +115,6 @@ class RegistrationChecks extends Model
         return false;
     }
 
-
     public function showAgeCheck()
     {
         /** @var Module $module */
@@ -128,7 +127,6 @@ class RegistrationChecks extends Model
         return false;
     }
 
-
     public function hasOpenCheck()
     {
         if ($this->showAgeCheck() || $this->showTermsCheck() || $this->showPrivacyCheck()) {
@@ -137,7 +135,6 @@ class RegistrationChecks extends Model
 
         return false;
     }
-
 
     /**
      * @return bool

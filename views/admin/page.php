@@ -10,9 +10,6 @@
 /* @var $languages array */
 /* @var $defaultLanguage string */
 
-?>
-<?php
-
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;

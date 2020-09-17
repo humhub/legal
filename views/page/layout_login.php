@@ -6,6 +6,7 @@
  */
 
 use humhub\libs\Html;
+use humhub\widgets\SiteLogo;
 
 /* @var $this \humhub\modules\ui\view\components\View */
 
@@ -15,7 +16,7 @@ use humhub\libs\Html;
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">
-                <?= humhub\widgets\SiteLogo::widget(['place' => 'login']); ?>
+                <?= SiteLogo::widget(['place' => 'login']); ?>
                 <br>
             </div>
 

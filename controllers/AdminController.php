@@ -16,7 +16,6 @@ use humhub\modules\legal\Module;
 use Yii;
 use yii\web\HttpException;
 
-
 /**
  * Class AdminController
  *
@@ -75,7 +74,6 @@ class AdminController extends Controller
             $view = 'page_cookies';
         }
 
-
         return $this->render($view, [
             'pages' => $pages,
             'languages' => $languages,
@@ -83,7 +81,6 @@ class AdminController extends Controller
             'pageKey' => $pageKey
         ]);
     }
-
 
     /**
      * @param $key
@@ -107,7 +104,6 @@ class AdminController extends Controller
         $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
         return $this->redirect(['index']);
     }
-
 
     /**
      * @param $pageKey

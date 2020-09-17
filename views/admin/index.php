@@ -22,10 +22,8 @@ foreach (Page::getPages() as $key => $title) {
 
 ?>
 
-
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
 <div class="panel-body">
-
 
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
@@ -33,11 +31,11 @@ foreach (Page::getPages() as $key => $title) {
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
 
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>
+    <?= $form->field($model, 'defaultAge')->textInput(); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
     </div>
-
 
     <?php ActiveForm::end(); ?>
 

@@ -35,6 +35,7 @@ return [
     'More information: {link}' => '',
     'Page language:' => '',
     'Page:' => '',
+    'Please enter a number value.' => '',
     'Reset confirmation' => '',
     'Reset successful!' => '',
     'Show age verification {age}' => '',

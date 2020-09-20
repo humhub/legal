@@ -40,5 +40,6 @@ return [
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Verrà utilizzato come predefinito, se i testi legali non sono disponibili nella lingua degli utenti.',
     'Default age' => '',
     'I am older than {age} years' => '',
+    'Please enter a number value.' => '',
     'Show age verification {age}' => '',
 ];

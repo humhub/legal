@@ -18,7 +18,7 @@ class ConfigureForm extends Model
     public $enabledPages;
     public $defaultLanguage;
     public $showAgeCheck;
-    public $defaultAge;
+    public $minimumAge;
 
     /**
      * @inheritdoc
@@ -29,8 +29,7 @@ class ConfigureForm extends Model
             [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
             [['showAgeCheck'], 'boolean'],
-            [['defaultAge'], 'string'],
-            ['defaultAge', 'integer', 'min' => 0, 'max' => 99]
+            ['minimumAge', 'integer', 'min' => 16, 'max' => 99]
         ];
     }
 
@@ -42,8 +41,8 @@ class ConfigureForm extends Model
         return [
             'enabledPages' => Yii::t('LegalModule.base', 'Enabled pages and features'),
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
-            'showAgeCheck' => Yii::t('LegalModule.base', 'Show age verification {age}', ['age' => $this->defaultAge]),
-            'defaultAge' => Yii::t('LegalModule.base', 'Default age'),
+            'showAgeCheck' => Yii::t('LegalModule.base', 'Show age verification {age}', ['age' => $this->minimumAge]),
+            'minimumAge' => Yii::t('LegalModule.base', 'Default age'),
         ];
     }
 
@@ -62,7 +61,7 @@ class ConfigureForm extends Model
         $this->defaultLanguage = $this->getModule()->getDefaultLanguage();
         $this->enabledPages = $this->getModule()->getEnabledPages();
         $this->showAgeCheck = $this->getModule()->showAgeCheck();
-        $this->defaultAge = $this->getModule()->getDefaultAge();
+        $this->minimumAge = $this->getModule()->getMinimumAge();
         return true;
     }
 
@@ -81,7 +80,7 @@ class ConfigureForm extends Model
             $settings->set('defaultLanguage', $this->defaultLanguage);
             $settings->set('enabledPages', implode(',', $this->enabledPages));
             $settings->set('showAgeCheck', $this->showAgeCheck);
-            $settings->set('defaultAge', $this->defaultAge);
+            $settings->set('minimumAge', $this->minimumAge);
         } catch (Exception $e) {
             Yii::error($e->getMessage());
             return false;

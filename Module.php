@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -18,9 +19,7 @@ class Module extends \humhub\components\Module
      */
     public function getConfigUrl()
     {
-        return Url::to([
-            '/legal/admin'
-        ]);
+        return Url::to(['/legal/admin']);
     }
 
     /**
@@ -34,7 +33,6 @@ class Module extends \humhub\components\Module
 
         return explode(',', $this->settings->get('enabledPages'));
     }
-
 
     /**
      * @param $pageKey
@@ -67,6 +65,14 @@ class Module extends \humhub\components\Module
     public function showAgeCheck()
     {
         return (boolean)$this->settings->get('showAgeCheck', false);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMinimumAge()
+    {
+        return $this->settings->get('minimumAge', '16+');
     }
 
     public function getName()

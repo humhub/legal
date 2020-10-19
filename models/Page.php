@@ -32,7 +32,6 @@ class Page extends ActiveRecord
         return 'legal_page';
     }
 
-
     /**
      * @inheritdoc
      */

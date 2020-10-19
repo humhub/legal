@@ -66,7 +66,6 @@ class Events
 
     }
 
-
     public static function onBeforeControllerAction(ActionEvent $event)
     {
         if (Yii::$app->user->isGuest) {
@@ -116,7 +115,6 @@ class Events
         $event->isValid = false;
         $event->result = Yii::$app->response->redirect(['/legal/page/update']);
     }
-
 
     public static function onRegistrationFormInit($event)
     {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -14,7 +15,6 @@ use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\Module;
 use Yii;
 use yii\web\HttpException;
-
 
 /**
  * Class PageController
@@ -45,7 +45,6 @@ class PageController extends Controller
 
     }
 
-
     /**
      * @param $pageKey
      * @return string
@@ -63,7 +62,6 @@ class PageController extends Controller
             'canManagePages' => $this->canManagePages()
         ]);
     }
-
 
     /**
      * @return string

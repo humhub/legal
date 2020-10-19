@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -60,7 +61,7 @@ class RegistrationChecks extends Model
     public function attributeLabels()
     {
         return [
-            'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->getDefaultAge()]),
+            'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->getMinimumAge()]),
             'termsCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Terms and Conditions'),
             'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy')
         ];

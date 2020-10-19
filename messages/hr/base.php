@@ -18,7 +18,7 @@ return [
     'Configuration' => '',
     'Content' => '',
     'Cookie notification' => '',
-    'Default age' => '',
+    'Minimum age' => '',
     'Default languge' => '',
     'Delete my account including my personal data' => '',
     'Enabled pages and features' => '',

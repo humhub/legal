@@ -38,7 +38,7 @@ return [
     'Title' => 'Titre',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Sera utilisé par défaut, si le contenu juridique n\'est pas disponible dans la langue des utilisateurs.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Sera utilisé par défaut, si le contenu juridique n\'est pas disponible dans la langue de l\'utilisateur.',
-    'Default age' => '',
+    'Minimum age' => '',
     'I am older than {age} years' => '',
     'Please enter a number value.' => '',
     'Show age verification {age}' => '',

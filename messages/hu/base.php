@@ -38,7 +38,7 @@ return [
     'Title' => 'Cím',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Alapértelmezettként lesz használva, ha a jogi szövegek nem érhetők el a felhasználó nyelvén.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Alapértelmezettként lesz használva, ha a jogi szövegek nem érhetők el a felhasználó nyelvén.',
-    'Default age' => '',
+    'Minimum age' => '',
     'I am older than {age} years' => '',
     'Please enter a number value.' => '',
     'Show age verification {age}' => '',

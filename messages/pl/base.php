@@ -38,7 +38,7 @@ return [
     'Title' => 'Tytuł',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Zostanie użyte jako domyślne, jeżeli nota prawna jest niedostępna w języku użytkownika.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Zostanie użyte jako domyślne, jeżeli nota prawna jest niedostępna w języku użytkowników.',
-    'Default age' => '',
+    'Minimum age' => '',
     'I am older than {age} years' => '',
     'Please enter a number value.' => '',
     'Show age verification {age}' => '',

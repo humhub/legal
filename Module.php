@@ -72,7 +72,7 @@ class Module extends \humhub\components\Module
      */
     public function getMinimumAge()
     {
-        return $this->settings->get('minimumAge', '16+');
+        return $this->settings->get('minimumAge', 16);
     }
 
     public function getName()

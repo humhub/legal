@@ -16,7 +16,7 @@ return [
     'Box language:' => '',
     'Configuration' => '',
     'Cookie notification' => '',
-    'Default age' => '',
+    'Minimum age' => '',
     'Delete my account including my personal data' => '',
     'Enabled pages and features' => '',
     'I am older than {age} years' => '',

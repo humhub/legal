@@ -3,24 +3,23 @@ Changelog
 
 1.1.3 (TBA)
 -------------------------
-- Enh: Make default age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10)
+- Enh: Make minimum age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10)
+
 
 1.1.2  (August 4, 2020)
 -------------------------
-
 - Fix #8: 1.6 controller support
 - Enh: Updated translations
 
 
 1.1.1  (April 20, 2020)
 -------------------------
-
 - Enh: 1.5 defer support
 - Enh: Added script nonce support
 
+
 1.1.0  (February 5, 2020)
 -------------------------
-
 - Enh: Updated translations
 - Enh: Use updated language codes
 - Enh: Increased min. Humhub Version to 1.4   
@@ -28,7 +27,6 @@ Changelog
 
 1.0.9  (October 2, 2019)
 ------------------------
-
 - Fix #3: Registration form checkboxes links
 - Enh: Updated translations
 

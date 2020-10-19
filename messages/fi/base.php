@@ -38,7 +38,7 @@ return [
     'Title' => 'Otsikko',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Käytetään oletuksena, jos oikeudelliset tekstit eivät ole käytettävissä käyttäjän kielellä.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Käytetään oletuksena, jos oikeudelliset tekstit eivät ole käytettävissä käyttäjän kielellä.',
-    'Default age' => '',
+    'Minimum age' => '',
     'I am older than {age} years' => '',
     'Please enter a number value.' => '',
     'Show age verification {age}' => '',

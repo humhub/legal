@@ -38,7 +38,7 @@ return [
     'Title' => 'Titel',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Text wird in der Standardsprache angezeigt, wenn die vom Benutzer ausgewählte Sprache keinen Inhalt hat.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Text wird in der Standardsprache angezeigt, wenn die vom User ausgewählte Sprache keinen Inhalt hat.',
-    'Default age' => '',
+    'Minimum age' => 'Mindestalter',
     'I am older than {age} years' => '',
     'Please enter a number value.' => '',
     'Show age verification {age}' => '',

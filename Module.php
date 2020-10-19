@@ -70,9 +70,9 @@ class Module extends \humhub\components\Module
     /**
      * @return string
      */
-    public function getDefaultAge()
+    public function getMinimumAge()
     {
-        return $this->settings->get('defaultAge', '');
+        return $this->settings->get('minimumAge', '16+');
     }
 
     public function getName()

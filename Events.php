@@ -98,6 +98,9 @@ class Events
         if ($event->action->controller->id === 'poll') {
             return;
         }
+        if ($event->action->controller->module->id === 'rest') {
+            return;
+        }
 
         $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
         if (!$registrationCheck->hasOpenCheck()) {

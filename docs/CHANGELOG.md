@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.4  (Unreleased)
+-------------------------
+- Fix: Infinite redirect with 2FA module
+
 1.1.3 (TBA)
 -------------------------
 - Enh: Make minimum age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10))

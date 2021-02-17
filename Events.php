@@ -101,6 +101,9 @@ class Events
         if ($event->action->controller->module->id === 'rest') {
             return;
         }
+        if ($event->action->controller->module->id === 'twofa' && $event->action->controller->id === 'check') {
+            return;
+        }
 
         $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
         if (!$registrationCheck->hasOpenCheck()) {

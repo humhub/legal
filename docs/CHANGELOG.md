@@ -1,14 +1,12 @@
 Changelog
 =========
 
-1.1.4  (Unreleased)
--------------------------
+1.1.4  (February 17, 2021)
+--------------------------
 - Fix: Infinite redirect with 2FA module
-
-1.1.3 (TBA)
--------------------------
 - Enh: Make minimum age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10))
 - Fix: Problem with REST API module
+- Enh: Updated translations
 
 
 1.1.2  (August 4, 2020)

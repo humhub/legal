@@ -36,7 +36,7 @@ return array (
   'Privacy Policy' => 'Politique de confidentialité',
   'Reset confirmation' => 'Initialiser la confirmation',
   'Reset successful!' => 'Initialisation réussie !',
-  'Show age verification {age}' => 'Afficher l\'âge de vérification de l\' {age}',
+  'Show age verification {age}' => 'Afficher la vérification de l\'âge {age}',
   'Terms and Conditions' => 'Conditions d\'utilisation',
   'This page is added to the footer navigation and the registration process. You can add a different text for every available language.' => 'Cette page est ajoutée à la navigation du pied de page et au processus d\'enregistrement. Vous pouvez ajouter un contenu différent pour chaque langue disponible.',
   'Title' => 'Titre',

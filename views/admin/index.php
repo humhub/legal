@@ -28,6 +28,7 @@ foreach (Page::getPages() as $key => $title) {
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
     <?= $form->field($model, 'enabledPages')->checkboxList($enabledPages); ?>
+    <?= $form->field($model, 'showPagesAfterRegistration')->checkbox(); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
 
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>

@@ -3,7 +3,8 @@ Changelog
 
 1.1.5  (March 8, 2021)
 --------------------------
-- Enh: Add an option to show legal pages in full screen after account creation ([#23](https://github.com/humhub-contrib/legal/issues/23)) 
+- Enh: Add an option to show legal pages in full screen after account creation ([#23](https://github.com/humhub-contrib/legal/issues/23))
+- Enh: Add missing translations (automatic from Google translation)
 
 
 1.1.4  (February 17, 2021)

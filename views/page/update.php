@@ -6,8 +6,8 @@
  */
 
 use humhub\libs\Html;
-use humhub\widgets\ActiveForm;
-use humhub\widgets\MarkdownView;
+use humhub\modules\ui\form\widgets\ActiveForm;
+use humhub\modules\content\widgets\richtext\RichText;
 
 /* @var $this \humhub\modules\ui\view\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
@@ -20,7 +20,7 @@ use humhub\widgets\MarkdownView;
         <?= $page->title; ?>
     </div>
     <div class="panel-body">
-        <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+        <?= RichText::output($page->content); ?>
 
         <br/>
         <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>

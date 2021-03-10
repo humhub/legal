@@ -9,11 +9,12 @@
 /* @var $pages Page[] */
 /* @var $languages array */
 /* @var $defaultLanguage string */
+/* @var $pageKey string */
 
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
-use humhub\widgets\MarkdownField;
+use humhub\modules\content\widgets\richtext\RichTextField;
 use yii\bootstrap\ActiveForm;
 
 ?>
@@ -47,7 +48,7 @@ use yii\bootstrap\ActiveForm;
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
         <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput(); ?>
-            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles[' . $languageKey . ']', 'rows' => 10]); ?>
+            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(RichTextField::class, ['layout' => RichTextField::LAYOUT_BLOCK, 'pluginOptions' => ['maxHeight' => '300px']]); ?>
         </div>
     <?php endforeach; ?>
 

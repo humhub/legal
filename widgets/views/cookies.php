@@ -2,15 +2,16 @@
 
 use humhub\libs\Html;
 use humhub\modules\legal\assets\Assets;
-use humhub\widgets\MarkdownView;
+use humhub\modules\content\widgets\richtext\RichText;
 
 Assets::register($this);
 
+/* @var $page \humhub\modules\legal\models\Page */
 ?>
 
 <div id="ccMessageText" style="display:none">
     <div style="max-height:300px;overflow:auto">
-        <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+        <?= RichText::output($page->content); ?>
     </div>
 
 </div>

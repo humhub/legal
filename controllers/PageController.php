@@ -67,6 +67,43 @@ class PageController extends Controller
      * @return string
      * @throws HttpException
      */
+    public function actionConfirm()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
+        if ($model->showTermsCheck()) {
+            $model->restrictToSettingKey = RegistrationChecks::SETTING_KEY_TERMS;
+            $page = Page::getPage(Page::PAGE_KEY_TERMS);
+        }
+        elseif ($model->showPrivacyCheck()) {
+            $model->restrictToSettingKey = RegistrationChecks::SETTING_KEY_PRIVACY;
+            $page = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
+        }
+        if (!isset($page) || $page === null) {
+            throw new HttpException('404', 'Could not find page!');
+        }
+
+        $this->layout = '@user/views/layouts/main';
+        $this->subLayout = '@legal/views/page/layout_login';
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->goHome();
+        }
+
+        return $this->render('confirm', [
+            'page' => $page,
+            'model' => $model,
+            'module' => $this->module
+        ]);
+    }
+
+    /**
+     * @return string
+     * @throws HttpException
+     */
     public function actionUpdate()
     {
         if (Yii::$app->user->isGuest) {
@@ -96,7 +133,6 @@ class PageController extends Controller
             'model' => $model,
             'module' => $this->module
         ]);
-
     }
 
     /**

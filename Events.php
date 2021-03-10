@@ -26,6 +26,7 @@ class Events
 {
 
     const SESSION_KEY_LEGAL_CHECK = 'legalModuleChecked';
+    const SESSION_KEY_LEGAL_AFTER_REGISTRATION = 'legalModuleAfterRegistration';
 
     public static function onFooterMenuInit($event)
     {
@@ -80,11 +81,6 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        // Legal update enabled?
-        if (!$module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) || Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) === null) {
-            return;
-        }
-
         // Allow user delete action
         if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'account' && $event->action->id === 'delete') {
             return;
@@ -108,6 +104,7 @@ class Events
         $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
         if (!$registrationCheck->hasOpenCheck()) {
             Yii::$app->session->set(static::SESSION_KEY_LEGAL_CHECK, 'true');
+            Yii::$app->session->remove(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION);
             return;
         }
 
@@ -119,7 +116,15 @@ class Events
         }
 
         $event->isValid = false;
-        $event->result = Yii::$app->response->redirect(['/legal/page/update']);
+
+        // Show legal update?
+        if (empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION)) && $module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) && Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) !== null) {
+            $event->result = Yii::$app->response->redirect(['/legal/page/update']);
+        }
+        // Show legal pages in full screen with confirm form, one by one (after account creation)
+        else {
+            $event->result = Yii::$app->response->redirect(['/legal/page/confirm']);
+        }
     }
 
     public static function onRegistrationFormInit($event)
@@ -132,7 +137,14 @@ class Events
         /** @var Registration $hForm */
         $hForm = $event->sender;
 
-        $hForm->models['RegistrationChecks'] = new RegistrationChecks();
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+
+        $hForm->models['RegistrationChecks'] = new RegistrationChecks(['restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
+
+        if ($module->showPagesAfterRegistration()) {
+            Yii::$app->session->set(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION, 'true');
+        }
     }
 
     public static function onRegistrationFormRender($event)
@@ -193,7 +205,10 @@ class Events
         /** @var User $user */
         $user = $event->identity;
 
-        $model = new RegistrationChecks(['user' => $user]);
+        /** @var Module $module */
+        $module = Yii::$app->getModule('legal');
+
+        $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
         $model->load(Yii::$app->request->post());
         $model->save();
     }

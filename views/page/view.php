@@ -5,7 +5,7 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\widgets\MarkdownView;
+use humhub\modules\content\widgets\richtext\RichText;
 use yii\bootstrap\Html;
 
 /* @var $this \humhub\modules\ui\view\components\View */
@@ -21,7 +21,7 @@ use yii\bootstrap\Html;
         <?= $page->title; ?>
     </div>
     <div class="panel-body">
-        <?= MarkdownView::widget(['markdown' => $page->content]); ?>
+        <?= RichText::output($page->content); ?>
     </div>
 </div>
 

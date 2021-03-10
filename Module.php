@@ -35,6 +35,14 @@ class Module extends \humhub\components\Module
     }
 
     /**
+     * @return bool
+     */
+    public function showPagesAfterRegistration()
+    {
+        return (boolean)$this->settings->get('showPagesAfterRegistration', false);
+    }
+
+    /**
      * @param $pageKey
      * @return bool
      */

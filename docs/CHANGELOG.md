@@ -1,6 +1,19 @@
 Changelog
 =========
 
+1.2.0  (March 10, 2021)
+--------------------------
+- Enh: Replace depreciated MarkdownField widget with new RichTextField widget
+
+
+1.1.4  (February 17, 2021)
+--------------------------
+- Fix: Infinite redirect with 2FA module
+- Enh: Make minimum age configurable ([#10](https://github.com/humhub-contrib/legal/issues/10))
+- Fix: Problem with REST API module
+- Enh: Updated translations
+
+
 1.1.4  (February 17, 2021)
 --------------------------
 - Fix: Infinite redirect with 2FA module

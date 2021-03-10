@@ -16,6 +16,7 @@ class ConfigureForm extends Model
 {
 
     public $enabledPages;
+    public $showPagesAfterRegistration;
     public $defaultLanguage;
     public $showAgeCheck;
     public $minimumAge;
@@ -28,7 +29,7 @@ class ConfigureForm extends Model
         return [
             [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
-            [['showAgeCheck'], 'boolean'],
+            [['showPagesAfterRegistration', 'showAgeCheck'], 'boolean'],
             ['minimumAge', 'integer', 'min' => 16, 'max' => 99]
         ];
     }
@@ -40,6 +41,7 @@ class ConfigureForm extends Model
     {
         return [
             'enabledPages' => Yii::t('LegalModule.base', 'Enabled pages and features'),
+            'showPagesAfterRegistration' => Yii::t('LegalModule.base', 'For new account creation, show pages in full screen just after profile creation'),
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
             'showAgeCheck' => Yii::t('LegalModule.base', 'Show age verification {age}', ['age' => $this->minimumAge]),
             'minimumAge' => Yii::t('LegalModule.base', 'Minimum age'),
@@ -60,6 +62,7 @@ class ConfigureForm extends Model
     {
         $this->defaultLanguage = $this->getModule()->getDefaultLanguage();
         $this->enabledPages = $this->getModule()->getEnabledPages();
+        $this->showPagesAfterRegistration = $this->getModule()->showPagesAfterRegistration();
         $this->showAgeCheck = $this->getModule()->showAgeCheck();
         $this->minimumAge = $this->getModule()->getMinimumAge();
         return true;
@@ -79,6 +82,7 @@ class ConfigureForm extends Model
         try {
             $settings->set('defaultLanguage', $this->defaultLanguage);
             $settings->set('enabledPages', implode(',', $this->enabledPages));
+            $settings->set('showPagesAfterRegistration', $this->showPagesAfterRegistration);
             $settings->set('showAgeCheck', $this->showAgeCheck);
             $settings->set('minimumAge', $this->minimumAge);
         } catch (Exception $e) {

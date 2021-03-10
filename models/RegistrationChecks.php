@@ -33,6 +33,11 @@ class RegistrationChecks extends Model
     public $dataPrivacyCheck;
 
     /**
+     * @var false|string static SETTING_KEY const
+     */
+    public $restrictToSettingKey = false;
+
+    /**
      * @var User
      */
     public $user;
@@ -92,6 +97,10 @@ class RegistrationChecks extends Model
 
     public function showPrivacyCheck()
     {
+        if ($this->restrictToSettingKey && $this->restrictToSettingKey !== static::SETTING_KEY_PRIVACY) {
+            return false;
+        }
+
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
         if (Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION) && $module->isPageEnabled(Page::PAGE_KEY_PRIVACY_PROTECTION)) {
@@ -105,6 +114,10 @@ class RegistrationChecks extends Model
 
     public function showTermsCheck()
     {
+        if ($this->restrictToSettingKey && $this->restrictToSettingKey !== static::SETTING_KEY_TERMS) {
+            return false;
+        }
+
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
         if (Page::getPage(Page::PAGE_KEY_TERMS) && $module->isPageEnabled(Page::PAGE_KEY_TERMS)) {
@@ -118,6 +131,10 @@ class RegistrationChecks extends Model
 
     public function showAgeCheck()
     {
+        if ($this->restrictToSettingKey && $this->restrictToSettingKey !== static::SETTING_KEY_AGE) {
+            return false;
+        }
+
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
         if ($module->showAgeCheck()) {

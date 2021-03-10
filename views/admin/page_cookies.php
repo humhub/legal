@@ -9,13 +9,14 @@
 /* @var $pages Page[] */
 /* @var $languages array */
 /* @var $defaultLanguage string */
+/* @var $pageKey string */
 
 ?>
 <?php
 
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
-use humhub\widgets\MarkdownField;
+use humhub\modules\content\widgets\richtext\RichTextField;
 use yii\bootstrap\ActiveForm;
 
 ?>
@@ -39,7 +40,7 @@ use yii\bootstrap\ActiveForm;
     <br/>
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
         <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
-            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(MarkdownField::class, ['filesInputName' => 'PageFiles[' . $languageKey . ']', 'rows' => 5])->label(Yii::t('LegalModule.base', 'Box content')); ?>
+            <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(RichTextField::class, ['layout' => RichTextField::LAYOUT_BLOCK, 'pluginOptions' => ['maxHeight' => '200px']])->label(Yii::t('LegalModule.base', 'Box content')); ?>
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput()->label(Yii::t('LegalModule.base', 'Accept button label')); ?>
         </div>
     <?php endforeach; ?>

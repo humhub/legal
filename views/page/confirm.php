@@ -6,6 +6,7 @@
  */
 
 use humhub\libs\Html;
+use humhub\modules\legal\models\Page;
 use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\modules\content\widgets\richtext\RichText;
 
@@ -25,16 +26,12 @@ use humhub\modules\content\widgets\richtext\RichText;
         <br/>
         <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
-        <?php if ($model->showAgeCheck()): ?>
-            <?= $form->field($model, 'ageCheck')->checkbox(); ?>
+        <?php if ($page->page_key === Page::PAGE_KEY_TERMS): ?>
+            <?= $form->field($model, 'termsCheck')->checkbox()->hint(false); ?>
         <?php endif; ?>
 
-        <?php if ($model->showPrivacyCheck()): ?>
-            <?= $form->field($model, 'dataPrivacyCheck')->checkbox(); ?>
-        <?php endif; ?>
-
-        <?php if ($model->showTermsCheck()): ?>
-            <?= $form->field($model, 'termsCheck')->checkbox(); ?>
+        <?php if ($page->page_key === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
+            <?= $form->field($model, 'dataPrivacyCheck')->checkbox()->hint(false); ?>
         <?php endif; ?>
 
         <br/>

@@ -115,14 +115,14 @@ class Events
             return;
         }
 
-        $event->isValid = false;
-
         // Show legal update?
         if (empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION)) && $module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) && Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) !== null) {
+            $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/legal/page/update']);
         }
         // Show legal pages in full screen with confirm form, one by one (after account creation)
-        else {
+        elseif($registrationCheck->showTermsCheck() || $registrationCheck->showPrivacyCheck()) {
+            $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/legal/page/confirm']);
         }
     }

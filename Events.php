@@ -110,8 +110,10 @@ class Events
 
         // Allow legal module usage
         if ($event->action->controller->module->id === 'legal') {
-            $event->sender->layout = '@user/views/layouts/main';
-            $event->sender->subLayout = '@legal/views/page/layout_login';
+            if (Yii::$app->controller->id === 'page') {
+                $event->sender->layout = '@user/views/layouts/main';
+                $event->sender->subLayout = '@legal/views/page/layout_login';
+            }
             return;
         }
 

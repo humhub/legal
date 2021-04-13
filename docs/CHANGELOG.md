@@ -1,11 +1,12 @@
 Changelog
 =========
 
-1.2.0  (March 10, 2021)
---------------------------
+1.2.0  (April 13, 2021)
+-----------------------
 - Enh: Replace depreciated MarkdownField widget with new RichTextField widget
 - Enh: Add an option to show legal pages in full screen after account creation ([#23](https://github.com/humhub-contrib/legal/issues/23))
 - Enh: Add missing translations (automatic from Google translation)
+- Fix: If age verification was disabled and an admin enable it, do not hide Humhub menu in the module configuration for admin not have age verification checked
 
 
 1.1.4  (February 17, 2021)

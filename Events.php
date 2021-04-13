@@ -110,19 +110,21 @@ class Events
 
         // Allow legal module usage
         if ($event->action->controller->module->id === 'legal') {
-            $event->sender->layout = '@user/views/layouts/main';
-            $event->sender->subLayout = '@legal/views/page/layout_login';
+            if (Yii::$app->controller->id === 'page') {
+                $event->sender->layout = '@user/views/layouts/main';
+                $event->sender->subLayout = '@legal/views/page/layout_login';
+            }
             return;
         }
 
-        $event->isValid = false;
-
         // Show legal update?
         if (empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION)) && $module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) && Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) !== null) {
+            $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/legal/page/update']);
         }
         // Show legal pages in full screen with confirm form, one by one (after account creation)
-        else {
+        elseif($registrationCheck->showTermsCheck() || $registrationCheck->showPrivacyCheck()) {
+            $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/legal/page/confirm']);
         }
     }

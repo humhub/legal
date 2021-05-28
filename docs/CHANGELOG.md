@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.2 (May 28, 2021)
------------------------
+1.2.2 (Unreleased)
+------------------
 - Fix: Allow changing password if required before being able to access the platform
 
 

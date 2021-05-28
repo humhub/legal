@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2.2 (May 28, 2021)
+-----------------------
+- Fix: Allow changing password if required before being able to access the platform
+
+
 1.2.1  (April 13, 2021)
 -----------------------
 - Enh: Replace depreciated MarkdownField widget with new RichTextField widget

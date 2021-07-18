@@ -18,7 +18,7 @@ use humhub\modules\content\widgets\richtext\RichText;
 
 <div class="panel">
     <div class="panel-heading">
-        <?= $page->title; ?>
+        <h2><?= $page->title; ?></h2>
     </div>
     <div class="panel-body">
         <?= RichText::output($page->content); ?>

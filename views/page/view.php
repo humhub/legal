@@ -18,7 +18,7 @@ use yii\bootstrap\Html;
         <?php if ($canManagePages): ?>
             <?= Html::a('Edit this page', ['/legal/admin/page', 'pageKey' => $page->page_key], ['class' => 'btn btn-default pull-right', 'data-ui-loader' => '']); ?>
         <?php endif; ?>
-        <?= $page->title; ?>
+        <h2><?= $page->title; ?></h2>
     </div>
     <div class="panel-body">
         <?= RichText::output($page->content); ?>

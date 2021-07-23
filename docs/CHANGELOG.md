@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.2  (TBA)
+-----------------------
+- Enh: Cookie Policy Implementation
+
 1.2.1  (April 13, 2021)
 -----------------------
 - Enh: Replace depreciated MarkdownField widget with new RichTextField widget

@@ -5,7 +5,7 @@ Adds several editable legal options to your installation like an imprint and a p
 ### Features
 
 - Supports multi-language (legal texts can be assigned for every language supported by HumHub)
-- Adds shortlinks to your legal pages into the footer navigation (Imprint, Privacy Policy, Terms and Conditions)
+- Adds shortlinks to your legal pages into the footer navigation (Imprint, Privacy Policy, Terms and Conditions, Cookie Policy)
 - Adds shortlinks to the registration page and the registrations emails
 - Adds confirmation checkboxes to the registration page e.g. agreeing to the Terms and Conditions
 - Adds an age verification to the registration page

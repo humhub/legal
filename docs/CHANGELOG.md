@@ -1,12 +1,6 @@
 Changelog
 =========
 
-1.2.2 (Unreleased)
-------------------
-- Fix: Allow changing password if required before being able to access the platform
-- Fix: French translation for 'I am older than {age} years'
-
-
 1.2.1  (April 13, 2021)
 -----------------------
 - Enh: Replace depreciated MarkdownField widget with new RichTextField widget

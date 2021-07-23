@@ -136,6 +136,35 @@ class PageController extends Controller
     }
 
     /**
+     * @return string
+     * @throws HttpException
+     */
+    public function actionCookies()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $page = Page::getPage(Page::PAGE_KEY_COOKIE_POLICY);
+        if ($page === null || !$this->module->isPageEnabled(Page::PAGE_KEY_COOKIE_POLICY)) {
+            throw new HttpException('404', 'Could not find page!');
+        }
+
+        $this->layout = '@user/views/layouts/main';
+        $this->subLayout = '@legal/views/page/layout_login';
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->goHome();
+        }
+
+        return $this->render('update', [
+            'page' => $page,
+            'model' => $model,
+            'module' => $this->module
+        ]);
+    }
+
+    /**
      * @return bool can Manage pages
      */
     public function canManagePages()

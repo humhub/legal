@@ -18,7 +18,7 @@ return array (
   'For new account creation, show pages in full screen just after profile creation' => 'Pour la création d\'un nouveau compte, afficher les pages en plein écran juste après la création du profil',
   'Go back' => 'Retour',
   'Got it!' => 'J\'ai compris !',
-  'I am older than {age} years' => 'Je suis plus âgé que l\' {age} ans',
+  'I am older than {age} years' => 'J\'ai plus de {age} ans',
   'I have read and agree to the Privacy Policy' => 'J\'ai lu et j\'approuve la politique de confidentialité',
   'I have read and agree to the Terms and Conditions' => 'J\'ai lu et j\'approuve les conditions d\'utilisation',
   'If you update your Privacy Policy you can use the „Reset confirmation“-Option to inform your users and invite them to reagree. ' => 'Si vous modifiez votre politique de confidentialité, vous pouvez utiliser l\'option "Initialiser la confirmation" pour informer vos utilisateurs et les inviter à les accepter.',

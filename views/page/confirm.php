@@ -37,7 +37,7 @@ use humhub\modules\content\widgets\richtext\RichText;
         <br/>
         <div class="form-group">
             <?= Html::submitButton('<i class="fa fa-check"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Accept'), ['class' => 'btn btn-success', 'data-ui-loader' => '']) ?>
-            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['class' => 'btn btn-danger pull-right', 'data-ui-loader' => '']) ?>
+            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['data-method' => 'POST', 'class' => 'btn btn-danger pull-right', 'data-ui-loader' => '']) ?>
         </div>
 
         <div class="pull-right">

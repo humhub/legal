@@ -5,6 +5,7 @@ Changelog
 ------------------
 - Fix: Allow changing password if required before being able to access the platform
 - Fix: French translation for 'I am older than {age} years'
+- Enh: Update logout url
 
 
 1.2.1  (April 13, 2021)

@@ -1,12 +1,11 @@
 Changelog
 =========
 
-1.2.2 (Unreleased)
-------------------
+1.2.2 (August 26, 2021)
+-----------------------
 - Fix: Allow changing password if required before being able to access the platform
 - Fix: French translation for 'I am older than {age} years'
-- Enh: Update logout url
-
+- Enh #37: Update logout link to POST method
 
 1.2.1  (April 13, 2021)
 -----------------------

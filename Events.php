@@ -97,6 +97,9 @@ class Events
         if ($event->action->controller->id === 'poll') {
             return;
         }
+        if ($event->action->controller->module->id === 'file' && $event->action->controller->id === 'file' && $event->action->id === 'download') {
+            return;
+        }
         if ($event->action->controller->module->id === 'rest') {
             return;
         }

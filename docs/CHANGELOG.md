@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.3 (Unreleased)
+------------------
+- Fix #41: Allow file includes 
+
 1.2.2 (August 26, 2021)
 -----------------------
 - Fix: Allow changing password if required before being able to access the platform

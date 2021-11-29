@@ -3,7 +3,8 @@ Changelog
 
 1.2.3 (Unreleased)
 ------------------
-- Fix #41: Allow file includes 
+- Fix #41: Allow file includes
+- Fix #42: Fix reset confirmations with enabled cache
 
 1.2.2 (August 26, 2021)
 -----------------------

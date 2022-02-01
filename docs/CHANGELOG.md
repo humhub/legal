@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.3 (Unreleased)
-------------------
+1.2.3 (February 1, 2022)
+------------------------
 - Fix #41: Allow file includes
 - Fix #42: Fix reset confirmations with enabled cache
 - Fix #187: Avoid endless loop with module "termsbox"

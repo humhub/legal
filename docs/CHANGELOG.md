@@ -5,6 +5,7 @@ Changelog
 ------------------
 - Fix #41: Allow file includes
 - Fix #42: Fix reset confirmations with enabled cache
+- Fix #187: Avoid endless loop with module "termsbox"
 
 1.2.2 (August 26, 2021)
 -----------------------

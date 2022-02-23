@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.4 (February 23, 2022)
+------------------------
+- Enh #45: Use longtext for page content
+
 1.2.3 (February 1, 2022)
 ------------------------
 - Fix #41: Allow file includes

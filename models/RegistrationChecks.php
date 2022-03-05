@@ -48,6 +48,10 @@ class RegistrationChecks extends Model
         $module = Yii::$app->getModule('legal');
         $rules = [];
 
+        if (Yii::$app->user->isAdmin()) {
+            return $rules;
+        }
+
         if ($this->showAgeCheck()) {
             $rules[] = [['ageCheck'], 'required', 'requiredValue' => 1, 'message' => ''];
         }
@@ -175,17 +179,17 @@ class RegistrationChecks extends Model
         }
 
         if ($this->showTermsCheck()) {
-            $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS, (bool) $this->termsCheck);
             $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS . 'Time', time());
         }
 
         if ($this->showPrivacyCheck()) {
-            $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY, (bool) $this->dataPrivacyCheck);
             $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY . 'Time', time());
         }
 
         if ($this->showAgeCheck()) {
-            $module->settings->user($this->user)->set(static::SETTING_KEY_AGE, true);
+            $module->settings->user($this->user)->set(static::SETTING_KEY_AGE, (bool) $this->ageCheck);
             $module->settings->user($this->user)->set(static::SETTING_KEY_AGE . 'Time', time());
         }
 

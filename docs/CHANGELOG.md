@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.5 (March 5, 2022)
+------------------------
+- Enh #38: Not require registration checks on admin user creation
+
 1.2.4 (February 23, 2022)
 ------------------------
 - Enh #45: Use longtext for page content

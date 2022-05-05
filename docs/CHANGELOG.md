@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.5 (Unreleased)
+------------------
+- Fix #49: After accepting page, user should be redirected to the `Yii::$app->user->getReturnUrl()` URL.
+
 1.2.4 (February 23, 2022)
 ------------------------
 - Enh #45: Use longtext for page content

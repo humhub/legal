@@ -4,6 +4,7 @@ Changelog
 1.2.5 (Unreleased)
 ------------------
 - Fix #49: After accepting page, user should be redirected to the `Yii::$app->user->getReturnUrl()` URL.
+- Fix #51: Improved "Back" button 
 
 1.2.4 (February 23, 2022)
 ------------------------

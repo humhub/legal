@@ -77,8 +77,8 @@ class AcceptanceTester extends \AcceptanceTester
         }
         $this->login('User1', '123qwe');
 
-        $this->waitForText($title);
-        $this->waitForText($content);
+        $this->waitForText($title, 10, '.panel-heading');
+        $this->waitForText($content, 10, '.panel-body');
     }
 
     /**
@@ -115,6 +115,6 @@ class AcceptanceTester extends \AcceptanceTester
 
         $this->amGoingTo('log in as user with already accepted ' . $page);
         $this->amUser1(true);
-        $this->dontSee($title);
+        $this->dontSee($title, '.panel-heading');
     }
 }

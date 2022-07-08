@@ -5,13 +5,13 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\libs\Html;
+use humhub\modules\ui\view\components\View;
+use humhub\widgets\Button;
 use humhub\widgets\SiteLogo;
 
-/* @var $this \humhub\modules\ui\view\components\View */
-
+/* @var $this View */
+/* @var $content string */
 ?>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +21,11 @@ use humhub\widgets\SiteLogo;
             </div>
 
             <?php if ($this->context->action->id != 'update'): ?>
-                <?= Html::a('<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Go back'), ['/'], ['class' => 'btn btn-default pull-right']); ?>
+                <?= Button::defaultType(Yii::t('LegalModule.base', 'Go back'))
+                    ->icon('arrow-left')
+                    ->link(['/'])
+                    ->pjax(false)
+                    ->right() ?>
             <?php endif; ?>
 
             <br/><br/><br/>
@@ -29,4 +33,3 @@ use humhub\widgets\SiteLogo;
         </div>
     </div>
 </div>
-

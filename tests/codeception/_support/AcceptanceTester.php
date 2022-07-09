@@ -29,19 +29,52 @@ class AcceptanceTester extends \AcceptanceTester
     /**
      * Enable page or feature
      *
-     * @param string $page
+     * @param string|array $pages
      */
-    public function enablePage(string $page)
+    public function enablePage($pages)
     {
         $this->amOnRoute('/legal/admin');
         $this->waitForText($settingsLabel = 'Enabled pages and features');
 
-        $this->dontSeeCheckboxIsChecked($checkboxSelector = 'input[name="ConfigureForm[enabledPages][]"][value="' . $page . '"]');
-        $this->jsClick($checkboxSelector);
+        if (!is_array($pages)) {
+            $pages = [$pages];
+        }
+        $checkboxSelectors = [];
+        foreach ($pages as $page) {
+            $checkboxSelector = 'input[name="ConfigureForm[enabledPages][]"][value="' . $page . '"]';
+            $this->dontSeeCheckboxIsChecked($checkboxSelector);
+            $this->jsClick($checkboxSelector);
+            $checkboxSelectors[] = $checkboxSelector;
+        }
         $this->click('Save');
         $this->seeSuccess();
 
         $this->waitForText($settingsLabel);
+        foreach ($checkboxSelectors as $checkboxSelector) {
+            $this->seeCheckboxIsChecked($checkboxSelector);
+        }
+    }
+    /**
+     * Enable age verification
+     *
+     * @param int $age
+     */
+    public function enableAgeVerification(int $newAge)
+    {
+        $defaultAge = 16;
+        $this->amOnRoute('/legal/admin');
+        $this->waitForText($settingsLabel = 'Minimum age');
+        $this->see('Show age verification ' . $defaultAge);
+
+        $checkboxSelector = 'input[type=checkbox][name="ConfigureForm[showAgeCheck]"]';
+        $this->dontSeeCheckboxIsChecked($checkboxSelector);
+        $this->jsClick($checkboxSelector);
+        $this->fillField('input[name="ConfigureForm[minimumAge]"]', $newAge);
+        $this->click('Save');
+        $this->seeSuccess();
+
+        $this->waitForText($settingsLabel);
+        $this->see('Show age verification ' . $newAge);
         $this->seeCheckboxIsChecked($checkboxSelector);
     }
 
@@ -52,10 +85,10 @@ class AcceptanceTester extends \AcceptanceTester
      * @param string $title
      * @param string $content
      */
-    public function fillPage(string $page, string $title, string $content)
+    public function fillPage(string $page, string $title, string $content, string $checkText = 'Title (en-US)')
     {
         $this->amOnRoute(['/legal/admin/page', 'pageKey' => $page]);
-        $this->waitForText('Title (en-US)');
+        $this->waitForText($checkText);
 
         $this->fillField('#page-en-us-title', $title);
         $this->fillField('#page-en-us-content .humhub-ui-richtext', $content);

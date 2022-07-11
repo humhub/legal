@@ -5,7 +5,7 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\modules\content\widgets\richtext\RichText;
+use humhub\modules\legal\widgets\Content;
 use yii\bootstrap\Html;
 
 /* @var $this \humhub\modules\ui\view\components\View */
@@ -16,12 +16,11 @@ use yii\bootstrap\Html;
 <div class="panel">
     <div class="panel-heading">
         <?php if ($canManagePages): ?>
-            <?= Html::a('Edit this page', ['/legal/admin/page', 'pageKey' => $page->page_key], ['class' => 'btn btn-default pull-right', 'data-ui-loader' => '']); ?>
+            <?= Html::a(Yii::t('LegalModule.base', 'Edit this page'), ['/legal/admin/page', 'pageKey' => $page->page_key], ['class' => 'btn btn-default pull-right', 'data-ui-loader' => '']); ?>
         <?php endif; ?>
         <?= $page->title; ?>
     </div>
     <div class="panel-body">
-        <?= RichText::output($page->content); ?>
+        <?= Content::widget(['content' => $page->content]) ?>
     </div>
 </div>
-

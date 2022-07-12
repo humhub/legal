@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 
+# Test
+
 jobs:
   tests:
     uses: humhub/actions/.github/workflows/module-tests-v1.10.yml@main

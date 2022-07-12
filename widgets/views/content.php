@@ -18,9 +18,9 @@ ContentAssets::register($this);
 $this->registerJsConfig('legal', [
     'externalLink' => [
         'prefix' => Icon::get('external-link')->asString() . ' ',
-        'confirmTitle' => Yii::t('LegalModule.base', '<strong>External</strong> redirect'),
-        'confirmText' => Yii::t('LegalModule.base', 'You are leaving this page and will be redirected to an external page'),
-        'confirmButton' => Yii::t('LegalModule.base', 'Redirect'),
+        'confirmTitle' => Yii::t('LegalModule.base', '<strong>External</strong> Link'),
+        'confirmText' => Yii::t('LegalModule.base', 'This link leads to an external website. Would you like to proceed?'),
+        'confirmButton' => Yii::t('LegalModule.base', 'Proceed'),
         'redirectAfter' => 5
     ]
 ]);

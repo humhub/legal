@@ -7,10 +7,12 @@ humhub.module('legal', function(module, require, $) {
 
     Content.prototype.init = function() {
         const that = this;
-        this.richtext().on('afterRender', function() {
-            that.processExternalLinks();
-        });
-        this.initAutoRedirect();
+        if (this.option('prefix') || that.option('confirmText')) {
+            this.richtext().on('afterRender', function () {
+                that.processExternalLinks();
+            });
+            this.initAutoRedirect();
+        }
     };
 
     Content.prototype.richtext = function() {
@@ -37,13 +39,16 @@ humhub.module('legal', function(module, require, $) {
         }
 
         const that = this;
-        const modalMarker = '<i id="' + this.modalMarkerId + '"></i>';
-
         this.findExternalLinks().each(function() {
-            $(this).html(that.option('prefix') + $(this).html())
-                .attr('data-action-confirm-header', that.option('confirmTitle'))
-                .attr('data-action-confirm', that.option('confirmText') + modalMarker)
-                .attr('data-action-confirm-text', that.option('confirmButton'));
+            if (that.option('prefix')) {
+                $(this).html(that.option('prefix') + $(this).html());
+            }
+            if (that.option('confirmText')) {
+                const modalMarker = '<i id="' + this.modalMarkerId + '"></i>';
+                $(this).attr('data-action-confirm-header', that.option('confirmTitle'))
+                    .attr('data-action-confirm', that.option('confirmText') + modalMarker)
+                    .attr('data-action-confirm-text', that.option('confirmButton'));
+            }
         });
     }
 

@@ -28,8 +28,8 @@ foreach (Page::getPages() as $key => $title) {
 
     <?= $form->field($model, 'enabledPages')->checkboxList($enabledPages); ?>
     <?= $form->field($model, 'externalLinks')->checkboxList([
-            'icon' => Yii::t('LegalModule.base', 'Add notice icons before external links'),
-            'modal' => Yii::t('LegalModule.base', 'Show notice modal on external links')
+            'icon' => Yii::t('LegalModule.base', 'Add notice icons before external links in Posts and Comments'),
+            'modal' => Yii::t('LegalModule.base', 'Show notice modal on external links in Posts and Comments')
         ])->label(false); ?>
     <?= $form->field($model, 'showPagesAfterRegistration')->checkbox(); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>

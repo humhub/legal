@@ -1,13 +1,28 @@
 humhub.module('legal', function(module, require, $) {
     var Widget = require('ui.widget').Widget;
 
+    const config = function(option, defaultValue) {
+        if (typeof defaultValue === 'undefined') {
+            defaultValue = '';
+        }
+
+        return module.config.externalLink && module.config.externalLink[option]
+            ? module.config.externalLink[option]
+            : defaultValue;
+    }
+
+    // Initialize external links for additional contents:
+    if (config('additionalContentSelectors')) {
+        $(config('additionalContentSelectors')).wrap('<div data-ui-widget="legal.Content" data-ui-init></div>');
+    }
+
     var Content = Widget.extend();
 
     Content.prototype.modalMarkerId = 'legalExternalLinkModalMarker';
 
     Content.prototype.init = function() {
         const that = this;
-        if (this.option('prefix') || that.option('confirmText')) {
+        if (config('prefix') || config('confirmText')) {
             this.richtext().on('afterRender', function () {
                 that.processExternalLinks();
             });
@@ -23,16 +38,6 @@ humhub.module('legal', function(module, require, $) {
         return this.richtext().find('a:not([href^="' + location.origin + '"]):not([href^="#"]):not([href^="/"])');
     }
 
-    Content.prototype.option = function(option, defaultValue) {
-        if (typeof defaultValue === 'undefined') {
-            defaultValue = '';
-        }
-
-        return module.config.externalLink && module.config.externalLink[option]
-            ? module.config.externalLink[option]
-            : defaultValue;
-    }
-
     Content.prototype.processExternalLinks = function() {
         if (typeof module.config.externalLink === 'undefined') {
             return;
@@ -40,21 +45,21 @@ humhub.module('legal', function(module, require, $) {
 
         const that = this;
         this.findExternalLinks().each(function() {
-            if (that.option('prefix')) {
-                $(this).html(that.option('prefix') + $(this).html());
+            if (config('prefix')) {
+                $(this).html(config('prefix') + $(this).html());
             }
-            if (that.option('confirmText')) {
-                const modalMarker = '<i id="' + this.modalMarkerId + '"></i>';
-                $(this).attr('data-action-confirm-header', that.option('confirmTitle'))
-                    .attr('data-action-confirm', that.option('confirmText') + modalMarker)
-                    .attr('data-action-confirm-text', that.option('confirmButton'));
+            if (config('confirmText')) {
+                const modalMarker = '<i id="' + that.modalMarkerId + '"></i>';
+                $(this).attr('data-action-confirm-header', config('confirmTitle'))
+                    .attr('data-action-confirm', config('confirmText') + modalMarker)
+                    .attr('data-action-confirm-text', config('confirmButton'));
             }
         });
     }
 
     Content.prototype.initAutoRedirect = function() {
         const that = this;
-        let redirectAfter = this.option('redirectAfter');
+        let redirectAfter = config('redirectAfter');
 
         if (!redirectAfter) {
             return;
@@ -64,7 +69,7 @@ humhub.module('legal', function(module, require, $) {
 
         $('#globalModalConfirm').on('shown.bs.modal', function () {
             if ($(this).find('#' + that.modalMarkerId).length) {
-                redirectAfter = that.option('redirectAfter');
+                redirectAfter = config('redirectAfter');
                 const button = $(this).find('[data-modal-confirm]');
                 button.data('html', button.html());
                 redirectTimeInterval = setInterval(function () {

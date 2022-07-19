@@ -7,9 +7,13 @@
 
 namespace humhub\modules\legal;
 
+use humhub\modules\comment\models\Comment;
+use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
+use humhub\modules\legal\assets\ContentAssets;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\CookieNote;
+use humhub\modules\post\models\Post;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\widgets\LayoutAddons;
@@ -222,5 +226,22 @@ class Events
         $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
         $model->load(Yii::$app->request->post());
         $model->save();
+    }
+
+    public static function onInitProsemirrorRichText($event)
+    {
+        /* @var ProsemirrorRichText $richText */
+        $richText = $event->sender;
+
+        if (!isset($richText->record)) {
+            return;
+        }
+
+        if ($richText->record instanceof Post || $richText->record instanceof Comment) {
+            ContentAssets::register($richText->view);
+            $richText->view->registerJsConfig('legal', ['externalLink' => [
+                'additionalContentSelectors' => '[data-ui-widget="post.Post"], .comment-message[data-ui-markdown]'
+            ]]);
+        }
     }
 }

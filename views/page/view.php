@@ -6,7 +6,7 @@
  */
 
 use humhub\modules\legal\widgets\Content;
-use yii\bootstrap\Html;
+use humhub\widgets\Button;
 
 /* @var $this \humhub\modules\ui\view\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
@@ -16,7 +16,10 @@ use yii\bootstrap\Html;
 <div class="panel">
     <div class="panel-heading">
         <?php if ($canManagePages): ?>
-            <?= Html::a(Yii::t('LegalModule.base', 'Edit this page'), ['/legal/admin/page', 'pageKey' => $page->page_key], ['class' => 'btn btn-default pull-right', 'data-ui-loader' => '']); ?>
+            <?= Button::defaultType(Yii::t('LegalModule.base', 'Edit this page'))
+                ->link(['/legal/admin/page', 'pageKey' => $page->page_key])
+                ->pjax(false)
+                ->right() ?>
         <?php endif; ?>
         <?= $page->title; ?>
     </div>

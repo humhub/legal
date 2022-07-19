@@ -9,9 +9,9 @@ namespace humhub\modules\legal;
 
 use humhub\modules\comment\models\Comment;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
-use humhub\modules\legal\assets\ContentAssets;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
+use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\post\models\Post;
 use humhub\modules\user\models\forms\Registration;
@@ -228,20 +228,17 @@ class Events
         $model->save();
     }
 
-    public static function onInitProsemirrorRichText($event)
+    public static function onAfterRunRichText($event)
     {
         /* @var ProsemirrorRichText $richText */
         $richText = $event->sender;
 
-        if (!isset($richText->record)) {
+        if (!isset($richText->record) || empty($event->result)) {
             return;
         }
 
         if ($richText->record instanceof Post || $richText->record instanceof Comment) {
-            ContentAssets::register($richText->view);
-            $richText->view->registerJsConfig('legal', ['externalLink' => [
-                'additionalContentSelectors' => '[data-ui-widget="post.Post"], .comment-message[data-ui-markdown]'
-            ]]);
+            $event->result = Content::widget(['content' => $event->result, 'richtext' => false]);
         }
     }
 }

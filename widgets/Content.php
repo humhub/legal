@@ -30,10 +30,16 @@ class Content extends JsWidget
      */
     public $content;
 
+    /**
+     * @var bool True - to prepare content with RichText, False - to print content as passed
+     */
+    public $richtext = true;
+
     public function run()
     {
         return $this->render('content', [
             'content' => $this->content,
+            'richtext' => $this->richtext,
             'options' => $this->getOptions()
         ]);
     }

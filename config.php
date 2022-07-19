@@ -23,6 +23,6 @@ return [
         ['class' => Registration::class, 'event' => Registration::EVENT_AFTER_INIT, 'callback' => ['humhub\modules\legal\Events', 'onRegistrationFormInit']],
         ['class' => Registration::class, 'event' => Registration::EVENT_AFTER_REGISTRATION, 'callback' => ['humhub\modules\legal\Events', 'onRegistrationAfterRegistration']],
         ['class' => Controller::class, 'event' => Controller::EVENT_BEFORE_ACTION, 'callback' => ['humhub\modules\legal\Events', 'onBeforeControllerAction']],
-        ['class' => ProsemirrorRichText::class, 'event' => ProsemirrorRichText::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onInitProsemirrorRichText']]
+        ['class' => ProsemirrorRichText::class, 'event' => ProsemirrorRichText::EVENT_AFTER_RUN, 'callback' => ['humhub\modules\legal\Events', 'onAfterRunRichText']]
     ]
 ];

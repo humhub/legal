@@ -11,11 +11,6 @@ humhub.module('legal', function(module, require, $) {
             : defaultValue;
     }
 
-    // Initialize external links for additional contents:
-    if (config('additionalContentSelectors')) {
-        $(config('additionalContentSelectors')).wrap('<div data-ui-widget="legal.Content" data-ui-init></div>');
-    }
-
     var Content = Widget.extend();
 
     Content.prototype.modalMarkerId = 'legalExternalLinkModalMarker';

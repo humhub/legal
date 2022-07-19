@@ -12,10 +12,11 @@ use yii\helpers\Html;
 
 /* @var View $this */
 /* @var string $content */
+/* @var bool $richtext */
 /* @var array $options */
 
 ContentAssets::register($this);
 ?>
 <?= Html::beginTag('div', $options) ?>
-    <?= RichText::output($content) ?>
+    <?= $richtext ? RichText::output($content) : $content ?>
 <?= Html::endTag('div') ?>

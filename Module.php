@@ -35,6 +35,19 @@ class Module extends \humhub\components\Module
     }
 
     /**
+     * @param string|null $setting Setting name: 'icon', 'modal', null - to return array of all enabled settings
+     * @return array|bool Config for external links
+     */
+    public function getExternalLinksConfig(?string $setting = null)
+    {
+        $config = empty($this->settings->get('externalLinks'))
+            ? []
+            : explode(',', $this->settings->get('externalLinks'));
+
+        return $setting === null ? $config : in_array($setting, $config);
+    }
+
+    /**
      * @return bool
      */
     public function showPagesAfterRegistration()

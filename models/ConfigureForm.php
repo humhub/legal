@@ -16,6 +16,7 @@ class ConfigureForm extends Model
 {
 
     public $enabledPages;
+    public $externalLinks;
     public $showPagesAfterRegistration;
     public $defaultLanguage;
     public $showAgeCheck;
@@ -28,6 +29,7 @@ class ConfigureForm extends Model
     {
         return [
             [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
+            [['externalLinks'], 'in', 'range' => ['icon', 'modal']],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
             [['showPagesAfterRegistration', 'showAgeCheck'], 'boolean'],
             ['minimumAge', 'integer', 'min' => 16, 'max' => 99]
@@ -62,6 +64,7 @@ class ConfigureForm extends Model
     {
         $this->defaultLanguage = $this->getModule()->getDefaultLanguage();
         $this->enabledPages = $this->getModule()->getEnabledPages();
+        $this->externalLinks = $this->getModule()->getExternalLinksConfig();
         $this->showPagesAfterRegistration = $this->getModule()->showPagesAfterRegistration();
         $this->showAgeCheck = $this->getModule()->showAgeCheck();
         $this->minimumAge = $this->getModule()->getMinimumAge();
@@ -82,6 +85,7 @@ class ConfigureForm extends Model
         try {
             $settings->set('defaultLanguage', $this->defaultLanguage);
             $settings->set('enabledPages', implode(',', $this->enabledPages));
+            $settings->set('externalLinks', empty($this->externalLinks) ? '' : implode(',', $this->externalLinks));
             $settings->set('showPagesAfterRegistration', $this->showPagesAfterRegistration);
             $settings->set('showAgeCheck', $this->showAgeCheck);
             $settings->set('minimumAge', $this->minimumAge);

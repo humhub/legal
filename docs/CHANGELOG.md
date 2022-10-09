@@ -1,9 +1,32 @@
 Changelog
 =========
 
-1.2.2  (TBA)
+1.3.1  (TBA)
 -----------------------
 - Enh: Cookie Policy Implementation
+
+=======
+1.3.0 (July 19, 2022)
+---------------------
+- Fix #49: After accepting page, user should be redirected to the `Yii::$app->user->getReturnUrl()` URL.
+- Fix #51: Improved "Back" button 
+- Enh #60: Optional notice for external links in Posts and Comments 
+
+1.2.4 (February 23, 2022)
+------------------------
+- Enh #45: Use longtext for page content
+
+1.2.3 (February 1, 2022)
+------------------------
+- Fix #41: Allow file includes
+- Fix #42: Fix reset confirmations with enabled cache
+- Fix #187: Avoid endless loop with module "termsbox"
+
+1.2.2 (August 26, 2021)
+-----------------------
+- Fix: Allow changing password if required before being able to access the platform
+- Fix: French translation for 'I am older than {age} years'
+- Enh #37: Update logout link to POST method
 
 1.2.1  (April 13, 2021)
 -----------------------

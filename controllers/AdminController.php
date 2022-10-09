@@ -13,6 +13,7 @@ use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\Module;
+use humhub\modules\user\models\User;
 use Yii;
 use yii\web\HttpException;
 
@@ -81,17 +82,18 @@ class AdminController extends Controller
      */
     public function actionReset($key)
     {
-
         if (!in_array($key, [RegistrationChecks::SETTING_KEY_PRIVACY, RegistrationChecks::SETTING_KEY_TERMS])) {
             throw new HttpException(500, 'Invalid key!');
         }
 
-        /** @var Module $module */
         $module = $this->module;
         $module->settings->delete($key);
 
-        ContentContainerSetting::deleteAll(['module_id' => 'legal', 'name' => $key]);
-        ContentContainerSetting::deleteAll(['module_id' => 'legal', 'name' => $key . 'Time']);
+        ContentContainerSetting::deleteAll(['module_id' => $module->id, 'name' => $key]);
+        ContentContainerSetting::deleteAll(['module_id' => $module->id, 'name' => $key . 'Time']);
+        foreach (User::find()->select('contentcontainer_id')->column() as $contentContainerId) {
+            Yii::$app->cache->delete('settings-' . $module->id . '-' . $contentContainerId);
+        }
 
         $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
         return $this->redirect(['index']);

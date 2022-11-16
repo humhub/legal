@@ -7,9 +7,13 @@
 
 namespace humhub\modules\legal;
 
+use humhub\modules\comment\models\Comment;
+use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
+use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
+use humhub\modules\post\models\Post;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\widgets\LayoutAddons;
@@ -17,6 +21,7 @@ use Yii;
 use yii\base\ActionEvent;
 use yii\helpers\Url;
 use yii\web\UserEvent;
+use humhub\modules\rest\components\BaseController;
 
 
 /**
@@ -100,7 +105,7 @@ class Events
         if ($event->action->controller->module->id === 'file' && $event->action->controller->id === 'file' && $event->action->id === 'download') {
             return;
         }
-        if ($event->action->controller->module->id === 'rest') {
+        if ($event->action->controller instanceof BaseController) { // REST API request
             return;
         }
         if ($event->action->controller->module->id === 'twofa' && $event->action->controller->id === 'check') {
@@ -222,5 +227,19 @@ class Events
         $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
         $model->load(Yii::$app->request->post());
         $model->save();
+    }
+
+    public static function onAfterRunRichText($event)
+    {
+        /* @var ProsemirrorRichText $richText */
+        $richText = $event->sender;
+
+        if (!isset($richText->record) || empty($event->result)) {
+            return;
+        }
+
+        if ($richText->record instanceof Post || $richText->record instanceof Comment) {
+            $event->result = Content::widget(['content' => $event->result, 'richtext' => false]);
+        }
     }
 }

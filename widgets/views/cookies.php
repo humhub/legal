@@ -2,7 +2,7 @@
 
 use humhub\libs\Html;
 use humhub\modules\legal\assets\Assets;
-use humhub\modules\content\widgets\richtext\RichText;
+use humhub\modules\legal\widgets\Content;
 
 Assets::register($this);
 
@@ -11,9 +11,8 @@ Assets::register($this);
 
 <div id="ccMessageText" style="display:none">
     <div style="max-height:300px;overflow:auto">
-        <?= RichText::output($page->content); ?>
+        <?= Content::widget(['content' => $page->content]) ?>
     </div>
-
 </div>
 
 

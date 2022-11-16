@@ -21,6 +21,7 @@ use Yii;
 use yii\base\ActionEvent;
 use yii\helpers\Url;
 use yii\web\UserEvent;
+use humhub\modules\rest\components\BaseController;
 
 
 /**
@@ -104,7 +105,7 @@ class Events
         if ($event->action->controller->module->id === 'file' && $event->action->controller->id === 'file' && $event->action->id === 'download') {
             return;
         }
-        if ($event->action->controller->module->id === 'rest') {
+        if ($event->action->controller instanceof BaseController) { // REST API request
             return;
         }
         if ($event->action->controller->module->id === 'twofa' && $event->action->controller->id === 'check') {

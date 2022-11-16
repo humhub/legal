@@ -4,7 +4,7 @@ Changelog
 1.3.1 (November 16, 2022)
 ---------------------
 - Enh #38: Not require registration checks on admin user creation
-- - Fix #56: Support for REST API requests
+- Fix #56: Support for REST API requests
 
 1.3.0 (July 19, 2022)
 ---------------------

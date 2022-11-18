@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.3.2 (Unreleased)
----------------------
+1.3.2 (November 18, 2022)
+-------------------------
 - Fix #57: Fix accept terms by admins
 
 1.3.1 (November 16, 2022)

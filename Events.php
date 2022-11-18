@@ -7,6 +7,7 @@
 
 namespace humhub\modules\legal;
 
+use humhub\modules\admin\controllers\UserController;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
 use humhub\modules\legal\models\Page;
@@ -14,6 +15,7 @@ use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\post\models\Post;
+use humhub\modules\rest\components\BaseController;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\widgets\LayoutAddons;
@@ -21,7 +23,6 @@ use Yii;
 use yii\base\ActionEvent;
 use yii\helpers\Url;
 use yii\web\UserEvent;
-use humhub\modules\rest\components\BaseController;
 
 
 /**
@@ -143,10 +144,24 @@ class Events
         }
     }
 
+    public static function skipVerifying(): bool
+    {
+        // Do not use on console request
+        if (Yii::$app->request->isConsoleRequest) {
+            return true;
+        }
+
+        // Don't ask admin on creating of a new user from back-office
+        if (Yii::$app->user->isAdmin() && (Yii::$app->controller instanceof UserController)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function onRegistrationFormInit($event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 
@@ -165,8 +180,7 @@ class Events
 
     public static function onRegistrationFormRender($event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 
@@ -213,8 +227,7 @@ class Events
      */
     public static function onRegistrationAfterRegistration(UserEvent $event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 

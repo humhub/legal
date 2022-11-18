@@ -44,14 +44,7 @@ class RegistrationChecks extends Model
 
     public function rules()
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('legal');
         $rules = [];
-
-        /* If admin creates a new user, registration checks are not required. */
-        if (Yii::$app->user->isAdmin()) {
-            return $rules;
-        }
 
         if ($this->showAgeCheck()) {
             $rules[] = [['ageCheck'], 'required', 'requiredValue' => 1, 'message' => ''];

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.2 (Unreleased)
+---------------------
+- Fix #57: Fix accept terms by admins
+
 1.3.1 (November 16, 2022)
 ---------------------
 - Enh #38: Not require registration checks on admin user creation

@@ -151,6 +151,12 @@ class Events
             return true;
         }
 
+        // If, for example, users are automatically registered with LDAP during login, no legal checks should take place.
+        // Otherwise the auto registration would be broken.
+        if (Yii::$app->controller instanceof \humhub\modules\user\controllers\AuthController) {
+            return true;
+        }
+
         // Don't ask admin on creating of a new user from back-office
         if (Yii::$app->user->isAdmin() && (Yii::$app->controller instanceof UserController)) {
             return true;

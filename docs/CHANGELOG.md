@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.3.3 (January 24, 2023)
+------------------------
+- Fix #58: LDAP login user auto registration broken
+
 1.3.2 (November 18, 2022)
 -------------------------
 - Fix #57: Fix accept terms by admins

@@ -21,7 +21,7 @@ return array (
   'For new account creation, show pages in full screen just after profile creation' => '新しいアカウントを作成する場合は、プロファイル作成直後にページを全画面で表示します',
   'Go back' => '戻る',
   'Got it!' => 'とった！',
-  'I am older than {age} years' => '私はより古い午前{age}年',
+  'I am older than {age} years' => '私は {age} 歳以上です',
   'I have read and agree to the Privacy Policy' => 'プライバシーポリシーを読み、同意します',
   'I have read and agree to the Terms and Conditions' => '利用規約を読み、同意します',
   'If you update your Privacy Policy you can use the „Reset confirmation“-Option to inform your users and invite them to reagree. ' => 'プライバシーポリシーを更新する場合は、「確認のリセット」オプションを使用して、ユーザーに通知し、ユーザーに再同意を求めることができます。',

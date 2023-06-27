@@ -115,6 +115,9 @@ class Events
         if ($event->action->controller->module->id === 'termsbox' && $event->action->controller->id === 'index') {
             return;
         }
+        if ($event->action->controller->module->id === 'breakingnews' && $event->action->controller->id === 'index') {
+            return;
+        }
 
         $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
         if (!$registrationCheck->hasOpenCheck()) {

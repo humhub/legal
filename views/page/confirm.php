@@ -41,7 +41,7 @@ use humhub\modules\ui\form\widgets\ActiveForm;
         </div>
 
         <div class="pull-right">
-            <?php if (Yii::$app->user->canDeleteAccount()): ?>
+            <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
                 <?= Html::a(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], ['class' => 'pull-right', 'data-pjax-prevent' => '']) ?>
             <?php endif; ?>
         </div>
@@ -50,4 +50,3 @@ use humhub\modules\ui\form\widgets\ActiveForm;
 
     </div>
 </div>
-

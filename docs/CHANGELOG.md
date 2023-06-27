@@ -1,8 +1,9 @@
 Changelog
 =========
 
-Unreleased
-------------------------
+1.4.0 (June 27, 2023)
+---------------------
+- Fix #59: Changed HumHub v1.14 deprecated methods 
 - Enh #62: Show legal pages to check just after saving the configuration
 
 1.3.3 (January 24, 2023)

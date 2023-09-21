@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.4.1 (Unreleased)
+----------------------
+- Enh #64: Tests for `next` version
+
 1.4.0 (June 27, 2023)
 ---------------------
 - Fix #59: Changed HumHub v1.14 deprecated methods 
@@ -114,4 +118,3 @@ Changelog
 1.0.0  (May 15, 2018)
 -----------------------
 - Enh: Initial release
-

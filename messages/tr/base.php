@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Daha fazla bilgi: {link}',
     'Page language:' => 'Sayfa dili:',
     'Page:' => 'Sayfa:',
-    'Please enter a number value.' => 'Lütfen bir sayı değeri girin.',
     'Privacy Policy' => 'Gizlilik Politikası',
     'Reset confirmation' => 'Onaylamayı sıfırla',
     'Reset successful!' => 'Sıfırlama başarılı!',

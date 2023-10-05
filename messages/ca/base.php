@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Més informació: {link}',
     'Page language:' => 'Idioma de la pàgina:',
     'Page:' => 'Pàgina:',
-    'Please enter a number value.' => 'Introduïu un valor numèric.',
     'Privacy Policy' => 'Política de privacitat',
     'Reset confirmation' => 'Restableix la confirmació',
     'Reset successful!' => 'Restabliment correcte.',

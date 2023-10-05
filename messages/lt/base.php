@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Daugiau informacijos: {link}',
     'Page language:' => 'Puslapio kalba:',
     'Page:' => 'Puslapis:',
-    'Please enter a number value.' => 'Įveskite skaičiaus vertę.',
     'Privacy Policy' => 'Privatumo politika',
     'Reset confirmation' => 'Iš naujo patvirtinti',
     'Reset successful!' => 'Iš naujo nustatyti sėkmingai!',

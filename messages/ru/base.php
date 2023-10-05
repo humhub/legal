@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Дополнительная информация: {link}',
     'Page language:' => 'Язык страницы:',
     'Page:' => 'Страница:',
-    'Please enter a number value.' => 'Пожалуйста, введите числовое значение.',
     'Privacy Policy' => 'Политика конфиденциальности',
     'Reset confirmation' => 'Подтверждение сброса',
     'Reset successful!' => 'Сброс прошел успешно!',

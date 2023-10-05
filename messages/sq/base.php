@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Më shumë informacion: {link}',
     'Page language:' => 'Gjuha e faqes:',
     'Page:' => 'Faqja:',
-    'Please enter a number value.' => 'Ju lutemi shkruani një vlerë të numrit.',
     'Privacy Policy' => 'Politika e privatësisë',
     'Reset confirmation' => 'Rivendos konfirmimin',
     'Reset successful!' => 'Rivendosni me sukses!',

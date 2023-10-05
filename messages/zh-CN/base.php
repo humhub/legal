@@ -33,7 +33,6 @@ return [
     'More information: {link}' => '更多信息： {link}',
     'Page language:' => '页面语言：',
     'Page:' => '页：',
-    'Please enter a number value.' => '请输入一个数字值。',
     'Privacy Policy' => '隐私政策',
     'Reset confirmation' => '重设确认',
     'Reset successful!' => '重置成功！',

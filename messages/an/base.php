@@ -37,7 +37,6 @@ return [
     'Minimum age' => '',
     'Page language:' => '',
     'Page:' => '',
-    'Please enter a number value.' => '',
     'Privacy Policy' => '',
     'Proceed' => '',
     'Reset confirmation' => '',

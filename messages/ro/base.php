@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Mai multe informații: {link}',
     'Page language:' => 'Limba paginii:',
     'Page:' => 'Pagină:',
-    'Please enter a number value.' => 'Vă rugăm să introduceți o valoare numerică.',
     'Privacy Policy' => 'Politica de Confidențialitate',
     'Reset confirmation' => 'Resetați confirmarea',
     'Reset successful!' => 'Resetați cu succes!',

@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'ข้อมูลเพิ่มเติม: {link}',
     'Page language:' => 'ภาษาของหน้า:',
     'Page:' => 'หน้า:',
-    'Please enter a number value.' => 'โปรดป้อนค่าตัวเลข',
     'Privacy Policy' => 'นโยบายความเป็นส่วนตัว',
     'Reset confirmation' => 'รีเซ็ตการยืนยัน',
     'Reset successful!' => 'รีเซ็ตสำเร็จ!',

@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'مزيد من المعلومات: {link}',
     'Page language:' => 'لغة الصفحة:',
     'Page:' => 'صفحة:',
-    'Please enter a number value.' => 'الرجاء إدخال قيمة رقمية.',
     'Privacy Policy' => 'سياسة خاصة',
     'Reset confirmation' => 'تأكيد إعادة التعيين',
     'Reset successful!' => 'تمت إعادة التعيين بنجاح!',

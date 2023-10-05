@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Więcej informacji: {link}',
     'Page language:' => 'Język strony:',
     'Page:' => 'Strona:',
-    'Please enter a number value.' => 'Wprowadź wartość liczbową.',
     'Privacy Policy' => 'Polityka prywatności',
     'Reset confirmation' => 'Zerowanie akceptacji',
     'Reset successful!' => 'Zerowanie zakończone sukcesem!',

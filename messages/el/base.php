@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Περισσότερες πληροφορίες: {link}',
     'Page language:' => 'Γλώσσα σελίδας:',
     'Page:' => 'Σελίδα:',
-    'Please enter a number value.' => 'Εισαγάγετε μια τιμή αριθμού.',
     'Privacy Policy' => 'Πολιτική απορρήτου',
     'Reset confirmation' => 'Επαναφορά επιβεβαίωσης',
     'Reset successful!' => 'Η επαναφορά ήταν επιτυχής!',

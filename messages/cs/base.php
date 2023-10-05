@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Více informací: {link}',
     'Page language:' => 'Jazyk stránky:',
     'Page:' => 'Strana:',
-    'Please enter a number value.' => 'Zadejte prosím číselnou hodnotu.',
     'Privacy Policy' => 'Zásady ochrany osobních údajů',
     'Reset confirmation' => 'Obnovit potvrzení',
     'Reset successful!' => 'Reset byl úspěšný!',

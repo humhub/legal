@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Lisätietoja: {link}',
     'Page language:' => 'Sivun kieli:',
     'Page:' => 'Sivu:',
-    'Please enter a number value.' => 'Anna numeroarvo.',
     'Privacy Policy' => 'Tietosuojakäytäntö',
     'Reset confirmation' => 'Näytä uudelleen',
     'Reset successful!' => 'Tehty!',

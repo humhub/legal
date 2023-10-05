@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'מידע נוסף: {link}',
     'Page language:' => 'שפת העמוד:',
     'Page:' => 'עמוד:',
-    'Please enter a number value.' => 'אנא הזן ערך מספר.',
     'Privacy Policy' => 'מדיניות פרטיות',
     'Reset confirmation' => 'אפס אישור',
     'Reset successful!' => 'איפוס מוצלח!',

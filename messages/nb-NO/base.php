@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Mer informasjon: {link}',
     'Page language:' => 'Sidens språk:',
     'Page:' => 'Side:',
-    'Please enter a number value.' => 'Angi en tallverdi.',
     'Privacy Policy' => 'Personvernregler',
     'Reset confirmation' => 'Tilbakestill bekreftelse',
     'Reset successful!' => 'Tilbakestilling var vellykket',

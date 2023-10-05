@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Thông tin thêm: {link}',
     'Page language:' => 'Ngôn ngữ trang:',
     'Page:' => 'Trang:',
-    'Please enter a number value.' => 'Vui lòng nhập một giá trị số.',
     'Privacy Policy' => 'Chính sách bảo mật',
     'Reset confirmation' => 'Đặt lại xác nhận',
     'Reset successful!' => 'Đặt lại thành công!',

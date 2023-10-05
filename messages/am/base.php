@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'ተጨማሪ መረጃ: {link}',
     'Page language:' => 'የገጽ ቋንቋ',
     'Page:' => 'ገጽ',
-    'Please enter a number value.' => 'እባክዎ የቁጥር እሴት ያስገቡ',
     'Privacy Policy' => 'የ ግል የሆነ',
     'Reset confirmation' => 'ዳግም ማስጀመር ማረጋገጫ',
     'Reset successful!' => 'ዳግም አስጀምር ስኬታማ!',

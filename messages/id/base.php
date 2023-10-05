@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Informasi lebih lanjut: {link}',
     'Page language:' => 'Bahasa halaman:',
     'Page:' => 'Halaman:',
-    'Please enter a number value.' => 'Harap masukkan nilai angka.',
     'Privacy Policy' => 'Rahasia pribadi',
     'Reset confirmation' => 'Setel ulang konfirmasi',
     'Reset successful!' => 'Berhasil mengatur ulang!',

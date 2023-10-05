@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Qo\'shimcha ma\'lumot: {link}',
     'Page language:' => 'Sahifa tili:',
     'Page:' => 'Sahifa:',
-    'Please enter a number value.' => 'Iltimos, raqam qiymatini kiriting.',
     'Privacy Policy' => 'Maxfiylik siyosati',
     'Reset confirmation' => 'Tasdiqlashni tiklang',
     'Reset successful!' => 'Qayta tiklash muvaffaqiyatli!',

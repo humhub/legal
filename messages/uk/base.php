@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Більше інформації: {link}',
     'Page language:' => 'Мова сторінки:',
     'Page:' => 'Сторінка:',
-    'Please enter a number value.' => 'Введіть числове значення.',
     'Privacy Policy' => 'Політика конфіденційності',
     'Reset confirmation' => 'Скидання підтвердження',
     'Reset successful!' => 'Скидання виконано успішно!',

@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'اطلاعات بیشتر: {link}',
     'Page language:' => 'زبان صفحه:',
     'Page:' => 'صفحه:',
-    'Please enter a number value.' => 'لطفاً یک عدد وارد کنید.',
     'Privacy Policy' => 'سیاست حفظ حریم خصوصی',
     'Reset confirmation' => 'بازنشانی تأیید',
     'Reset successful!' => 'بازنشانی با موفقیت انجام شد!',

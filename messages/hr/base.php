@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Više informacija: {link}',
     'Page language:' => 'Jezik stranice:',
     'Page:' => 'Stranica:',
-    'Please enter a number value.' => 'Unesite vrijednost broja.',
     'Privacy Policy' => 'Pravila o privatnosti',
     'Reset confirmation' => 'Resetiraj potvrdu',
     'Reset successful!' => 'Resetiranje uspješno!',

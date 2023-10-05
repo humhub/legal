@@ -33,7 +33,6 @@ return [
     'More information: {link}' => 'Plašāka informācija: {link}',
     'Page language:' => 'Lapas valoda:',
     'Page:' => 'Lappuse:',
-    'Please enter a number value.' => 'Lūdzu, ievadiet skaitļa vērtību.',
     'Privacy Policy' => 'Privātuma politika',
     'Reset confirmation' => 'Atiestatīt apstiprinājumu',
     'Reset successful!' => 'Atiestatīšana veiksmīga!',

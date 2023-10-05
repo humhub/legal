@@ -33,7 +33,6 @@ return [
     'More information: {link}' => '추가 정보 : {link}',
     'Page language:' => '페이지 언어 :',
     'Page:' => '페이지:',
-    'Please enter a number value.' => '숫자 값을 입력하십시오.',
     'Privacy Policy' => '개인 정보 정책',
     'Reset confirmation' => '재설정 확인',
     'Reset successful!' => '재설정 성공!',

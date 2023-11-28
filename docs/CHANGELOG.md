@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.4.1 (Unreleased)
-----------------------
+1.4.1 (November 28, 2023)
+-------------------------
 - Enh #64: Tests for `next` version
 - Fix #65: Fix hiding of the cookie consent window
 

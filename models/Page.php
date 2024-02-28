@@ -23,7 +23,6 @@ class Page extends ActiveRecord
     const PAGE_KEY_TERMS = 'terms';
     const PAGE_KEY_PRIVACY_PROTECTION = 'privacy';
     const PAGE_KEY_COOKIE_NOTICE = 'cookies';
-    const PAGE_KEY_COOKIE_POLICY = 'cookies_policy';
     const PAGE_KEY_LEGAL_UPDATE = 'update';
 
     /**
@@ -104,7 +103,6 @@ class Page extends ActiveRecord
             static::PAGE_KEY_TERMS => Yii::t('LegalModule.base', 'Terms and Conditions'),
             static::PAGE_KEY_PRIVACY_PROTECTION => Yii::t('LegalModule.base', 'Privacy Policy'),
             static::PAGE_KEY_COOKIE_NOTICE => Yii::t('LegalModule.base', 'Cookie notification'),
-            static::PAGE_KEY_COOKIE_POLICY => Yii::t('LegalModule.base', 'Cookie Policy'),
             static::PAGE_KEY_LEGAL_UPDATE => Yii::t('LegalModule.base', 'Legal Update'),
         ];
     }
@@ -114,7 +112,7 @@ class Page extends ActiveRecord
      */
     public static function getFooterMenuPages()
     {
-        return [static::PAGE_KEY_TERMS, static::PAGE_KEY_PRIVACY_PROTECTION, static::PAGE_KEY_IMPRINT, static::PAGE_KEY_COOKIE_POLICY];
+        return [static::PAGE_KEY_TERMS, static::PAGE_KEY_PRIVACY_PROTECTION, static::PAGE_KEY_IMPRINT];
     }
 
     public static function getDefaultPageTitle($pageKey)

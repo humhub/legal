@@ -90,9 +90,6 @@ class PageController extends Controller
         $this->subLayout = '@legal/views/page/layout_login';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if (Yii::$app->user->getReturnUrl()) {
-                return $this->redirect(Yii::$app->user->getReturnUrl());
-            }
             return $this->goHome();
         }
 

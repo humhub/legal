@@ -12,6 +12,7 @@ use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
+use humhub\modules\ui\menu\MenuLink;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\base\ActionEvent;
@@ -65,6 +66,23 @@ class Events
             $layoutAddons->addWidget(CookieNote::class);
         }
 
+    }
+
+    public static function onAccountMenuInit($event)
+    {
+        $menu = $event->sender;
+
+        $menu->addEntry(new MenuLink([
+            'icon' => 'fa-download',
+            'label' => Yii::t('LegalModule.base', 'Download My Data'),
+            'url' => '#',
+            'htmlOptions' => [
+                'data-action-click' => 'ui.modal.load',
+                'data-action-click-url' => helpers\Url::getExportUrl(),
+                'data-pjax-prevent' => ''
+            ],
+            'sortOrder' => 1000,
+        ]));
     }
 
     public static function onBeforeControllerAction(ActionEvent $event)

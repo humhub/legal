@@ -44,8 +44,6 @@ class RegistrationChecks extends Model
 
     public function rules()
     {
-        /** @var Module $module */
-        $module = Yii::$app->getModule('legal');
         $rules = [];
 
         if ($this->showAgeCheck()) {
@@ -174,17 +172,17 @@ class RegistrationChecks extends Model
             return false;
         }
 
-        if ($this->showTermsCheck()) {
+        if ($this->showTermsCheck() && $this->termsCheck) {
             $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS, true);
             $module->settings->user($this->user)->set(static::SETTING_KEY_TERMS . 'Time', time());
         }
 
-        if ($this->showPrivacyCheck()) {
+        if ($this->showPrivacyCheck() && $this->dataPrivacyCheck) {
             $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY, true);
             $module->settings->user($this->user)->set(static::SETTING_KEY_PRIVACY . 'Time', time());
         }
 
-        if ($this->showAgeCheck()) {
+        if ($this->showAgeCheck() && $this->ageCheck) {
             $module->settings->user($this->user)->set(static::SETTING_KEY_AGE, true);
             $module->settings->user($this->user)->set(static::SETTING_KEY_AGE . 'Time', time());
         }

@@ -5,21 +5,20 @@
  * @license https://www.humhub.com/licences
  */
 
-/* @var $this \humhub\modules\ui\view\components\View */
-/* @var $module \humhub\modules\legal\Module */
-?>
-<?php
-
+use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\legal\models\Page;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+
+/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $module \humhub\modules\legal\Module */
+/* @var $model ConfigureForm */
 
 $enabledPages = [];
 foreach (Page::getPages() as $key => $title) {
     $disabledWarning = (Page::getPage($key, $module->getDefaultLanguage()) === null) ? Yii::t('LegalModule.base', '(Disabled - please add content in default language!)') : '';
     $enabledPages[$key] = $title . ' ' . $disabledWarning;
 }
-
 ?>
 
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
@@ -28,6 +27,10 @@ foreach (Page::getPages() as $key => $title) {
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
     <?= $form->field($model, 'enabledPages')->checkboxList($enabledPages); ?>
+    <?= $form->field($model, 'externalLinks')->checkboxList([
+            'icon' => Yii::t('LegalModule.base', 'Add notice icons before external links in Posts and Comments'),
+            'modal' => Yii::t('LegalModule.base', 'Show notice modal on external links in Posts and Comments')
+        ])->label(false); ?>
     <?= $form->field($model, 'showPagesAfterRegistration')->checkbox(); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
 

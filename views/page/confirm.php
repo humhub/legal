@@ -7,8 +7,8 @@
 
 use humhub\libs\Html;
 use humhub\modules\legal\models\Page;
+use humhub\modules\legal\widgets\Content;
 use humhub\modules\ui\form\widgets\ActiveForm;
-use humhub\modules\content\widgets\richtext\RichText;
 
 /* @var $this \humhub\modules\ui\view\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
@@ -21,7 +21,7 @@ use humhub\modules\content\widgets\richtext\RichText;
         <?= $page->title; ?>
     </div>
     <div class="panel-body">
-        <?= RichText::output($page->content); ?>
+        <?= Content::widget(['content' => $page->content]) ?>
 
         <br/>
         <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
@@ -37,11 +37,11 @@ use humhub\modules\content\widgets\richtext\RichText;
         <br/>
         <div class="form-group">
             <?= Html::submitButton('<i class="fa fa-check"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Accept'), ['class' => 'btn btn-success', 'data-ui-loader' => '']) ?>
-            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['class' => 'btn btn-danger pull-right', 'data-ui-loader' => '']) ?>
+            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['data-method' => 'POST', 'class' => 'btn btn-danger pull-right', 'data-ui-loader' => '']) ?>
         </div>
 
         <div class="pull-right">
-            <?php if (Yii::$app->user->canDeleteAccount()): ?>
+            <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
                 <?= Html::a(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], ['class' => 'pull-right', 'data-pjax-prevent' => '']) ?>
             <?php endif; ?>
         </div>
@@ -50,4 +50,3 @@ use humhub\modules\content\widgets\richtext\RichText;
 
     </div>
 </div>
-

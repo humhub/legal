@@ -7,9 +7,15 @@
 
 namespace humhub\modules\legal;
 
+use humhub\modules\admin\controllers\UserController;
+use humhub\modules\comment\models\Comment;
+use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
+use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
+use humhub\modules\post\models\Post;
+use humhub\modules\rest\components\BaseController;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\modules\ui\menu\MenuLink;
@@ -115,10 +121,19 @@ class Events
         if ($event->action->controller->id === 'poll') {
             return;
         }
-        if ($event->action->controller->module->id === 'rest') {
+        if ($event->action->controller->module->id === 'file' && $event->action->controller->id === 'file' && $event->action->id === 'download') {
+            return;
+        }
+        if ($event->action->controller instanceof BaseController) { // REST API request
             return;
         }
         if ($event->action->controller->module->id === 'twofa' && $event->action->controller->id === 'check') {
+            return;
+        }
+        if ($event->action->controller->module->id === 'termsbox' && $event->action->controller->id === 'index') {
+            return;
+        }
+        if ($event->action->controller->module->id === 'breakingnews' && $event->action->controller->id === 'index') {
             return;
         }
 
@@ -150,10 +165,30 @@ class Events
         }
     }
 
+    public static function skipVerifying(): bool
+    {
+        // Do not use on console request
+        if (Yii::$app->request->isConsoleRequest) {
+            return true;
+        }
+
+        // If, for example, users are automatically registered with LDAP during login, no legal checks should take place.
+        // Otherwise the auto registration would be broken.
+        if (Yii::$app->controller instanceof \humhub\modules\user\controllers\AuthController) {
+            return true;
+        }
+
+        // Don't ask admin on creating of a new user from back-office
+        if (Yii::$app->user->isAdmin() && (Yii::$app->controller instanceof UserController)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function onRegistrationFormInit($event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 
@@ -172,8 +207,7 @@ class Events
 
     public static function onRegistrationFormRender($event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 
@@ -220,8 +254,7 @@ class Events
      */
     public static function onRegistrationAfterRegistration(UserEvent $event)
     {
-        // Do not store on console request
-        if (Yii::$app->request->isConsoleRequest) {
+        if (static::skipVerifying()) {
             return;
         }
 
@@ -234,5 +267,19 @@ class Events
         $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
         $model->load(Yii::$app->request->post());
         $model->save();
+    }
+
+    public static function onAfterRunRichText($event)
+    {
+        /* @var ProsemirrorRichText $richText */
+        $richText = $event->sender;
+
+        if (!isset($richText->record) || empty($event->result)) {
+            return;
+        }
+
+        if ($richText->record instanceof Post || $richText->record instanceof Comment) {
+            $event->result = Content::widget(['content' => $event->result, 'richtext' => false]);
+        }
     }
 }

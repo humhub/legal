@@ -90,6 +90,9 @@ class PageController extends Controller
         $this->subLayout = '@legal/views/page/layout_login';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if (Yii::$app->user->getReturnUrl()) {
+                return $this->redirect(Yii::$app->user->getReturnUrl());
+            }
             return $this->goHome();
         }
 
@@ -123,35 +126,6 @@ class PageController extends Controller
         if (!$model->hasOpenCheck()) {
             return $this->goHome();
         }
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->goHome();
-        }
-
-        return $this->render('update', [
-            'page' => $page,
-            'model' => $model,
-            'module' => $this->module
-        ]);
-    }
-
-    /**
-     * @return string
-     * @throws HttpException
-     */
-    public function actionCookies()
-    {
-        if (Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $page = Page::getPage(Page::PAGE_KEY_COOKIE_POLICY);
-        if ($page === null || !$this->module->isPageEnabled(Page::PAGE_KEY_COOKIE_POLICY)) {
-            throw new HttpException('404', 'Could not find page!');
-        }
-
-        $this->layout = '@user/views/layouts/main';
-        $this->subLayout = '@legal/views/page/layout_login';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->goHome();

@@ -25,7 +25,6 @@ use yii\base\ActionEvent;
 use yii\helpers\Url;
 use yii\web\UserEvent;
 
-
 /**
  * @author luke
  */
@@ -74,21 +73,32 @@ class Events
 
     }
 
+    /**
+     * Handles the initialization of the account menu.
+     *
+     * @param $event
+     */
     public static function onAccountMenuInit($event)
     {
         $menu = $event->sender;
 
-        $menu->addEntry(new MenuLink([
-            'icon' => 'fa-download',
-            'label' => Yii::t('LegalModule.base', 'Download My Data'),
-            'url' => '#',
-            'htmlOptions' => [
-                'data-action-click' => 'ui.modal.load',
-                'data-action-click-url' => helpers\Url::getExportUrl(),
-                'data-pjax-prevent' => ''
-            ],
-            'sortOrder' => 1000,
-        ]));
+        // Check if the legal module's download data feature is enabled
+        $module = Yii::$app->getModule('legal');
+
+        if ($module->getDownloadData()) {
+            // Add the menu item only if download data is enabled
+            $menu->addEntry(new MenuLink([
+                'icon' => 'fa-download',
+                'label' => Yii::t('LegalModule.base', 'Download My Data'),
+                'url' => '#',
+                'htmlOptions' => [
+                    'data-action-click' => 'ui.modal.load',
+                    'data-action-click-url' => helpers\Url::getExportUrl(),
+                    'data-pjax-prevent' => ''
+                ],
+                'sortOrder' => 1000,
+            ]));
+        }
     }
 
     public static function onBeforeControllerAction(ActionEvent $event)

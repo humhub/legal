@@ -22,6 +22,7 @@ class ConfigureForm extends Model
     public $defaultLanguage;
     public $showAgeCheck;
     public $minimumAge;
+    public $downloadData;
 
     /**
      * @inheritdoc
@@ -32,7 +33,7 @@ class ConfigureForm extends Model
             [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
             [['externalLinks'], 'in', 'range' => ['icon', 'modal']],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
-            [['showPagesAfterRegistration', 'showAgeCheck'], 'boolean'],
+            [['showPagesAfterRegistration', 'showAgeCheck', 'downloadData'], 'boolean'],
             ['minimumAge', 'integer', 'min' => 16, 'max' => 99]
         ];
     }
@@ -48,6 +49,7 @@ class ConfigureForm extends Model
             'defaultLanguage' => Yii::t('LegalModule.base', 'Default languge'),
             'showAgeCheck' => Yii::t('LegalModule.base', 'Show age verification {age}', ['age' => $this->minimumAge]),
             'minimumAge' => Yii::t('LegalModule.base', 'Minimum age'),
+            'downloadData' => Yii::t('LegalModule.base', 'Enable Download My Data'),
         ];
     }
 
@@ -69,6 +71,8 @@ class ConfigureForm extends Model
         $this->showPagesAfterRegistration = $this->getModule()->showPagesAfterRegistration();
         $this->showAgeCheck = $this->getModule()->showAgeCheck();
         $this->minimumAge = $this->getModule()->getMinimumAge();
+        $this->downloadData = $this->getModule()->getDownloadData();
+
         return true;
     }
 
@@ -90,6 +94,7 @@ class ConfigureForm extends Model
             $settings->set('showPagesAfterRegistration', $this->showPagesAfterRegistration);
             $settings->set('showAgeCheck', $this->showAgeCheck);
             $settings->set('minimumAge', $this->minimumAge);
+            $settings->set('downloadData', $this->downloadData);
         } catch (Exception $e) {
             Yii::error($e->getMessage());
             return false;

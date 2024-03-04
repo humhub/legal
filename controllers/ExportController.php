@@ -6,7 +6,12 @@ use Yii;
 use humhub\modules\user\components\BaseAccountController;
 use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\rest\definitions\PostDefinitions;
+use humhub\modules\rest\definitions\CommentDefinitions;
+use humhub\modules\rest\definitions\ContentDefinitions;
+use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\post\models\Post;
+use humhub\modules\content\models\Content;
+use humhub\modules\comment\models\Comment;
 use yii\web\Response;
 
 /**
@@ -38,11 +43,15 @@ class ExportController extends BaseAccountController
 
         $userData = $this->getUserData();
         $postData = $this->getPostData();
+        $contentData = $this->getContentData();
+        $commentData = $this->getCommentData();
 
-        // Combine user and post data
+        // Combine user, post, content, and comment data
         $data = [
             'user' => $userData,
             'post' => $postData,
+            'content' => $contentData,
+            'comment' => $commentData,
         ];
 
         // Convert data to JSON
@@ -90,6 +99,46 @@ class ExportController extends BaseAccountController
             return array_map(function($post) {
                 return PostDefinitions::getPost($post);
             }, $userPosts);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Retrieves current user's content and returns as JSON.
+     *
+     * @return array The JSON data.
+     */
+    private function getContentData()
+    {
+        $currentUser = Yii::$app->user->getIdentity();
+        if (Yii::$app->hasModule('rest')) {
+            $userContent = Content::find()
+                ->where(['created_by' => $currentUser->id])
+                ->all();
+            return array_map(function($content) {
+                return ContentDefinitions::getContent($content);
+            }, $userContent);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Retrieves current user's comments and returns as JSON.
+     *
+     * @return array The JSON data.
+     */
+    private function getCommentData()
+    {
+        $currentUser = Yii::$app->user->getIdentity();
+        if (Yii::$app->hasModule('rest')) {
+            $userComments = Comment::find()
+                ->where(['created_by' => $currentUser->id])
+                ->all();
+            return array_map(function($comment) {
+                return CommentDefinitions::getComment($comment);
+            }, $userComments);
         } else {
             return [];
         }

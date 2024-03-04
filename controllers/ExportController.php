@@ -4,26 +4,24 @@ namespace humhub\modules\legal\controllers;
 
 use Yii;
 use humhub\modules\user\components\BaseAccountController;
+use humhub\modules\rest\definitions\UserDefinitions;
+use humhub\modules\rest\definitions\PostDefinitions;
 use humhub\modules\post\models\Post;
 use yii\web\Response;
 
 /**
  * ExportController handles exporting user data as JSON.
- *
  */
 class ExportController extends BaseAccountController
 {
     /**
-     * Displays the exported user data as JSON.
+     * Renders the view displaying the exported user data as JSON.
      *
      * @return string The rendered view.
      */
     public function actionIndex()
     {
-        $jsonData = $this->getUserDataAsJson();
-
-        // Render the view with the JSON data
-        return $this->renderAjax('index', ['jsonData' => $jsonData]);
+        return $this->renderAjax('index');
     }
 
     /**
@@ -33,9 +31,24 @@ class ExportController extends BaseAccountController
      */
     public function actionDownload()
     {
-        $jsonData = $this->getUserDataAsJson();
+        // Check if the REST module is enabled
+        if (!Yii::$app->hasModule('rest')) {
+            throw new \yii\base\Exception('REST module is not enabled.');
+        }
 
-        // Set headers for file download
+        $userData = $this->getUserData();
+        $postData = $this->getPostData();
+
+        // Combine user and post data
+        $data = [
+            'user' => $userData,
+            'post' => $postData,
+        ];
+
+        // Convert data to JSON
+        $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+
+        // Set headers for JSON file download
         Yii::$app->response->format = Response::FORMAT_RAW;
         Yii::$app->response->headers->add('Content-Type', 'application/json');
         Yii::$app->response->headers->add('Content-Disposition', 'attachment; filename="userdata.json"');
@@ -48,78 +61,37 @@ class ExportController extends BaseAccountController
     }
 
     /**
-     * Retrieves user data and posts and returns as JSON.
+     * Retrieves user data.
      *
-     * @return string The JSON data.
+     * @return array The user data.
      */
-    private function getUserDataAsJson()
+    private function getUserData()
     {
         $currentUser = Yii::$app->user->getIdentity();
-
-        // Retrieve user profile information
-        $userData = [
-            'user' => [
-                'id' => $currentUser->id,
-                'guid' => $currentUser->guid,
-                'display_name' => $currentUser->displayName,
-                'url' => $currentUser->getUrl(),
-                'account' => [
-                    'id' => $currentUser->id,
-                    'guid' => $currentUser->guid,
-                    'username' => $currentUser->username,
-                    'email' => $currentUser->email,
-                    'visibility' => $currentUser->visibility,
-                    'status' => $currentUser->status,
-                ],
-                'profile' => [
-                    'firstname' => $currentUser->profile->firstname,
-                    'lastname' => $currentUser->profile->lastname,
-                    'title' => $currentUser->profile->title,
-                    'gender' => $currentUser->profile->gender,
-                ]
-            ]
-        ];
-
-        // Retrieve user post data
-        $postData = [];
-        $userPosts = Post::find()
-            ->where(['created_by' => $currentUser->id])
-            ->all();
-
-        foreach ($userPosts as $post) {
-            $postData[] = [
-                'id' => $post->id,
-                'message' => $post->message,
-                'metadata' => [
-                    'id' => $post->id,
-                    'guid' => $post->createdBy->guid,
-                    'object_model' => get_class($post),
-                    'object_id' => $post->id,
-                    'created_by' => [
-                        'id' => $post->createdBy->id,
-                        'guid' => $post->createdBy->guid,
-                        'display_name' => $post->createdBy->displayName,
-                        'url' => $post->createdBy->getUrl(),
-                    ],
-                    'created_at' => $post->created_at,
-                    'updated_by' => [
-                        'id' => $post->updatedBy->id,
-                        'guid' => $post->updatedBy->guid,
-                        'display_name' => $post->updatedBy->displayName,
-                        'url' => $post->updatedBy->getUrl(),
-                    ],
-                    'updated_at' => $post->updated_at,
-                    'url' => $post->getUrl(),
-                ],
-            ];
+        if (Yii::$app->hasModule('rest')) {
+            return UserDefinitions::getUser($currentUser);
+        } else {
+            return $currentUser->attributes;
         }
+    }
 
-        $jsonData = [
-            'user' => $userData['user'],
-            'posts' => $postData,
-        ];
-
-        // Convert data to JSON
-        return json_encode($jsonData, JSON_PRETTY_PRINT);
+    /**
+     * Retrieves current user's posts and returns as JSON.
+     *
+     * @return array The JSON data.
+     */
+    private function getPostData()
+    {
+        $currentUser = Yii::$app->user->getIdentity();
+        if (Yii::$app->hasModule('rest')) {
+            $userPosts = Post::find()
+                ->where(['created_by' => $currentUser->id])
+                ->all();
+            return array_map(function($post) {
+                return PostDefinitions::getPost($post);
+            }, $userPosts);
+        } else {
+            return [];
+        }
     }
 }

@@ -96,6 +96,14 @@ class Module extends \humhub\components\Module
         return $this->settings->get('minimumAge', 16);
     }
 
+    /**
+     * @return bool
+     */
+    public function getDownloadData()
+    {
+        return (boolean)$this->settings->get('downloadData', false);
+    }
+
     public function getName()
     {
         return Yii::t('LegalModule.base', 'Legal Tools');

@@ -7,7 +7,11 @@ use humhub\modules\user\components\BaseAccountController;
 use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\rest\definitions\PostDefinitions;
 use humhub\modules\rest\definitions\CommentDefinitions;
+use humhub\modules\rest\definitions\FileDefinitions;
+use humhub\modules\rest\definitions\LikeDefinitions;
 use humhub\modules\legal\models\ConfigureForm;
+use humhub\modules\file\models\File;
+use humhub\modules\like\models\Like;
 use humhub\modules\post\models\Post;
 use humhub\modules\comment\models\Comment;
 use yii\web\Response;
@@ -31,6 +35,7 @@ class ExportController extends BaseAccountController
      * Downloads the exported user data as a JSON file.
      *
      * @return Response The file response.
+     * @throws \yii\base\Exception If the REST module is not enabled.
      */
     public function actionDownload()
     {
@@ -42,12 +47,16 @@ class ExportController extends BaseAccountController
         $userData = $this->getUserData();
         $postData = $this->getPostData();
         $commentData = $this->getCommentData();
+        $fileData = $this->getFileData();
+        $likeData = $this->getLikeData();
 
-        // Combine user, post, and comment data
+        // Combine user, post, comment, file, and like data
         $data = [
             'user' => $userData,
             'post' => $postData,
             'comment' => $commentData,
+            'file' => $fileData,
+            'like' => $likeData,
         ];
 
         // Convert data to JSON
@@ -95,6 +104,46 @@ class ExportController extends BaseAccountController
             return array_map(function($post) {
                 return PostDefinitions::getPost($post);
             }, $userPosts);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Retrieves current user's files and returns as JSON.
+     *
+     * @return array The JSON data.
+     */
+    private function getFileData()
+    {
+        $currentUser = Yii::$app->user->getIdentity();
+        if (Yii::$app->hasModule('rest')) {
+            $userFiles = File::find()
+                ->where(['created_by' => $currentUser->id])
+                ->all();
+            return array_map(function($file) {
+                return FileDefinitions::getFile($file);
+            }, $userFiles);
+        } else {
+            return [];
+        }
+    }
+
+    /**
+     * Retrieves current user's likes and returns as JSON.
+     *
+     * @return array The JSON data.
+     */
+    private function getLikeData()
+    {
+        $currentUser = Yii::$app->user->getIdentity();
+        if (Yii::$app->hasModule('rest')) {
+            $userLikes = Like::find()
+                ->where(['created_by' => $currentUser->id])
+                ->all();
+            return array_map(function($like) {
+                return LikeDefinitions::getLike($like);
+            }, $userLikes);
         } else {
             return [];
         }

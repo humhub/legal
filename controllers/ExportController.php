@@ -63,7 +63,7 @@ class ExportController extends BaseAccountController
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
 
         // Set headers for JSON file download
-        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->response->headers->add('Content-Type', 'application/json');
         Yii::$app->response->headers->add('Content-Disposition', 'attachment; filename="userdata.json"');
 

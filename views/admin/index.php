@@ -33,7 +33,8 @@ foreach (Page::getPages() as $key => $title) {
         ])->label(false); ?>
     <?= $form->field($model, 'showPagesAfterRegistration')->checkbox(); ?>
     <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
-
+    <?= $form->field($model, 'downloadData')->checkbox(['disabled' => !Yii::$app->hasModule('rest')])->hint(Yii::t('LegalModule.base', 'To enable data download, please enable the REST API module.')); ?>
+    
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>
     <?= $form->field($model, 'minimumAge')->textInput()->hint(\Yii::t('LegalModule.base', 'Please enter a number value.')); ?>
 
@@ -45,4 +46,3 @@ foreach (Page::getPages() as $key => $title) {
 
 </div>
 <?php $this->endContent() ?>
-

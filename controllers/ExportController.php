@@ -14,7 +14,6 @@ use humhub\modules\file\models\File;
 use humhub\modules\like\models\Like;
 use humhub\modules\post\models\Post;
 use humhub\modules\comment\models\Comment;
-use humhub\modules\queue\ActiveJob;
 use humhub\modules\legal\jobs\ExportJob;
 use yii\web\Response;
 

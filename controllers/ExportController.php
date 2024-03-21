@@ -14,6 +14,8 @@ use humhub\modules\file\models\File;
 use humhub\modules\like\models\Like;
 use humhub\modules\post\models\Post;
 use humhub\modules\comment\models\Comment;
+use humhub\modules\queue\ActiveJob;
+use humhub\modules\legal\jobs\ExportJob;
 use yii\web\Response;
 
 /**
@@ -34,7 +36,7 @@ class ExportController extends BaseAccountController
     /**
      * Downloads the exported user data as a JSON file.
      *
-     * @return Response The file response.
+     * @return Response The file download.
      * @throws \yii\base\Exception If the REST module is not enabled.
      */
     public function actionDownload()
@@ -62,6 +64,12 @@ class ExportController extends BaseAccountController
         // Convert data to JSON
         $jsonData = json_encode($data, JSON_PRETTY_PRINT);
 
+        // Create a new export job
+        $job = Yii::$app->queue->push(new ExportJob());
+
+        // Wait for the job to be executed and completed
+        Yii::$app->queue->getWaitingJobCount($job);
+
         // Set headers for JSON file download
         Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->response->headers->add('Content-Type', 'application/json');
@@ -71,7 +79,8 @@ class ExportController extends BaseAccountController
         Yii::$app->response->content = $jsonData;
 
         // Send the response
-        return Yii::$app->response;
+        Yii::$app->response->send();
+        Yii::$app->end();
     }
 
     /**

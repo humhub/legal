@@ -22,6 +22,7 @@ class ExportService
      */
     public function getUserData($currentUser)
     {
+        $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
             return UserDefinitions::getUser($currentUser);
         } else {
@@ -37,6 +38,7 @@ class ExportService
      */
     public function getPostData($currentUser)
     {
+        $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
             $userPosts = Post::find()
                 ->where(['created_by' => $currentUser->id])
@@ -57,6 +59,7 @@ class ExportService
      */
     public function getFileData($currentUser)
     {
+        $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
             $userFiles = File::find()
                 ->where(['created_by' => $currentUser->id])
@@ -77,6 +80,7 @@ class ExportService
      */
     public function getLikeData($currentUser)
     {
+        $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
             $userLikes = Like::find()
                 ->where(['created_by' => $currentUser->id])
@@ -97,6 +101,7 @@ class ExportService
      */
     public function getCommentData($currentUser)
     {
+        $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
             $userComments = Comment::find()
                 ->where(['created_by' => $currentUser->id])

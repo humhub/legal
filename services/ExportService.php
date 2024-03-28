@@ -2,15 +2,17 @@
 
 namespace humhub\modules\legal\services;
 
-use humhub\modules\rest\definitions\UserDefinitions;
-use humhub\modules\rest\definitions\PostDefinitions;
-use humhub\modules\rest\definitions\CommentDefinitions;
-use humhub\modules\rest\definitions\FileDefinitions;
-use humhub\modules\rest\definitions\LikeDefinitions;
+use Yii;
 use humhub\modules\file\models\File;
 use humhub\modules\like\models\Like;
 use humhub\modules\post\models\Post;
 use humhub\modules\comment\models\Comment;
+use humhub\modules\legal\filters\MetadataFilter;
+use humhub\modules\rest\definitions\UserDefinitions;
+use humhub\modules\rest\definitions\PostDefinitions;
+use humhub\modules\rest\definitions\FileDefinitions;
+use humhub\modules\rest\definitions\LikeDefinitions;
+use humhub\modules\rest\definitions\CommentDefinitions;
 
 class ExportService
 {
@@ -40,12 +42,20 @@ class ExportService
     {
         $currentUser = Yii::$app->user->getIdentity();
         if (\Yii::$app->hasModule('rest')) {
+            $currentUserId = $currentUser->id;
             $userPosts = Post::find()
-                ->where(['created_by' => $currentUser->id])
+                ->where(['created_by' => $currentUserId])
                 ->all();
-            return array_map(function ($post) {
+
+            // Convert posts to array and apply metadata filtering
+            $postsArray = array_map(function ($post) {
                 return PostDefinitions::getPost($post);
             }, $userPosts);
+
+            // Apply metadata filtering
+            $filteredPosts = MetadataFilter::filterMetadata($postsArray, $currentUserId);
+
+            return $filteredPosts;
         } else {
             return [];
         }

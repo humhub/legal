@@ -53,7 +53,7 @@ class ExportService
             }, $userPosts);
 
             // Apply metadata filtering
-            $filteredPosts = MetadataFilter::filterMetadata($postsArray, $currentUserId);
+            $filteredPosts = MetadataFilter::filterMetadata($postsArray);
 
             return $filteredPosts;
         } else {
@@ -74,9 +74,16 @@ class ExportService
             $userFiles = File::find()
                 ->where(['created_by' => $currentUser->id])
                 ->all();
-            return array_map(function ($file) {
+
+            // Convert files to array and apply metadata filtering
+            $filesArray = array_map(function ($file) {
                 return FileDefinitions::getFile($file);
             }, $userFiles);
+
+            // Apply metadata filtering
+            $filteredFiles = MetadataFilter::filterMetadata($filesArray);
+
+            return $filteredFiles;
         } else {
             return [];
         }
@@ -95,9 +102,16 @@ class ExportService
             $userLikes = Like::find()
                 ->where(['created_by' => $currentUser->id])
                 ->all();
-            return array_map(function ($like) {
+
+            // Convert likes to array and apply metadata filtering
+            $likesArray = array_map(function ($like) {
                 return LikeDefinitions::getLike($like);
             }, $userLikes);
+
+            // Apply metadata filtering
+            $filteredLikes = MetadataFilter::filterMetadata($likesArray);
+
+            return $filteredLikes;
         } else {
             return [];
         }
@@ -116,9 +130,16 @@ class ExportService
             $userComments = Comment::find()
                 ->where(['created_by' => $currentUser->id])
                 ->all();
-            return array_map(function ($comment) {
+
+            // Convert comments to array and apply metadata filtering
+            $commentsArray = array_map(function ($comment) {
                 return CommentDefinitions::getComment($comment);
             }, $userComments);
+
+            // Apply metadata filtering
+            $filteredComments = MetadataFilter::filterMetadata($commentsArray);
+
+            return $filteredComments;
         } else {
             return [];
         }

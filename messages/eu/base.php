@@ -12,7 +12,7 @@ return array (
   'Box content' => '',
   'Box language:' => '',
   'Configuration' => '',
-  'Content' => '',
+  'Content' => 'Edukia',
   'Cookie notification' => '',
   'Default languge' => '',
   'Delete my account including my personal data' => '',
@@ -44,7 +44,7 @@ return array (
   'Terms and Conditions' => '',
   'This link leads to an external website. Would you like to proceed?' => '',
   'This page is added to the footer navigation and the registration process. You can add a different text for every available language.' => '',
-  'Title' => '',
+  'Title' => 'Izenburua',
   'Will be used as default, if the legal texts are not available in the users language.' => '',
   'Will be used as default, if the legal texts are not available in the user‘s language.' => '',
 );

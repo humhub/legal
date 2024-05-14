@@ -1,5 +1,6 @@
 Changelog
 =========
+- Fix #74: save datetime of last update of a page
 
 1.4.1 (November 28, 2023)
 -------------------------

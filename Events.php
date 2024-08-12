@@ -282,4 +282,12 @@ class Events
             ]));
         }
     }
+
+    /**
+     * Callback on daily cron job run
+     */
+    public static function onCronDailyRun()
+    {
+        Yii::$app->queue->push(new jobs\DeletePackages());
+    }
 }

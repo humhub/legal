@@ -1,5 +1,6 @@
 <?php /** @noinspection MissedFieldInspection */
 
+use humhub\commands\CronController;
 use humhub\components\Controller;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
 use humhub\modules\user\models\forms\Registration;
@@ -26,5 +27,6 @@ return [
         ['class' => Controller::class, 'event' => Controller::EVENT_BEFORE_ACTION, 'callback' => ['humhub\modules\legal\Events', 'onBeforeControllerAction']],
         ['class' => ProsemirrorRichText::class, 'event' => ProsemirrorRichText::EVENT_AFTER_RUN, 'callback' => ['humhub\modules\legal\Events', 'onAfterRunRichText']],
         ['class' => AccountMenu::class, 'event' => AccountMenu::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onAccountMenuInit']],
+        ['class' => CronController::class, 'event' => CronController::EVENT_ON_DAILY_RUN, 'callback' => ['humhub\modules\legal\Events', 'onCronDailyRun']],
     ],
 ];

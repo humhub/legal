@@ -11,6 +11,7 @@ use humhub\modules\legal\Module;
 use humhub\modules\legal\services\ExportService;
 use humhub\modules\user\components\BaseAccountController;
 use Yii;
+use yii\web\BadRequestHttpException;
 
 /* @property Module $module */
 class ExportController extends BaseAccountController
@@ -22,12 +23,12 @@ class ExportController extends BaseAccountController
         ]);
     }
 
-    public function actionGenerate()
+    public function actionRequest()
     {
-        if ((new ExportService())->generatePackage()) {
+        if ((new ExportService())->requestPackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The exporting of your data has been started, please wait some time.'));
         } else {
-            $this->view->error(Yii::t('LegalModule.base', 'Cannot start the exporting of your data, please try again.'));
+            $this->view->error('Cannot start the exporting of your data, please try again.');
         }
 
         return $this->redirect('index');
@@ -35,7 +36,13 @@ class ExportController extends BaseAccountController
 
     public function actionDownload()
     {
-        return (new ExportService())->downloadPackage();
+        $package = (new ExportService())->downloadPackage();
+
+        if ($package === null) {
+            throw new BadRequestHttpException('Cannot delete the package, please try again.');
+        }
+
+        return $package;
     }
 
     public function actionDelete()
@@ -43,7 +50,7 @@ class ExportController extends BaseAccountController
         if ((new ExportService())->deletePackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The package has been deleted.'));
         } else {
-            $this->view->error(Yii::t('LegalModule.base', 'Cannot delete the package, please try again.'));
+            $this->view->error('Cannot delete the package, please try again.');
         }
 
         return $this->redirect('index');

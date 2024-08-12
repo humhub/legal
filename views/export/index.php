@@ -34,9 +34,13 @@ use humhub\widgets\Button;
             ->link(['/legal/export/delete'])
             ->right()
             ->confirm() ?>
+    <?php elseif ($service->isExporting()) : ?>
+        <?= Button::defaultType(Yii::t('LegalModule.base', 'Data Package is generating...'))
+            ->icon('clock-o')
+            ->options(['disabled' => true])?>
     <?php else : ?>
-        <?= Button::primary(Yii::t('LegalModule.base', 'Generate Package'))
-            ->icon('rocket')
-            ->link(['/legal/export/generate']) ?>
+        <?= Button::primary(Yii::t('LegalModule.base', 'Request Data Package'))
+            ->icon('arrow-down')
+            ->link(['/legal/export/request']) ?>
     <?php endif; ?>
 </div>

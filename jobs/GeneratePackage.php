@@ -36,7 +36,7 @@ class GeneratePackage extends ActiveJob implements ExclusiveJobInterface
     public function run()
     {
         try {
-            if (!(new ExportService($this->user_id))->generatePackage()) {
+            if (!ExportService::instance($this->user_id)->generatePackage()) {
                 Yii::error('Cannot generate data package for user #' . $this->user_id . '!', 'legal');
             }
         } catch (ForbiddenHttpException $e) {

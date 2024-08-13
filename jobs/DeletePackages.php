@@ -31,7 +31,7 @@ class DeletePackages extends LongRunningActiveJob
             ->column();
 
         foreach ($users as $userId) {
-            if (!(new ExportService($userId))->deletePackage()) {
+            if (!ExportService::instance($userId)->deletePackage()) {
                 Yii::error('Cannot delete data package for the user #' . $userId, 'legal');
             }
         }

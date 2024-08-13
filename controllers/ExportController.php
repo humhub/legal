@@ -19,13 +19,13 @@ class ExportController extends BaseAccountController
     public function actionIndex()
     {
         return $this->render('index', [
-            'service' => new ExportService(),
+            'service' => ExportService::instance(),
         ]);
     }
 
     public function actionRequest()
     {
-        if ((new ExportService())->requestPackage()) {
+        if (ExportService::instance()->requestPackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The exporting of your data has been started, please wait some time.'));
         } else {
             $this->view->error('Cannot start the exporting of your data, please try again.');
@@ -36,7 +36,7 @@ class ExportController extends BaseAccountController
 
     public function actionDownload()
     {
-        $package = (new ExportService())->downloadPackage();
+        $package = ExportService::instance()->downloadPackage();
 
         if ($package === null) {
             throw new BadRequestHttpException('Cannot delete the package, please try again.');
@@ -47,7 +47,7 @@ class ExportController extends BaseAccountController
 
     public function actionDelete()
     {
-        if ((new ExportService())->deletePackage()) {
+        if (ExportService::instance()->deletePackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The package has been deleted.'));
         } else {
             $this->view->error('Cannot delete the package, please try again.');

@@ -8,19 +8,11 @@
 namespace humhub\modules\legal\services;
 
 use humhub\components\Event;
-use humhub\modules\comment\models\Comment;
 use humhub\modules\file\libs\FileHelper;
-use humhub\modules\file\models\File;
+use humhub\modules\legal\events\UserDataCollectionEvent;
 use humhub\modules\legal\jobs\GeneratePackage;
 use humhub\modules\legal\Module;
-use humhub\modules\like\models\Like;
-use humhub\modules\post\models\Post;
 use humhub\modules\queue\helpers\QueueHelper;
-use humhub\modules\rest\definitions\CommentDefinitions;
-use humhub\modules\rest\definitions\FileDefinitions;
-use humhub\modules\rest\definitions\LikeDefinitions;
-use humhub\modules\rest\definitions\PostDefinitions;
-use humhub\modules\rest\definitions\UserDefinitions;
 use humhub\modules\user\models\User;
 use Yii;
 use yii\base\Exception;
@@ -35,7 +27,6 @@ class ExportService
     public const PACKAGE_ALIAS = '@runtime/legal';
 
     public ?User $user = null;
-    private array $data = [];
 
     /**
      * @param User|int|null $user
@@ -156,31 +147,10 @@ class ExportService
             return [];
         }
 
-        $this->addData('user', UserDefinitions::getUser($this->user));
+        $event = new UserDataCollectionEvent(['user' => $this->user]);
+        Event::trigger(self::class, self::EVENT_COLLECT_USER_DATA, $event);
 
-        $this->addData('post', array_map(function ($post) {
-            return PostDefinitions::getPost($post);
-        }, Post::findAll(['created_by' => $this->user->id])));
-
-        $this->addData('comment', array_map(function ($comment) {
-            return CommentDefinitions::getComment($comment);
-        }, Comment::findAll(['created_by' => $this->user->id])));
-
-        $this->addData('file', array_map(function ($file) {
-            return FileDefinitions::getFile($file);
-        }, File::findAll(['created_by' => $this->user->id])));
-
-        $this->addData('like', array_map(function ($like) {
-            return LikeDefinitions::getLike($like);
-        }, Like::findAll(['created_by' => $this->user->id])));
-
-        Event::trigger(self::class, self::EVENT_COLLECT_USER_DATA, new Event(['sender' => $this]));
-
-        return $this->data;
+        return $event->userData;
     }
 
-    public function addData(string $name, array $data)
-    {
-        $this->data[$name] = $data;
-    }
 }

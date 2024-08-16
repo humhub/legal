@@ -7,8 +7,6 @@
 
 namespace humhub\modules\legal\services;
 
-use humhub\components\Event;
-use humhub\modules\file\libs\FileHelper;
 use humhub\modules\legal\events\UserDataCollectionEvent;
 use humhub\modules\legal\jobs\GeneratePackage;
 use humhub\modules\legal\Module;
@@ -18,7 +16,6 @@ use Yii;
 use yii\base\Exception;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;
-use ZipArchive;
 
 class ExportService
 {
@@ -65,33 +62,9 @@ class ExportService
 
     public function generatePackage(): bool
     {
-        $exportPath = Yii::getAlias(self::PACKAGE_ALIAS);
-        if (!is_dir($exportPath)) {
-            try {
-                if (!FileHelper::createDirectory($exportPath)) {
-                    return false;
-                }
-            } catch (Exception $e) {
-                Yii::error('Cannot create a folder for legal module user export data! ' . $e->getMessage(), 'legal');
-                return false;
-            }
-        }
-
         try {
-            if (file_exists($this->getPackagePath())) {
-                unlink($this->getPackagePath());
-            }
-
-            $archive = new ZipArchive();
-            if (!$archive->open($this->getPackagePath(), ZipArchive::CREATE)) {
-                throw new Exception('Error on creating of ZIP archive!');
-            }
-
-            foreach ($this->getDataFiles() as $name => $fileContent) {
-                $archive->addFromString('files/' . $name . '.json', json_encode($fileContent));
-            }
-
-            $archive->close();
+            // Create ZIP archive by the event
+            UserDataCollectionEvent::trigger(self::class, self::EVENT_COLLECT_USER_DATA, new UserDataCollectionEvent(['user' => $this->user]));
         } catch (Exception $e) {
             Yii::error('Cannot generate ZIP archive for legal module user export data! ' . $e->getMessage(), 'legal');
             return false;
@@ -140,17 +113,4 @@ class ExportService
     {
         return Yii::getAlias(self::PACKAGE_ALIAS . DIRECTORY_SEPARATOR . $this->user->id . '.zip');
     }
-
-    private function getDataFiles(): array
-    {
-        if (!$this->getModule()->isEnabledExportUserData()) {
-            return [];
-        }
-
-        $event = new UserDataCollectionEvent(['user' => $this->user]);
-        Event::trigger(self::class, self::EVENT_COLLECT_USER_DATA, $event);
-
-        return $event->userData;
-    }
-
 }

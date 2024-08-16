@@ -7,7 +7,6 @@
 
 namespace humhub\modules\legal\events;
 
-use humhub\helpers\ArrayHelper;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\file\libs\FileHelper;
 use humhub\modules\file\models\File;

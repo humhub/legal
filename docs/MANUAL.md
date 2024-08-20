@@ -1,6 +1,6 @@
 # Manual
 
-## Modules which support user data export
+## Modules that support user data export
 
 - [Calendar](https://github.com/humhub/calendar)
 - [Files](https://github.com/humhub/cfiles)
@@ -9,9 +9,9 @@
 - [Tasks](https://github.com/humhub/tasks)
 - [Wiki](https://github.com/humhub/wiki)
 
-Please note the export user data feature works only with enabled module [RESTful API](https://github.com/humhub/rest) and by default it exports the following data from database:
+Please note that the "Export your data" feature only works if the [RESTful API](https://github.com/humhub/rest) module is enabled. By default, it exports the following data from the database:
 - User data
 - Posts
 - Comments
 - Likes
-- Files (also physical files are attached to ZIP archive in the folder `/uploads/`)
+- Files (physical files are also attached to the ZIP archive in the `/uploads/` folder)

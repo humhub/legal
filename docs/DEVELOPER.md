@@ -2,17 +2,17 @@
 
 ## Export user data
 
-Please note this feature works only with enabled module [RESTful API](https://github.com/humhub/rest).
+Please note that this feature will only work if the [RESTful API](https://github.com/humhub/rest) module is enabled.
 
 To append user data from another module:
 
-1) Add event in the file `config.php` of your module the following line:
+1) Add the following line to the `events` section of your module's `config.php` file:
 
 ```php
 ['class' => 'humhub\modules\legal\services\ExportService', 'event' => 'collectUserData', 'callback' => ['humhub\modules\your_module\Events', 'onLegalModuleUserDataExport']],
 ```
 
-2) Implement `humhub\modules\your_module\Events::onLegalModuleUserDataExport` like this:
+2) Implement the `humhub\modules\your_module\Events::onLegalModuleUserDataExport` method in your `Events` class like this:
 
 ```php
 public static function onLegalModuleUserDataExport(\humhub\modules\legal\events\UserDataCollectionEvent $event)
@@ -31,4 +31,4 @@ public static function onLegalModuleUserDataExport(\humhub\modules\legal\events\
 }
 ```
 
-To test it go to edit your profile and run "Export your data", you should find the file `/files/wiki.json` in ZIP archive and all uploaded files of the User in the folder `/uploads/`.
+To test it, go to edit your profile, and run "Export your data". You should find the file `/files/wiki.json` in the ZIP archive, along with all the user's uploaded files in the `/uploads/` folder.

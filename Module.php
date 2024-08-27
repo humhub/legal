@@ -81,7 +81,7 @@ class Module extends \humhub\components\Module
 
     public function isAllowedExportUserData(): bool
     {
-        return Yii::$app->hasModule('rest') && Yii::$app->getModule('rest')->isEnabled;
+        return Yii::$app->hasModule('rest') && Yii::$app->getModule('rest')->isActivated;
     }
 
     public function isEnabledExportUserData(): bool

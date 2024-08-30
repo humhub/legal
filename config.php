@@ -4,7 +4,7 @@ use humhub\commands\CronController;
 use humhub\components\Controller;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
 use humhub\modules\user\models\forms\Registration;
-use humhub\modules\user\widgets\AccountMenu;
+use humhub\modules\user\widgets\AccountSettingsMenu;
 use humhub\widgets\FooterMenu;
 use humhub\widgets\LayoutAddons;
 
@@ -26,7 +26,7 @@ return [
         ['class' => Registration::class, 'event' => Registration::EVENT_AFTER_REGISTRATION, 'callback' => ['humhub\modules\legal\Events', 'onRegistrationAfterRegistration']],
         ['class' => Controller::class, 'event' => Controller::EVENT_BEFORE_ACTION, 'callback' => ['humhub\modules\legal\Events', 'onBeforeControllerAction']],
         ['class' => ProsemirrorRichText::class, 'event' => ProsemirrorRichText::EVENT_AFTER_RUN, 'callback' => ['humhub\modules\legal\Events', 'onAfterRunRichText']],
-        ['class' => AccountMenu::class, 'event' => AccountMenu::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onAccountMenuInit']],
+        ['class' => AccountSettingsMenu::class, 'event' => AccountSettingsMenu::EVENT_INIT, 'callback' => ['humhub\modules\legal\Events', 'onAccountSettingsMenuInit']],
         ['class' => CronController::class, 'event' => CronController::EVENT_ON_DAILY_RUN, 'callback' => ['humhub\modules\legal\Events', 'onCronDailyRun']],
     ],
 ];

@@ -113,4 +113,13 @@ class ExportService
     {
         return Yii::getAlias(self::PACKAGE_ALIAS . DIRECTORY_SEPARATOR . $this->user->id . '.zip');
     }
+
+    public function getPackageDayLeft(): int
+    {
+        if (!$this->hasPackage()) {
+            return 0;
+        }
+
+        return ceil($this->getModule()->getExportUserDays() - ((time() - $this->user->settings->get(self::PACKAGE_TIME)) / 86400));
+    }
 }

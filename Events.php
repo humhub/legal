@@ -19,7 +19,7 @@ use humhub\modules\rest\components\BaseController;
 use humhub\modules\ui\menu\MenuLink;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
-use humhub\modules\user\widgets\AccountMenu;
+use humhub\modules\user\widgets\AccountSettingsMenu;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\base\ActionEvent;
@@ -265,9 +265,9 @@ class Events
         }
     }
 
-    public static function onAccountMenuInit($event)
+    public static function onAccountSettingsMenuInit($event)
     {
-        /* @var AccountMenu $menu */
+        /* @var AccountSettingsMenu $menu */
         $menu = $event->sender;
 
         /* @var Module $module */
@@ -275,10 +275,10 @@ class Events
 
         if ($module->isEnabledExportUserData()) {
             $menu->addEntry(new MenuLink([
-                'icon' => 'fa-download',
-                'label' => Yii::t('LegalModule.base', 'Export your data'),
+                'label' => Yii::t('LegalModule.base', 'Export personal data'),
                 'url' => ['/legal/export'],
                 'sortOrder' => 1000,
+                'isActive' => MenuLink::isActiveState('legal', 'export'),
             ]));
         }
     }

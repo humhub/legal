@@ -1,6 +1,10 @@
 Changelog
 =========
+
+1.4.2 (Unreleased)
+-------------------------
 - Fix #74: save datetime of last update of a page
+- Fix #80: Remove module name translation
 
 1.4.1 (November 28, 2023)
 -------------------------

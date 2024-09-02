@@ -13,7 +13,6 @@ use yii\helpers\Url;
 
 class Module extends \humhub\components\Module
 {
-
     /**
      * @inheritdoc
      */
@@ -52,7 +51,7 @@ class Module extends \humhub\components\Module
      */
     public function showPagesAfterRegistration()
     {
-        return (boolean)$this->settings->get('showPagesAfterRegistration', false);
+        return (bool)$this->settings->get('showPagesAfterRegistration', false);
     }
 
     /**
@@ -85,7 +84,7 @@ class Module extends \humhub\components\Module
      */
     public function showAgeCheck()
     {
-        return (boolean)$this->settings->get('showAgeCheck', false);
+        return (bool)$this->settings->get('showAgeCheck', false);
     }
 
     /**
@@ -94,16 +93,6 @@ class Module extends \humhub\components\Module
     public function getMinimumAge()
     {
         return $this->settings->get('minimumAge', 16);
-    }
-
-    public function getName()
-    {
-        return Yii::t('LegalModule.base', 'Legal Tools');
-    }
-
-    public function getDescription()
-    {
-        return Yii::t('LegalModule.base', 'Adds several editable legal options, like an imprint and a privacy policy.');
     }
 
 }

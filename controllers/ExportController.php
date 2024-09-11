@@ -16,6 +16,21 @@ use yii\web\BadRequestHttpException;
 /* @property Module $module */
 class ExportController extends BaseAccountController
 {
+    /**
+     * @inheritdoc
+     */
+    protected function getAccessRules()
+    {
+        return array_merge(parent::getAccessRules(), [
+            ['checkEnabledExportUserData'],
+        ]);
+    }
+
+    public function checkEnabledExportUserData($rule, $access)
+    {
+        return $this->module->isEnabledExportUserData();
+    }
+
     public function actionIndex()
     {
         return $this->render('index', [

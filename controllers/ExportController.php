@@ -31,7 +31,7 @@ class ExportController extends BaseAccountController
             $this->view->error('Cannot start the exporting of your data, please try again.');
         }
 
-        return $this->redirect('index');
+        return $this->redirect(['index']);
     }
 
     public function actionDownload()
@@ -53,6 +53,6 @@ class ExportController extends BaseAccountController
             $this->view->error('Cannot delete the package, please try again.');
         }
 
-        return $this->redirect('index');
+        return $this->redirect(['index']);
     }
 }

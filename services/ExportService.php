@@ -7,6 +7,7 @@
 
 namespace humhub\modules\legal\services;
 
+use humhub\modules\content\components\ContentContainerSettingsManager;
 use humhub\modules\legal\events\UserDataCollectionEvent;
 use humhub\modules\legal\jobs\GeneratePackage;
 use humhub\modules\legal\Module;
@@ -20,7 +21,7 @@ use yii\web\Response;
 class ExportService
 {
     public const EVENT_COLLECT_USER_DATA = 'collectUserData';
-    public const PACKAGE_TIME = 'legal.packageTime';
+    public const PACKAGE_TIME = 'packageTime';
     public const PACKAGE_ALIAS = '@runtime/legal';
 
     public ?User $user = null;
@@ -70,7 +71,7 @@ class ExportService
             return false;
         }
 
-        $this->user->settings->set(self::PACKAGE_TIME, time());
+        $this->getSettings()->set(self::PACKAGE_TIME, time());
 
         return true;
     }
@@ -84,7 +85,7 @@ class ExportService
 
     public function deletePackage(): bool
     {
-        $this->user->settings->delete(self::PACKAGE_TIME);
+        $this->getSettings()->delete(self::PACKAGE_TIME);
 
         if (file_exists($this->getPackagePath())) {
             unlink($this->getPackagePath());
@@ -100,13 +101,18 @@ class ExportService
 
     public function hasPackage(): bool
     {
-        return $this->user->settings->get(self::PACKAGE_TIME) > 0 &&
+        return $this->getSettings()->get(self::PACKAGE_TIME) > 0 &&
             file_exists($this->getPackagePath());
     }
 
     public function getModule(): Module
     {
         return Yii::$app->getModule('legal');
+    }
+
+    public function getSettings(): ContentContainerSettingsManager
+    {
+        return $this->getModule()->settings->user($this->user);
     }
 
     public function getPackagePath(): string
@@ -120,6 +126,6 @@ class ExportService
             return 0;
         }
 
-        return ceil($this->getModule()->getExportUserDays() - ((time() - $this->user->settings->get(self::PACKAGE_TIME)) / 86400));
+        return ceil($this->getModule()->getExportUserDays() - ((time() - $this->getSettings()->get(self::PACKAGE_TIME)) / 86400));
     }
 }

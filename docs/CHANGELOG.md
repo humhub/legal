@@ -1,11 +1,12 @@
 Changelog
 =========
 
-1.4.2 (Unreleased)
--------------------------
+1.4.2 (September 13, 2024)
+--------------------------
 - Fix #74: save datetime of last update of a page
 - Fix #80: Remove module name translation
 - Enh #83: Replace theme variables with CSS variables
+- Enh #77: Added "Export your user data" feature 
 
 1.4.1 (November 28, 2023)
 -------------------------

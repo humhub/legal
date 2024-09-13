@@ -12,6 +12,7 @@ use humhub\modules\legal\services\ExportService;
 use humhub\modules\user\components\BaseAccountController;
 use Yii;
 use yii\web\BadRequestHttpException;
+use yii\web\NotFoundHttpException;
 
 /* @property Module $module */
 class ExportController extends BaseAccountController
@@ -54,7 +55,7 @@ class ExportController extends BaseAccountController
         $package = ExportService::instance()->downloadPackage();
 
         if ($package === null) {
-            throw new BadRequestHttpException('Cannot delete the package, please try again.');
+            throw new NotFoundHttpException();
         }
 
         return $package;

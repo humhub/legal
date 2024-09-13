@@ -84,12 +84,24 @@ class Module extends \humhub\components\Module
         return $this->settings->get('defaultLanguage');
     }
 
-    /**
-     * @return bool
-     */
-    public function showAgeCheck()
+    public function isAllowedExportUserData(): bool
     {
-        return (bool)$this->settings->get('showAgeCheck', false);
+        return Yii::$app->hasModule('rest') && Yii::$app->getModule('rest')->isActivated;
+    }
+
+    public function isEnabledExportUserData(): bool
+    {
+        return $this->isAllowedExportUserData() && $this->settings->get('exportUserData', false);
+    }
+
+    public function getExportUserDays(): int
+    {
+        return (int) $this->settings->get('exportUserDays', 1);
+    }
+
+    public function showAgeCheck(): bool
+    {
+        return (bool) $this->settings->get('showAgeCheck', false);
     }
 
     /**

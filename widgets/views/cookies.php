@@ -21,12 +21,12 @@ Assets::register($this);
         window.cookieconsent.initialise({
             "palette": {
                 "popup": {
-                    "background": "<?= $this->theme->variable('primary'); ?>",
-                    "text": "<?= $this->theme->variable('text-color-contrast') ?>"
+                    "background": "var(--primary)",
+                    "text": "var(--text-color-contrast)"
                 },
                 "button": {
-                    "background": "<?= $this->theme->variable('success'); ?>",
-                    "text": "<?= $this->theme->variable('text-color-contrast') ?>"
+                    "background": "var(--success)",
+                    "text": "var(--text-color-contrast)"
                 }
             },
             "showLink": false,

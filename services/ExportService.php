@@ -79,7 +79,7 @@ class ExportService
     public function downloadPackage(): ?Response
     {
         return file_exists($this->getPackagePath())
-            ? Yii::$app->response->sendContentAsFile(file_get_contents($this->getPackagePath()), 'legal-user-data.zip')
+            ? Yii::$app->response->sendStreamAsFile(fopen($this->getPackagePath(), 'r'), 'legal-user-data.zip')
             : null;
     }
 

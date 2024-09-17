@@ -1,9 +1,13 @@
 Changelog
 =========
 
+1.4.3 (Unreleased)
+--------------------------
+- Fix #85: Fix downloading of large user export data file
+
 1.4.2 (September 13, 2024)
 --------------------------
-- Fix #74: save datetime of last update of a page
+- Fix #74: Save datetime of last update of a page
 - Fix #80: Remove module name translation
 - Enh #83: Replace theme variables with CSS variables
 - Enh #77: Added "Export your user data" feature 

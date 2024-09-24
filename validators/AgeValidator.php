@@ -1,5 +1,4 @@
 <?php
-
 namespace humhub\modules\legal\validators;
 
 use DateTime;
@@ -37,14 +36,7 @@ class AgeValidator extends Validator
      */
     public function validateAttribute($model, $attribute)
     {
-        // Check if the user is a member of the admin group
-        if (Group::getAdminGroup()->isMember($model)) {
-            // Skip validation for admin accounts
-            return;
-        }
-
         $value = $model->$attribute;
-
         if (!$value instanceof DateTime) {
             try {
                 $value = new DateTime($value);
@@ -61,7 +53,8 @@ class AgeValidator extends Validator
             $message = Yii::t('LegalModule.base', 'You must be at least {age} years old.', ['age' => $this->minimumAge]);
             $this->addError($model, $attribute, $message);
 
-            if ($this->minimumAge > 0 && isset($model->user) && $model->user instanceof User) {
+            // Disable the user account if they are underage and not an admin
+            if ($this->minimumAge > 0 && isset($model->user) && $model->user instanceof User && !$model->user->isSystemAdmin()) {
                 $model->user->status = User::STATUS_DISABLED;
                 $model->user->save(false);
             }

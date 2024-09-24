@@ -1,11 +1,11 @@
 <?php
+
 namespace humhub\modules\legal\validators;
 
 use DateTime;
 use Yii;
 use yii\validators\Validator;
 use humhub\modules\user\models\User;
-use humhub\modules\user\models\Group;
 
 /**
  * AgeValidator validates that the given value represents an age greater than or equal to a specified minimum age.

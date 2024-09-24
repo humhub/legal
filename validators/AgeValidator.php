@@ -6,6 +6,7 @@ use DateTime;
 use Yii;
 use yii\validators\Validator;
 use humhub\modules\user\models\User;
+use humhub\modules\user\models\Group;
 
 /**
  * AgeValidator validates that the given value represents an age greater than or equal to a specified minimum age.
@@ -18,7 +19,7 @@ class AgeValidator extends Validator
     public $minimumAge;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function init()
     {
@@ -36,6 +37,12 @@ class AgeValidator extends Validator
      */
     public function validateAttribute($model, $attribute)
     {
+        // Check if the user is a member of the admin group
+        if (Group::getAdminGroup()->isMember($model)) {
+            // Skip validation for admin accounts
+            return;
+        }
+
         $value = $model->$attribute;
 
         if (!$value instanceof DateTime) {

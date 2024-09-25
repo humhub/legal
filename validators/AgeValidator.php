@@ -55,7 +55,6 @@ class AgeValidator extends Validator
 
             // Disable the user account if they are underage and not an admin
             if ($this->minimumAge > 0 && isset($model->user) && $model->user instanceof User && !$model->user->isSystemAdmin()) {
-                $model->user->status = User::STATUS_DISABLED;
                 $model->user->save(false);
             }
         }

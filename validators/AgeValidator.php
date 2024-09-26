@@ -52,11 +52,6 @@ class AgeValidator extends Validator
         if ($age < $this->minimumAge) {
             $message = Yii::t('LegalModule.base', 'You must be at least {age} years old.', ['age' => $this->minimumAge]);
             $this->addError($model, $attribute, $message);
-
-            // Disable the user account if they are underage and not an admin
-            if ($this->minimumAge > 0 && isset($model->user) && $model->user instanceof User && !$model->user->isSystemAdmin()) {
-                $model->user->save(false);
-            }
         }
     }
 }

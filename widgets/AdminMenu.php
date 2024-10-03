@@ -13,7 +13,6 @@ use yii\helpers\Url;
 
 class AdminMenu extends \humhub\widgets\BaseMenu
 {
-
     public $template = "@humhub/widgets/views/tabMenu";
 
     public function init()

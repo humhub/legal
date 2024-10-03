@@ -6,10 +6,10 @@
  */
 
 namespace humhub\modules\legal\widgets;
+
 use humhub\components\Widget;
 use humhub\modules\legal\models\Page;
 use yii\web\HttpException;
-
 
 /**
  * Class CookieNote

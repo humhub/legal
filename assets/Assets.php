@@ -11,19 +11,18 @@ use yii\web\AssetBundle;
 
 class Assets extends AssetBundle
 {
-
     public $defer = true;
 
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 
     public $sourcePath = '@legal/resources';
     public $css = [
-        'cookieconsent.min.css'
+        'cookieconsent.min.css',
     ];
     public $js = [
-        'cookieconsent.min.js'
+        'cookieconsent.min.js',
     ];
 
 }

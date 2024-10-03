@@ -1,4 +1,6 @@
-<?php /** @noinspection MissedFieldInspection */
+<?php
+
+/** @noinspection MissedFieldInspection */
 
 use humhub\commands\CronController;
 use humhub\components\Controller;

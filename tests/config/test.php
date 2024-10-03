@@ -7,5 +7,5 @@
 
 return [
     'modules' => ['legal'],
-    'fixtures' => ['default']
+    'fixtures' => ['default'],
 ];

@@ -37,19 +37,23 @@ class LegalCest
     public function testTermsAndConditions(AcceptanceTester $I)
     {
         $I->wantTo('test terms and conditions');
-        $I->testPage(Page::PAGE_KEY_TERMS,
+        $I->testPage(
+            Page::PAGE_KEY_TERMS,
             'Test Terms and Conditions title',
             'Test Terms and Conditions content',
-            'termscheck');
+            'termscheck',
+        );
     }
 
     public function testPrivacyPolicy(AcceptanceTester $I)
     {
         $I->wantTo('test privacy policy');
-        $I->testPage(Page::PAGE_KEY_PRIVACY_PROTECTION,
+        $I->testPage(
+            Page::PAGE_KEY_PRIVACY_PROTECTION,
             'Test Privacy Policy title',
             'Test Privacy Policy content',
-            'dataprivacycheck');
+            'dataprivacycheck',
+        );
     }
 
     public function testCookie(AcceptanceTester $I)
@@ -78,12 +82,12 @@ class LegalCest
         $pages = [
             Page::PAGE_KEY_TERMS => [
                 'title' => 'Test Terms and Conditions title',
-                'content' => 'Test Terms and Conditions content'
+                'content' => 'Test Terms and Conditions content',
             ],
             Page::PAGE_KEY_LEGAL_UPDATE => [
                 'title' => 'Test Legal Update title',
-                'content' => 'Test Legal Update content'
-            ]
+                'content' => 'Test Legal Update content',
+            ],
         ];
 
         $I->amAdmin();

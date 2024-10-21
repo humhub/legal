@@ -40,7 +40,7 @@ class Content extends JsWidget
         return $this->render('content', [
             'content' => $this->content,
             'richtext' => $this->richtext,
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
         ]);
     }
 }

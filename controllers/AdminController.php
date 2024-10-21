@@ -25,7 +25,6 @@ use yii\web\HttpException;
  */
 class AdminController extends Controller
 {
-
     public function actionIndex()
     {
         $model = new ConfigureForm();
@@ -71,7 +70,7 @@ class AdminController extends Controller
             'pages' => $pages,
             'languages' => $languages,
             'defaultLanguage' => $this->module->getDefaultLanguage(),
-            'pageKey' => $pageKey
+            'pageKey' => $pageKey,
         ]);
     }
 

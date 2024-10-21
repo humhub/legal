@@ -5,6 +5,7 @@ Changelog
 --------------------------
 - Fix #85: Fix downloading of large user export data file
 - Enh: Check User Birthday field
+- Enh #90: Use PHP CS Fixer
 
 1.4.2 (September 13, 2024)
 --------------------------

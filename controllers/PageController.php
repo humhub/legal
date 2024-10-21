@@ -59,7 +59,7 @@ class PageController extends Controller
 
         return $this->render('view', [
             'page' => $page,
-            'canManagePages' => $this->canManagePages()
+            'canManagePages' => $this->canManagePages(),
         ]);
     }
 
@@ -77,8 +77,7 @@ class PageController extends Controller
         if ($model->showTermsCheck()) {
             $model->restrictToSettingKey = RegistrationChecks::SETTING_KEY_TERMS;
             $page = Page::getPage(Page::PAGE_KEY_TERMS);
-        }
-        elseif ($model->showPrivacyCheck()) {
+        } elseif ($model->showPrivacyCheck()) {
             $model->restrictToSettingKey = RegistrationChecks::SETTING_KEY_PRIVACY;
             $page = Page::getPage(Page::PAGE_KEY_PRIVACY_PROTECTION);
         }
@@ -99,7 +98,7 @@ class PageController extends Controller
         return $this->render('confirm', [
             'page' => $page,
             'model' => $model,
-            'module' => $this->module
+            'module' => $this->module,
         ]);
     }
 
@@ -134,7 +133,7 @@ class PageController extends Controller
         return $this->render('update', [
             'page' => $page,
             'model' => $model,
-            'module' => $this->module
+            'module' => $this->module,
         ]);
     }
 

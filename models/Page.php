@@ -10,20 +10,20 @@ use Yii;
 /**
  * This is the model class for table "legal_page".
  *
- * @property integer $id
+ * @property int $id
  * @property string $page_key
  * @property string $language
  * @property string $title
  * @property string $content
- * @property integer $last_update
+ * @property int $last_update
  */
 class Page extends ActiveRecord
 {
-    const PAGE_KEY_IMPRINT = 'imprint';
-    const PAGE_KEY_TERMS = 'terms';
-    const PAGE_KEY_PRIVACY_PROTECTION = 'privacy';
-    const PAGE_KEY_COOKIE_NOTICE = 'cookies';
-    const PAGE_KEY_LEGAL_UPDATE = 'update';
+    public const PAGE_KEY_IMPRINT = 'imprint';
+    public const PAGE_KEY_TERMS = 'terms';
+    public const PAGE_KEY_PRIVACY_PROTECTION = 'privacy';
+    public const PAGE_KEY_COOKIE_NOTICE = 'cookies';
+    public const PAGE_KEY_LEGAL_UPDATE = 'update';
 
     /**
      * @inheritdoc
@@ -68,7 +68,7 @@ class Page extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'safe']
+            [['title', 'content'], 'safe'],
         ];
     }
 

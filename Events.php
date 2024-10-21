@@ -49,11 +49,11 @@ class Events
             $page = Page::getPage($pageKey);
             if ($page !== null) {
                 $sortOrder += 10;
-                $event->sender->addItem(array(
+                $event->sender->addItem([
                     'label' => $page->title,
                     'url' => Url::to(['/legal/page/view', 'pageKey' => $pageKey], true),
                     'sortOrder' => $sortOrder,
-                ));
+                ]);
             }
         }
 
@@ -141,7 +141,7 @@ class Events
             $event->result = Yii::$app->response->redirect(['/legal/page/update']);
         }
         // Show legal pages in full screen with confirm form, one by one (after account creation)
-        elseif($registrationCheck->showTermsCheck() || $registrationCheck->showPrivacyCheck()) {
+        elseif ($registrationCheck->showTermsCheck() || $registrationCheck->showPrivacyCheck()) {
             $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/legal/page/confirm']);
         }

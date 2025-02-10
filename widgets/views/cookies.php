@@ -19,16 +19,6 @@ Assets::register($this);
 <script <?= Html::nonce() ?>>
     window.addEventListener("load", function () {
         window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "var(--primary)",
-                    "text": "var(--text-color-contrast)"
-                },
-                "button": {
-                    "background": "var(--success)",
-                    "text": "var(--text-color-contrast)"
-                }
-            },
             "showLink": false,
             "theme": "classic",
             "position": "bottom-right",

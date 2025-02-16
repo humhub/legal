@@ -4,6 +4,7 @@ Changelog
 1.4.3 (Unreleased)
 --------------------------
 - Fix #85: Fix downloading of large user export data file
+- Enh: Check User Birthday field
 - Enh #90: Use PHP CS Fixer
 - Fix #95: Fix Color Variables for Cookie Consent Box
 

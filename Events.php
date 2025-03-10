@@ -181,27 +181,12 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        $hForm->models['RegistrationChecks'] = new RegistrationChecks(['restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
+        $model = new RegistrationChecks(['restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
+        $hForm->models['RegistrationChecks'] = $model;
 
         if ($module->showPagesAfterRegistration()) {
             Yii::$app->session->set(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION, 'true');
         }
-    }
-
-    public static function onRegistrationFormRender($event)
-    {
-        if (static::skipVerifying()) {
-            return;
-        }
-
-        /** @var Registration $hForm */
-        $hForm = $event->sender;
-
-        /** @var RegistrationChecks $model */
-        $model = $hForm->models['RegistrationChecks'];
-
-        /** @var Module $module */
-        $module = Yii::$app->getModule('legal');
 
         $elements = [];
 
@@ -211,6 +196,7 @@ class Events
                 'class' => 'form-control',
             ];
         }
+
         if ($model->showPrivacyCheck()) {
             $elements['dataPrivacyCheck'] = [
                 'type' => 'checkbox',

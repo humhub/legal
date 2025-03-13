@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.5.0 (Unreleased)
+1.5.0 (March 13, 2025)
 ----------------------
 - Fix #96: Fix registration form verifying
 

@@ -1,12 +1,15 @@
 Changelog
 =========
 
+1.5.0 (Unreleased)
+----------------------
+- Fix #96: Fix registration form verifying
+
 1.4.3 (March 10, 2025)
 ----------------------
 - Fix #85: Fix downloading of large user export data file
 - Enh #90: Use PHP CS Fixer
 - Fix #95: Fix Color Variables for Cookie Consent Box
-- Fix #96: Fix registration form verifying
 
 1.4.2 (September 13, 2024)
 --------------------------

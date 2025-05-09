@@ -1,9 +1,9 @@
 Changelog
 =========
 
-1.5.1 (Unreleased)
-----------------------
--
+1.6.0 (unreleased)
+-------------------------
+- Enh: Migration to Bootstrap 5 for HumHub 1.18
 
 1.5.0 (March 13, 2025)
 ----------------------

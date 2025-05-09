@@ -6,7 +6,7 @@
  */
 
 use humhub\modules\legal\services\ExportService;
-use humhub\widgets\Button;
+use humhub\widgets\bootstrap\Button;
 
 /* @var ExportService $service */
 ?>
@@ -41,7 +41,7 @@ use humhub\widgets\Button;
             ->right()
             ->confirm() ?>
     <?php elseif ($service->isExporting()) : ?>
-        <?= Button::defaultType(Yii::t('LegalModule.base', 'Data Package is generating...'))
+        <?= Button::light(Yii::t('LegalModule.base', 'Data Package is generating...'))
             ->icon('clock-o')
             ->options(['disabled' => true])?>
     <?php else : ?>

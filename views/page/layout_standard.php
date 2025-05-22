@@ -7,13 +7,13 @@
 
 use humhub\widgets\FooterMenu;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 
 ?>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <?= $content; ?>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\legal\assets\Assets;
 use humhub\modules\legal\widgets\Content;
 

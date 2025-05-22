@@ -8,14 +8,14 @@
 
 namespace humhub\modules\legal\models;
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\legal\Module;
 use humhub\modules\user\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 
 /**
  * Class RegistrationChecks

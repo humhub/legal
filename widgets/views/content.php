@@ -7,7 +7,7 @@
 
 use humhub\modules\content\widgets\richtext\RichText;
 use humhub\modules\legal\assets\ContentAssets;
-use humhub\modules\ui\view\components\View;
+use humhub\components\View;
 use yii\helpers\Html;
 
 /* @var View $this */

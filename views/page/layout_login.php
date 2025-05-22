@@ -5,8 +5,8 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\modules\ui\view\components\View;
-use humhub\widgets\Button;
+use humhub\components\View;
+use humhub\widgets\bootstrap\Button;
 use humhub\widgets\SiteLogo;
 
 /* @var $this View */
@@ -14,14 +14,14 @@ use humhub\widgets\SiteLogo;
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="text-center">
                 <?= SiteLogo::widget(['place' => 'login']); ?>
                 <br>
             </div>
 
             <?php if ($this->context->action->id != 'update'): ?>
-                <?= Button::defaultType(Yii::t('LegalModule.base', 'Go back'))
+                <?= Button::light(Yii::t('LegalModule.base', 'Go back'))
                     ->icon('arrow-left')
                     ->link(['/'])
                     ->pjax(false)

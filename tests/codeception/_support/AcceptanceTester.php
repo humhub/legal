@@ -109,7 +109,7 @@ class AcceptanceTester extends \AcceptanceTester
         if ($logout) {
             $this->logout();
         }
-        $this->login('User1', '123qwe');
+        $this->login('User1', 'user^humhub@PASS%worD!');
 
         $this->waitForText($title, 10, '.panel-heading');
         $this->waitForText($content, 10, '.panel-body');

@@ -3,7 +3,7 @@ Changelog
 
 1.5.1 (Unreleased)
 ----------------------
--
+- Fix #102: Update test user passwords
 
 1.5.0 (March 13, 2025)
 ----------------------

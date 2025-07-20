@@ -23,6 +23,8 @@ class RegistrationCest
         $pages = ['terms', 'privacy'];
         $I->enablePage($pages);
         $I->checkOption('#configureform-showagecheck');
+        $I->scrollTo('button[type="submit"]');
+        $I->wait(1);
         $I->click('Save');
         $I->seeSuccess();
         foreach ($pages as $page) {

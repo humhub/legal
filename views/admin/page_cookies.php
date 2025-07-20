@@ -39,7 +39,7 @@ use humhub\widgets\form\ActiveForm;
     <br/>
     <br/>
     <?php foreach ($languages as $languageKey => $languageTitle): ?>
-        <div id="page_<?= $languageKey ?>" class="page_language" style="display:none">
+        <div id="page_<?= $languageKey ?>" class="page_language d-none">
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']content')->widget(RichTextField::class, ['layout' => RichTextField::LAYOUT_BLOCK, 'pluginOptions' => ['maxHeight' => '200px']])->label(Yii::t('LegalModule.base', 'Box content')); ?>
             <?= $form->field($pages[$languageKey], '[' . $languageKey . ']title')->textInput()->label(Yii::t('LegalModule.base', 'Accept button label')); ?>
         </div>
@@ -58,7 +58,7 @@ use humhub\widgets\form\ActiveForm;
         });
 
         function showLanguage() {
-            curLang = $('#pageLangSelector').val();
+            const curLang = $('#pageLangSelector').val();
             $('.page_language').addClass('d-none');
             $('#page_' + curLang).removeClass('d-none');
         }

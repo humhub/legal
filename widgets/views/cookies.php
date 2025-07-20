@@ -9,7 +9,7 @@ Assets::register($this);
 /* @var $page \humhub\modules\legal\models\Page */
 ?>
 
-<div id="ccMessageText" style="display:none">
+<div id="ccMessageText" class="d-none">
     <div style="max-height:300px;overflow:auto">
         <?= Content::widget(['content' => $page->content]) ?>
     </div>

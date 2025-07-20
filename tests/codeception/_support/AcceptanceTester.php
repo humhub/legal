@@ -47,6 +47,8 @@ class AcceptanceTester extends \AcceptanceTester
             $this->jsClick($checkboxSelector);
             $checkboxSelectors[] = $checkboxSelector;
         }
+        $this->scrollTo('button[type="submit"]');
+        $this->wait(1);
         $this->click('Save');
         $this->seeSuccess();
 

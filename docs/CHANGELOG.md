@@ -3,6 +3,7 @@ Changelog
 
 1.6.0 (unreleased)
 -------------------------
+- Fix #102: Update test user passwords
 - Enh #101: Migration to Bootstrap 5 for HumHub 1.18
 
 1.5.0 (March 13, 2025)

@@ -65,10 +65,10 @@ class ConfigureForm extends Model
             'defaultLanguage' => Yii::t('LegalModule.base', 'Will be used as default, if the legal texts are not available in the users language.'),
             'exportUserData' => ($this->getModule()->isAllowedExportUserData()
                 ? ''
-                : '<span class="text-danger">' .
-                    Yii::t('LegalModule.base', 'To enable the user data export, please enable the REST API module.') .
-                  '</span><br>') .
-                Yii::t('LegalModule.base', 'When enabled, users can download their Personal Data from the network. Please note that only data from supported modules will be exported, and even within these modules, some data might not be included. The package is in JSON format.'),
+                : '<span class="text-danger">'
+                    . Yii::t('LegalModule.base', 'To enable the user data export, please enable the REST API module.')
+                  . '</span><br>')
+                . Yii::t('LegalModule.base', 'When enabled, users can download their Personal Data from the network. Please note that only data from supported modules will be exported, and even within these modules, some data might not be included. The package is in JSON format.'),
         ];
     }
 

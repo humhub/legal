@@ -31,7 +31,7 @@ use humhub\widgets\bootstrap\Button;
 
 <div class="panel-body">
     <?php if ($service->hasPackage()) : ?>
-        <?= Button::info(Yii::t('LegalModule.base', 'Download Package'))
+        <?= Button::accent(Yii::t('LegalModule.base', 'Download Package'))
             ->icon('download')
             ->link(['/legal/export/download'])
             ->loader(false) ?>

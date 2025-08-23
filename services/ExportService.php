@@ -102,8 +102,8 @@ class ExportService
 
     public function hasPackage(): bool
     {
-        return $this->getSettings()->get(self::PACKAGE_TIME) > 0 &&
-            file_exists($this->getPackagePath());
+        return $this->getSettings()->get(self::PACKAGE_TIME) > 0
+            && file_exists($this->getPackagePath());
     }
 
     public function getModule(): Module

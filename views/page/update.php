@@ -5,11 +5,11 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\legal\widgets\Content;
-use humhub\modules\ui\form\widgets\ActiveForm;
+use humhub\widgets\form\ActiveForm;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
 /* @var $model \humhub\modules\legal\models\RegistrationChecks */
 /* @var $module \humhub\modules\legal\Module */
@@ -38,19 +38,20 @@ use humhub\modules\ui\form\widgets\ActiveForm;
         <?php endif; ?>
 
         <br/>
-        <div class="form-group">
+        <div class="mb-3">
             <?= Html::submitButton('<i class="fa fa-check"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Accept'), ['class' => 'btn btn-success', 'data-ui-loader' => '']) ?>
-            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['data-method' => 'POST', 'class' => 'btn btn-danger pull-right', 'data-ui-loader' => '']) ?>
+            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['data-method' => 'POST', 'class' => 'btn btn-danger float-end', 'data-ui-loader' => '']) ?>
         </div>
 
-        <div class="pull-right">
-            <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
-                <?= Html::a(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], ['class' => 'pull-right', 'data-pjax-prevent' => '']) ?>
-            <?php endif; ?>
+        <div class="clearfix">
+            <div class="float-end">
+                <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
+                    <?= Html::a(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], ['class' => 'float-end', 'data-pjax-prevent' => '']) ?>
+                <?php endif; ?>
+            </div>
         </div>
 
         <?php ActiveForm::end(); ?>
 
     </div>
 </div>
-

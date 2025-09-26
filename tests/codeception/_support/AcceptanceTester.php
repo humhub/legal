@@ -47,6 +47,8 @@ class AcceptanceTester extends \AcceptanceTester
             $this->jsClick($checkboxSelector);
             $checkboxSelectors[] = $checkboxSelector;
         }
+        $this->scrollTo('button[type="submit"]');
+        $this->wait(1);
         $this->click('Save');
         $this->seeSuccess();
 
@@ -71,6 +73,8 @@ class AcceptanceTester extends \AcceptanceTester
         $this->dontSeeCheckboxIsChecked($checkboxSelector);
         $this->jsClick($checkboxSelector);
         $this->fillField('input[name="ConfigureForm[minimumAge]"]', $newAge);
+        $this->scrollTo('button[type="submit"]');
+        $this->wait(1);
         $this->click('Save');
         $this->seeSuccess();
 

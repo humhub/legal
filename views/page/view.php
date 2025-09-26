@@ -6,9 +6,9 @@
  */
 
 use humhub\modules\legal\widgets\Content;
-use humhub\widgets\Button;
+use humhub\widgets\bootstrap\Button;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 /* @var $page \humhub\modules\legal\models\Page */
 /* @var $canManagePages boolean */
 ?>
@@ -16,7 +16,7 @@ use humhub\widgets\Button;
 <div class="panel">
     <div class="panel-heading">
         <?php if ($canManagePages): ?>
-            <?= Button::defaultType(Yii::t('LegalModule.base', 'Edit this page'))
+            <?= Button::light(Yii::t('LegalModule.base', 'Edit this page'))
                 ->link(['/legal/admin/page', 'pageKey' => $page->page_key])
                 ->pjax(false)
                 ->right() ?>

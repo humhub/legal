@@ -23,6 +23,8 @@ class RegistrationCest
         $pages = ['terms', 'privacy'];
         $I->enablePage($pages);
         $I->checkOption('#configureform-showagecheck');
+        $I->scrollTo('button[type="submit"]');
+        $I->wait(1);
         $I->click('Save');
         $I->seeSuccess();
         foreach ($pages as $page) {
@@ -53,11 +55,11 @@ class RegistrationCest
         $I->click('Create account');
 
         $I->amGoingTo('check the user has been registered successfully');
-        $I->waitForText('Legal Test', null, '.user-title');
+        $I->waitForText('Legal Test', 10, '.user-title');
         $I->logout();
         $I->fillField('#login_username', 'legal');
         $I->fillField('#login_password', 'PassWord');
         $I->click('Sign in');
-        $I->waitForText('Legal Test', null, '.user-title');
+        $I->waitForText('Legal Test', 10, '.user-title');
     }
 }

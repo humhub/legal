@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -25,7 +26,6 @@ use yii\web\HttpException;
  */
 class AdminController extends Controller
 {
-
     public function actionIndex()
     {
         $model = new ConfigureForm();
@@ -71,7 +71,7 @@ class AdminController extends Controller
             'pages' => $pages,
             'languages' => $languages,
             'defaultLanguage' => $this->module->getDefaultLanguage(),
-            'pageKey' => $pageKey
+            'pageKey' => $pageKey,
         ]);
     }
 

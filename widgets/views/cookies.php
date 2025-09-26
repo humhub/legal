@@ -1,6 +1,6 @@
 <?php
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\legal\assets\Assets;
 use humhub\modules\legal\widgets\Content;
 
@@ -9,7 +9,7 @@ Assets::register($this);
 /* @var $page \humhub\modules\legal\models\Page */
 ?>
 
-<div id="ccMessageText" style="display:none">
+<div id="ccMessageText" class="d-none">
     <div style="max-height:300px;overflow:auto">
         <?= Content::widget(['content' => $page->content]) ?>
     </div>
@@ -19,16 +19,6 @@ Assets::register($this);
 <script <?= Html::nonce() ?>>
     window.addEventListener("load", function () {
         window.cookieconsent.initialise({
-            "palette": {
-                "popup": {
-                    "background": "<?= $this->theme->variable('primary'); ?>",
-                    "text": "<?= $this->theme->variable('text-color-contrast') ?>"
-                },
-                "button": {
-                    "background": "<?= $this->theme->variable('success'); ?>",
-                    "text": "<?= $this->theme->variable('text-color-contrast') ?>"
-                }
-            },
             "showLink": false,
             "theme": "classic",
             "position": "bottom-right",

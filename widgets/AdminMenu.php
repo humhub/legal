@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -13,7 +14,6 @@ use yii\helpers\Url;
 
 class AdminMenu extends \humhub\widgets\BaseMenu
 {
-
     public $template = "@humhub/widgets/views/tabMenu";
 
     public function init()

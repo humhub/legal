@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2022 HumHub GmbH & Co. KG
@@ -46,6 +47,8 @@ class AcceptanceTester extends \AcceptanceTester
             $this->jsClick($checkboxSelector);
             $checkboxSelectors[] = $checkboxSelector;
         }
+        $this->scrollTo('button[type="submit"]');
+        $this->wait(1);
         $this->click('Save');
         $this->seeSuccess();
 
@@ -70,6 +73,8 @@ class AcceptanceTester extends \AcceptanceTester
         $this->dontSeeCheckboxIsChecked($checkboxSelector);
         $this->jsClick($checkboxSelector);
         $this->fillField('input[name="ConfigureForm[minimumAge]"]', $newAge);
+        $this->scrollTo('button[type="submit"]');
+        $this->wait(1);
         $this->click('Save');
         $this->seeSuccess();
 
@@ -108,7 +113,7 @@ class AcceptanceTester extends \AcceptanceTester
         if ($logout) {
             $this->logout();
         }
-        $this->login('User1', '123qwe');
+        $this->login('User1', 'user^humhub@PASS%worD!');
 
         $this->waitForText($title, 10, '.panel-heading');
         $this->waitForText($content, 10, '.panel-body');

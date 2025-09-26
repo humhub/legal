@@ -8,14 +8,14 @@
 
 namespace humhub\modules\legal\models;
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\legal\Module;
 use humhub\modules\user\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 
 /**
  * Class RegistrationChecks
@@ -23,10 +23,9 @@ use yii\base\Model;
  */
 class RegistrationChecks extends Model
 {
-
-    const SETTING_KEY_TERMS = 'acceptedTerms';
-    const SETTING_KEY_PRIVACY = 'acceptedPrivacy';
-    const SETTING_KEY_AGE = 'acceptedAge';
+    public const SETTING_KEY_TERMS = 'acceptedTerms';
+    public const SETTING_KEY_PRIVACY = 'acceptedPrivacy';
+    public const SETTING_KEY_AGE = 'acceptedAge';
 
     public $ageCheck;
     public $termsCheck;
@@ -66,7 +65,7 @@ class RegistrationChecks extends Model
         return [
             'ageCheck' => Yii::t('LegalModule.base', 'I am older than {age} years', ['age' => \Yii::$app->getModule('legal')->getMinimumAge()]),
             'termsCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Terms and Conditions'),
-            'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy')
+            'dataPrivacyCheck' => Yii::t('LegalModule.base', 'I have read and agree to the Privacy Policy'),
         ];
     }
 

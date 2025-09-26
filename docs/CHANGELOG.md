@@ -1,13 +1,31 @@
 Changelog
 =========
 
-1.5.0 (Unreleased)
+1.6.1 (Unreleased)
 -------------------------
 - Fix #75: Update module resources path
 
-1.4.2 (Unreleased)
--------------------------
-- Fix #74: save datetime of last update of a page
+1.6.0 (July 26, 2025)
+---------------------
+- Fix #102: Update test user passwords
+- Enh #101: Migration to Bootstrap 5 for HumHub 1.18
+
+1.5.0 (March 13, 2025)
+----------------------
+- Fix #96: Fix registration form verifying
+
+1.4.3 (March 10, 2025)
+----------------------
+- Fix #85: Fix downloading of large user export data file
+- Enh #90: Use PHP CS Fixer
+- Fix #95: Fix Color Variables for Cookie Consent Box
+
+1.4.2 (September 13, 2024)
+--------------------------
+- Fix #74: Save datetime of last update of a page
+- Fix #80: Remove module name translation
+- Enh #83: Replace theme variables with CSS variables
+- Enh #77: Added "Export your user data" feature 
 
 1.4.1 (November 28, 2023)
 -------------------------

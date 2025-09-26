@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -9,7 +10,6 @@ use yii\db\Migration;
 
 class uninstall extends Migration
 {
-
     public function up()
     {
         $this->dropTable('legal_page');

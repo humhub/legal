@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -6,10 +7,10 @@
  */
 
 namespace humhub\modules\legal\widgets;
+
 use humhub\components\Widget;
 use humhub\modules\legal\models\Page;
 use yii\web\HttpException;
-
 
 /**
  * Class CookieNote

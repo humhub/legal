@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2022 HumHub GmbH & Co. KG
@@ -40,7 +41,7 @@ class Content extends JsWidget
         return $this->render('content', [
             'content' => $this->content,
             'richtext' => $this->richtext,
-            'options' => $this->getOptions()
+            'options' => $this->getOptions(),
         ]);
     }
 }

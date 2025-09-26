@@ -7,10 +7,10 @@
 
 use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\legal\models\Page;
-use yii\bootstrap\ActiveForm;
+use humhub\widgets\form\ActiveForm;
 use yii\helpers\Html;
 
-/* @var $this \humhub\modules\ui\view\components\View */
+/* @var $this \humhub\components\View */
 /* @var $module \humhub\modules\legal\Module */
 /* @var $model ConfigureForm */
 
@@ -37,7 +37,10 @@ foreach (Page::getPages() as $key => $title) {
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>
     <?= $form->field($model, 'minimumAge')->textInput()->hint(\Yii::t('LegalModule.base', 'Please enter a number value.')); ?>
 
-    <div class="form-group">
+    <?= $form->field($model, 'exportUserData')->checkbox(['disabled' => !$model->getModule()->isAllowedExportUserData()]) ?>
+    <?= $form->field($model, 'exportUserDays')->textInput(['disabled' => !$model->getModule()->isAllowedExportUserData()]) ?>
+
+    <div class="mb-3">
         <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
     </div>
 
@@ -45,4 +48,3 @@ foreach (Page::getPages() as $key => $title) {
 
 </div>
 <?php $this->endContent() ?>
-

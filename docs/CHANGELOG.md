@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.6.1 (Unreleased)
+-------------------------
+- Fix #75: Update module resources path
+
 1.6.0 (July 26, 2025)
 ---------------------
 - Fix #102: Update test user passwords

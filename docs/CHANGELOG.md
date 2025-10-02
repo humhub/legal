@@ -4,6 +4,7 @@ Changelog
 1.6.1 (Unreleased)
 -------------------------
 - Fix #75: Update module resources path
+- Enh #105: Improved Module Test GitHub Actions
 
 1.6.0 (July 26, 2025)
 ---------------------

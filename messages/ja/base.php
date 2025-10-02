@@ -24,7 +24,7 @@ return [
   'Enable Personal Data Export (Experimental)' => '個人データのエクスポートを有効にする(実験的)',
   'Enabled pages and features' => '有効なページと機能',
   'Export personal data' => '個人データのエクスポート',
-  'For new account creation, show pages in full screen just after profile creation' => '新しいアカウントを作成する場合は、プロファイル作成直後にページを全画面で表示します',
+  'For new account creation, show pages in full screen just after profile creation' => '新しいアカウントを作成する場合は、プロフィール作成直後にページを全画面で表示します',
   'Generate Package' => 'パッケージを生成する',
   'Go back' => '戻る',
   'Got it!' => 'とった！',

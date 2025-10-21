@@ -5,6 +5,7 @@ Changelog
 -------------------------
 - Fix #75: Update module resources path
 - Enh #105: Improved Module Test GitHub Actions
+- Enh #106: Implemented `module-coding-standards`
 
 1.6.0 (July 26, 2025)
 ---------------------

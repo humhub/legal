@@ -35,7 +35,7 @@ class Module extends \humhub\components\Module
             return [];
         }
 
-        return explode(',', $this->settings->get('enabledPages'));
+        return explode(',', (string) $this->settings->get('enabledPages'));
     }
 
     /**
@@ -46,7 +46,7 @@ class Module extends \humhub\components\Module
     {
         $config = empty($this->settings->get('externalLinks'))
             ? []
-            : explode(',', $this->settings->get('externalLinks'));
+            : explode(',', (string) $this->settings->get('externalLinks'));
 
         return $setting === null ? $config : in_array($setting, $config);
     }

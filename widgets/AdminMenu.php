@@ -8,39 +8,30 @@
 
 namespace humhub\modules\legal\widgets;
 
+use humhub\helpers\ControllerHelper;
 use humhub\modules\legal\models\Page;
+use humhub\modules\ui\menu\MenuLink;
+use humhub\modules\ui\menu\widgets\TabMenu;
 use Yii;
-use yii\helpers\Url;
 
-class AdminMenu extends \humhub\widgets\BaseMenu
+class AdminMenu extends TabMenu
 {
-    public $template = "@humhub/widgets/views/tabMenu";
-
     public function init()
     {
-        $defaultLanguage = 'en';
-
-        $this->addItem([
+        $this->addEntry(new MenuLink([
             'label' => Yii::t('LegalModule.base', 'Configuration'),
-            'url' => Url::to(['/legal/admin']),
+            'url' => ['/legal/admin'],
             'sortOrder' => 50,
-            'isActive' => (Yii::$app->controller->action->id === 'index'),
-        ]);
+            'isActive' => ControllerHelper::isActivePath('legal', 'admin', 'index'),
+        ]));
 
         foreach (Page::getPages() as $key => $pageTitle) {
-
-            $typeText = Yii::t('LegalModule.base', 'Page:');
-            if ($key == Page::PAGE_KEY_COOKIE_NOTICE) {
-                $typeText = '';
-            }
-            $typeText = '';
-
-            $this->addItem([
-                'label' => $typeText . ' ' . $pageTitle,
-                'url' => Url::to(['/legal/admin/page', 'pageKey' => $key]),
+            $this->addEntry(new MenuLink([
+                'label' => $pageTitle,
+                'url' => ['/legal/admin/page', 'pageKey' => $key],
                 'sortOrder' => 100,
-                'isActive' => (Yii::$app->controller->action->id === 'page' && Yii::$app->request->get('pageKey') == $key),
-            ]);
+                'isActive' => ControllerHelper::isActivePath('legal', 'admin', 'page', ['pageKey' => $key]),
+            ]));
         }
 
         parent::init();

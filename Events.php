@@ -21,6 +21,7 @@ use humhub\modules\ui\menu\MenuLink;
 use humhub\modules\user\models\forms\Registration;
 use humhub\modules\user\models\User;
 use humhub\modules\user\widgets\AccountSettingsMenu;
+use humhub\widgets\FooterMenu;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\base\ActionEvent;
@@ -40,6 +41,9 @@ class Events
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
+        /* @var FooterMenu $menu */
+        $menu = $event->sender;
+
         $sortOrder = 100;
         foreach (Page::getPages() as $pageKey => $title) {
             if (!$module->isPageEnabled($pageKey) || !in_array($pageKey, Page::getFooterMenuPages())) {
@@ -50,11 +54,11 @@ class Events
             $page = Page::getPage($pageKey);
             if ($page !== null) {
                 $sortOrder += 10;
-                $event->sender->addItem([
+                $menu->addEntry(new MenuLink([
                     'label' => $page->title,
                     'url' => Url::to(['/legal/page/view', 'pageKey' => $pageKey], true),
                     'sortOrder' => $sortOrder,
-                ]);
+                ]));
             }
         }
 

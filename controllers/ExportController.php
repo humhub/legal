@@ -12,7 +12,6 @@ use humhub\modules\legal\Module;
 use humhub\modules\legal\services\ExportService;
 use humhub\modules\user\components\BaseAccountController;
 use Yii;
-use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 
 /* @property Module $module */

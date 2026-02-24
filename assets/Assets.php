@@ -8,15 +8,11 @@
 
 namespace humhub\modules\legal\assets;
 
-use yii\web\AssetBundle;
+use humhub\components\assets\AssetBundle;
 
 class Assets extends AssetBundle
 {
-    public $defer = true;
-
-    public $publishOptions = [
-        'forceCopy' => false,
-    ];
+    public $forceCopy = false;
 
     public $sourcePath = '@legal/resources';
     public $css = [

@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Minimal yosh',
     'More information: {link}' => 'Qo\'shimcha ma\'lumot: {link}',
     'Page language:' => 'Sahifa tili:',
-    'Page:' => 'Sahifa:',
     'Privacy Policy' => 'Maxfiylik siyosati',
     'Reset confirmation' => 'Tasdiqlashni tiklang',
     'Reset successful!' => 'Qayta tiklash muvaffaqiyatli!',

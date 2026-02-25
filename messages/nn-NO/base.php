@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Minimumsalder',
     'More information: {link}' => 'Mer informasjon: {link}',
     'Page language:' => 'Sidespråk:',
-    'Page:' => 'Side:',
     'Privacy Policy' => 'Personvernregler',
     'Reset confirmation' => 'Tilbakestill bekreftelse',
     'Reset successful!' => 'Tilbakestill vellykket!',

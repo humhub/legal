@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Minimalna starost',
     'More information: {link}' => 'Več informacij: {link}',
     'Page language:' => 'Jezik strani:',
-    'Page:' => 'Stran:',
     'Privacy Policy' => 'Politika zasebnosti',
     'Reset confirmation' => 'Ponastavitev potrditve',
     'Reset successful!' => 'Ponastavitev uspešna!',

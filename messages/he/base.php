@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'גיל מינימום',
     'More information: {link}' => 'מידע נוסף: {link}',
     'Page language:' => 'שפת העמוד:',
-    'Page:' => 'עמוד:',
     'Privacy Policy' => 'מדיניות פרטיות',
     'Reset confirmation' => 'אפס אישור',
     'Reset successful!' => 'איפוס מוצלח!',

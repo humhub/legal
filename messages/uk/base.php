@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Мінімальний вік',
     'More information: {link}' => 'Більше інформації: {link}',
     'Page language:' => 'Мова сторінки:',
-    'Page:' => 'Сторінка:',
     'Privacy Policy' => 'Політика конфіденційності',
     'Reset confirmation' => 'Скидання підтвердження',
     'Reset successful!' => 'Скидання виконано успішно!',

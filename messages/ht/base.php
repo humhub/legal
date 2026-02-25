@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Laj minimòm',
     'More information: {link}' => 'Plis enfòmasyon: {link}',
     'Page language:' => 'Lang paj la:',
-    'Page:' => 'Paj:',
     'Privacy Policy' => 'Règleman sou enfòmasyon prive',
     'Reset confirmation' => 'Reyajiste konfimasyon',
     'Reset successful!' => 'Reyajiste siksè!',

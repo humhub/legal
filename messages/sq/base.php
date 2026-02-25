@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Mosha minimale',
     'More information: {link}' => 'Më shumë informacion: {link}',
     'Page language:' => 'Gjuha e faqes:',
-    'Page:' => 'Faqja:',
     'Privacy Policy' => 'Politika e privatësisë',
     'Reset confirmation' => 'Rivendos konfirmimin',
     'Reset successful!' => 'Rivendosni me sukses!',

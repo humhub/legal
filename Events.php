@@ -8,6 +8,7 @@
 
 namespace humhub\modules\legal;
 
+use humhub\helpers\ControllerHelper;
 use humhub\modules\admin\controllers\UserController;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
@@ -269,7 +270,7 @@ class Events
                 'label' => Yii::t('LegalModule.base', 'Export personal data'),
                 'url' => ['/legal/export'],
                 'sortOrder' => 1000,
-                'isActive' => MenuLink::isActiveState('legal', 'export'),
+                'isActive' => ControllerHelper::isActivePath('legal', 'export'),
             ]));
         }
     }

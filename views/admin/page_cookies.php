@@ -17,6 +17,7 @@
 use humhub\helpers\Html;
 use humhub\modules\content\widgets\richtext\RichTextField;
 use humhub\modules\legal\models\Page;
+use humhub\widgets\bootstrap\Button;
 use humhub\widgets\form\ActiveForm;
 
 ?>
@@ -45,9 +46,7 @@ use humhub\widgets\form\ActiveForm;
         </div>
     <?php endforeach; ?>
 
-    <div class="mb-3">
-        <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
-    </div>
+    <?= Button::save()->submit() ?>
 
     <?php ActiveForm::end(); ?>
 

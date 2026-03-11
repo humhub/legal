@@ -15,6 +15,7 @@ use humhub\helpers\Html;
 use humhub\modules\content\widgets\richtext\RichTextField;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
+use humhub\widgets\bootstrap\Button;
 use humhub\widgets\form\ActiveForm;
 
 ?>
@@ -53,15 +54,18 @@ use humhub\widgets\form\ActiveForm;
     <?php endforeach; ?>
 
     <?php if ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
-        <?= Html::a(Yii::t('LegalModule.base', 'Reset confirmation'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY], ['class' => 'btn btn-danger btn-sm float-end', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+        <?= Button::danger(Yii::t('LegalModule.base', 'Reset confirmation'))
+            ->link(['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY])
+            ->confirm(null, Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!'))
+            ->sm()->right() ?>
     <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
-        <?= Html::a(Yii::t('LegalModule.base', 'Reset confirmation'), ['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS], ['class' => 'btn btn-danger btn-sm float-end', 'data-confirm' => Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!')]); ?>
+        <?= Button::danger(Yii::t('LegalModule.base', 'Reset confirmation'))
+            ->link(['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS])
+            ->confirm(null, Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!'))
+            ->sm()->right() ?>
     <?php endif; ?>
 
-
-    <div class="mb-3">
-        <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
-    </div>
+    <?= Button::save()->submit() ?>
 
     <?php ActiveForm::end(); ?>
 

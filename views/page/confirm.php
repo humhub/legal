@@ -5,9 +5,10 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\helpers\Html;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\widgets\Content;
+use humhub\widgets\bootstrap\Button;
+use humhub\widgets\bootstrap\Link;
 use humhub\widgets\form\ActiveForm;
 
 /* @var $this \humhub\components\View */
@@ -36,14 +37,19 @@ use humhub\widgets\form\ActiveForm;
 
         <br/>
         <div class="mb-3">
-            <?= Html::submitButton('<i class="fa fa-check"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Accept'), ['class' => 'btn btn-success', 'data-ui-loader' => '']) ?>
-            <?= Html::a('<i class="fa fa-sign-out"></i>&nbsp;&nbsp;' . Yii::t('LegalModule.base', 'Logout'), ['/user/auth/logout'], ['data-method' => 'POST', 'class' => 'btn btn-danger float-end', 'data-ui-loader' => '']) ?>
+            <?= Button::success(Yii::t('LegalModule.base', 'Accept'))
+                    ->icon('check')
+                    ->submit() ?>
+            <?= Link::danger(Yii::t('LegalModule.base', 'Logout'))
+                    ->icon('sign-out')
+                    ->post(['/user/auth/logout'])
+                    ->right() ?>
         </div>
 
         <div class="clearfix">
             <div class="float-end">
                 <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
-                    <?= Html::a(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], ['class' => 'float-end', 'data-pjax-prevent' => '']) ?>
+                    <?= Link::to(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], false)->right() ?>
                 <?php endif; ?>
             </div>
         </div>

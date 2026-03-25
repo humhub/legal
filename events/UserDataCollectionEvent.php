@@ -9,6 +9,7 @@
 namespace humhub\modules\legal\events;
 
 use humhub\modules\file\libs\FileHelper;
+use humhub\modules\file\models\File;
 use humhub\modules\legal\services\ExportService;
 use humhub\modules\user\events\UserEvent;
 use Yii;
@@ -28,7 +29,7 @@ class UserDataCollectionEvent extends UserEvent
     /**
      * Array with export files:
      *  - Key is a file name which will be used in ZIP archive
-     *  - Value is a file path where it is really located on the server disk
+     *  - Value is File object or file path where it is really located on the server disk
      * @var array $exportFiles
      */
     public array $exportFiles = [];
@@ -49,12 +50,12 @@ class UserDataCollectionEvent extends UserEvent
      * Add a file to export
      *
      * @param string $fileName File name which will be used in ZIP archive
-     * @param string $sourceFilePath File path where it is really located on the server disk
+     * @param string|File $sourceFilePath File or File path where it is really located on the server disk
      */
-    public function addExportFile(string $fileName, string $sourceFilePath)
+    public function addExportFile(string $fileName, string|File $sourceFile)
     {
         $index = $this->getUniqueArrayIndex($this->exportFiles, $fileName);
-        $this->exportFiles[$index] = $sourceFilePath;
+        $this->exportFiles[$index] = $sourceFile;
     }
 
     private function getUniqueArrayIndex(array $array, string $index): string
@@ -122,8 +123,12 @@ class UserDataCollectionEvent extends UserEvent
             $archive->addFromString('files/' . $category . '.json', json_encode($data));
         }
 
-        foreach ($this->exportFiles as $fileName => $sourceFilePath) {
-            $archive->addFile($sourceFilePath, 'uploads/' . $fileName);
+        foreach ($this->exportFiles as $fileName => $sourceFile) {
+            if ($sourceFile instanceof File) {
+                $archive->addFromString('uploads/' . $fileName, $sourceFile->store->getContent());
+            } elseif (is_string($sourceFile)) {
+                $archive->addFile($sourceFile, 'uploads/' . $fileName);
+            }
         }
 
         $archive->close();

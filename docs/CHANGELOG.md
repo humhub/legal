@@ -7,6 +7,7 @@ Changelog
 - Enh #105: Improved Module Test GitHub Actions
 - Enh #106: Implemented `module-coding-standards`
 - Enh #113: Remove deprecations
+- Enh #114: Support export user for new file storage
 
 1.6.0 (July 26, 2025)
 ---------------------

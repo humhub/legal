@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.6.2 (Unreleased)
+-------------------------
+- Fix #109: Fix position of the checkboxes on the registration form
+
 1.6.1 (Unreleased)
 -------------------------
 - Fix #75: Update module resources path

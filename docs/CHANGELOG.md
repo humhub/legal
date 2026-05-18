@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.6.1 (Unreleased)
--------------------------
+1.6.1 (May 18, 2026)
+--------------------
 - Fix #75: Update module resources path
 - Enh #105: Improved Module Test GitHub Actions
 - Enh #106: Implemented `module-coding-standards`

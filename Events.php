@@ -166,8 +166,10 @@ class Events
             return true;
         }
 
-        // Don't ask admin on creating of a new user from back-office
-        if (Yii::$app->user->isAdmin() && (Yii::$app->controller instanceof UserController)) {
+        // Don't ask admin on creating of a new user from back-office.
+        // The AdminUserController already enforces the ManageUsers permission — an additional
+        // isAdmin() check here would block non-system-admins with the ManageUsers permission.
+        if (Yii::$app->controller instanceof UserController) {
             return true;
         }
 

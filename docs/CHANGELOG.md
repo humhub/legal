@@ -8,6 +8,7 @@ Changelog
 - Enh #106: Implemented `module-coding-standards`
 - Enh #113: Remove deprecations
 - Enh #114: Support export user for new file storage
+- Fix: Allow non-system-admin users with `ManageUsers` permission to create users from the admin back-office
 
 1.6.0 (July 26, 2025)
 ---------------------

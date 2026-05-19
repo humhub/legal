@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.7.0 (Unreleased)
+--------------------
+- Enh #115: Update for HumHub 1.19
+
 1.6.1 (May 18, 2026)
 --------------------
 - Fix #75: Update module resources path

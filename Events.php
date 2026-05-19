@@ -19,15 +19,14 @@ use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\post\models\Post;
 use humhub\modules\rest\components\BaseController;
 use humhub\modules\ui\menu\MenuLink;
+use humhub\modules\user\events\UserEvent;
 use humhub\modules\user\models\forms\Registration;
-use humhub\modules\user\models\User;
 use humhub\modules\user\widgets\AccountSettingsMenu;
 use humhub\widgets\FooterMenu;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\base\ActionEvent;
 use yii\helpers\Url;
-use yii\web\UserEvent;
 
 /**
  * @author luke
@@ -81,7 +80,7 @@ class Events
 
     public static function onBeforeControllerAction(ActionEvent $event)
     {
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || Yii::$app->request->isAjax) {
             return;
         }
 
@@ -234,13 +233,13 @@ class Events
             return;
         }
 
-        /** @var User $user */
-        $user = $event->identity;
-
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
+        $model = new RegistrationChecks([
+            'user' => $event->user,
+            'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false,
+        ]);
         $model->load(Yii::$app->request->post());
         $model->save();
     }

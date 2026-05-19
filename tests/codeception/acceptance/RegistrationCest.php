@@ -33,8 +33,9 @@ class RegistrationCest
 
         $I->amGoingTo('start registration by email');
         $I->logout();
+        $I->click('Sign Up');
         $I->fillField('#register-email', 'legal@module.test');
-        $I->click('Register');
+        $I->click('Send');
         $I->waitForText(version_compare(Yii::$app->version, '1.18', '>=') ? 'Almost there!' : 'Registration successful!');
 
         $I->amGoingTo('register by email');
@@ -58,6 +59,8 @@ class RegistrationCest
         $I->waitForText('Legal Test', 10, '.user-title');
         $I->logout();
         $I->fillField('#login_username', 'legal');
+        $I->click('Continue');
+        $I->waitForText('Keep me signed in');
         $I->fillField('#login_password', 'PassWord');
         $I->click('Sign in');
         $I->waitForText('Legal Test', 10, '.user-title');

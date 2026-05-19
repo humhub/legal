@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.6.2 (Unreleased)
+--------------------
+- Enh #116: Set max version
+
 1.6.1 (May 18, 2026)
 --------------------
 - Fix #75: Update module resources path

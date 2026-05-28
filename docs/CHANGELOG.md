@@ -4,6 +4,7 @@ Changelog
 1.6.2 (Unreleased)
 --------------------
 - Enh #116: Set max version
+- Fix #117: Clean up empty(deleted/obsolete) records from personal export data
 
 1.6.1 (May 18, 2026)
 --------------------

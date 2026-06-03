@@ -5,6 +5,11 @@ Changelog
 --------------------
 - Enh #115: Update for HumHub 1.19
 
+1.6.2 (May 28, 2026)
+--------------------
+- Enh #116: Set max version
+- Fix #117: Clean up empty (deleted/obsolete) records from personal export data
+
 1.6.1 (May 18, 2026)
 --------------------
 - Fix #75: Update module resources path

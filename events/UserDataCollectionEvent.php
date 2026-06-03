@@ -43,7 +43,9 @@ class UserDataCollectionEvent extends UserEvent
     public function addExportData(string $category, array $data)
     {
         $index = $this->getUniqueArrayIndex($this->exportData, $category);
-        $this->exportData[$index] = $data;
+
+        // Clean up empty records from data(they may be linked to deleted/obsolete objects)
+        $this->exportData[$index] = array_values(array_filter($data, fn($value) => $value !== null && $value !== []));
     }
 
     /**

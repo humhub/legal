@@ -60,9 +60,9 @@ class RegistrationCest
         $I->logout();
         $I->fillField('#login_username', 'legal');
         $I->click('Continue');
-        $I->waitForText('Keep me signed in');
+        $I->waitForText('Keep me Signed In');
         $I->fillField('#login_password', 'PassWord');
-        $I->click('Sign in');
+        $I->click('Sign In');
         $I->waitForText('Legal Test', 10, '.user-title');
     }
 }

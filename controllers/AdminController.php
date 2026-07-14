@@ -53,6 +53,9 @@ class AdminController extends Controller
         }
 
         if ($saved) {
+            // Re-evaluate the legal gate for all running sessions
+            Yii::$app->gateManager->invalidate();
+
             $this->view->saved();
             return $this->redirect(['page', 'pageKey' => $page->page_key, 'language' => $page->language]);
         }

@@ -8,7 +8,6 @@
 
 namespace humhub\modules\legal\models;
 
-use humhub\modules\legal\Events;
 use humhub\modules\legal\Module;
 use Yii;
 use yii\base\Exception;
@@ -111,8 +110,8 @@ class ConfigureForm extends Model
             return false;
         }
 
-        // Show legal pages to check
-        Yii::$app->session->remove(Events::SESSION_KEY_LEGAL_CHECK);
+        // Re-evaluate the legal gate for all running sessions
+        Yii::$app->gateManager->invalidate();
 
         return true;
     }

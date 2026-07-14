@@ -8,8 +8,6 @@
 
 namespace legal;
 
-
-
 /**
  * Inherited Methods
  * @method void wantToTest($text)

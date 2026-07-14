@@ -26,6 +26,10 @@ class LegalGateCest
 
     private function publishTerms(): void
     {
+        // Other suites (e.g. acceptance) may leave terms pages behind — legal_page is
+        // not covered by the default fixtures
+        Page::deleteAll(['page_key' => Page::PAGE_KEY_TERMS]);
+
         Yii::$app->getModule('legal')->settings->set('enabledPages', Page::PAGE_KEY_TERMS);
 
         $page = new Page([

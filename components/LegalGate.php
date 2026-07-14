@@ -83,9 +83,9 @@ class LegalGate extends UserGate
     /**
      * Users must be able to read the legal pages while confirming ('legal'), log
      * in/out, delete their account and download files. 'mail' keeps the messenger
-     * usable during an open check (previous behavior). The last three entries are
-     * transitional: they protect the target pages of modules that still intercept
-     * via EVENT_BEFORE_ACTION and can be removed once those modules provide gates.
+     * usable during an open check (previous behavior). 'twofa/check' is transitional:
+     * it protects the check page of twofa versions that still intercept via
+     * EVENT_BEFORE_ACTION and can be removed once twofa >= 1.4 (gate based) is common.
      *
      * @inheritdoc
      */
@@ -99,8 +99,6 @@ class LegalGate extends UserGate
             'file/file/download',
             // transitional, see method docblock:
             'twofa/check',
-            'termsbox',
-            'breakingnews',
         ];
     }
 

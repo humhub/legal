@@ -2,8 +2,10 @@
     "id": "legal",
     "name": "Legal Tools",
     "description": "Easily manage and display essential legal information like your imprint, privacy policy, and terms and conditions.",
-    "keywords": ["legal"],
-    "version": "1.6.2",
+    "keywords": [
+        "legal"
+    ],
+    "version": "1.6.3",
     "humhub": {
         "minVersion": "1.18",
         "maxVersion": "1.18"

@@ -109,9 +109,7 @@ class AdminController extends Controller
 
         foreach (Yii::$app->i18n->getAllowedLanguages() as $langKey => $title) {
             $pages[$langKey] = Page::findOne(['page_key' => $pageKey, 'language' => $langKey]);
-            if ($pages[$langKey] === null) {
-                $pages[$langKey] = new Page(['page_key' => $pageKey, 'language' => $langKey]);
-            }
+            $pages[$langKey] ??= new Page(['page_key' => $pageKey, 'language' => $langKey]);
         }
 
         return $pages;

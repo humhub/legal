@@ -1,6 +1,16 @@
 Changelog
 =========
 
+1.8.0 (July 16, 2026)
+---------------------
+- Enh: Migrated the request interception to the core user gate system (`LegalGate`, requires humhub/humhub#8291) — deterministic ordering towards other intercepting modules (password change → 2FA → legal), the hardcoded whitelist of other modules' routes is gone
+- Enh: Publishing or changing legal pages now re-evaluates all running sessions (`GateManager::invalidate()`) — previously updated terms only reached logged-in users after a re-login (per-session `legalModuleChecked` flag, now removed)
+- Enh: Added a functional test suite (`LegalGateCest`)
+
+1.7.0 (June 5, 2026)
+--------------------
+- Enh #115: Update for HumHub 1.19
+
 1.6.3 (Unreleased)
 ------------------
 - Enh: Automated code refactoring for HumHub 1.18 using Rector

@@ -8,33 +8,32 @@
 
 namespace humhub\modules\legal;
 
+use humhub\components\gates\GateInitEvent;
 use humhub\helpers\ControllerHelper;
 use humhub\modules\admin\controllers\UserController;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
+use humhub\modules\legal\components\LegalGate;
 use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
 use humhub\modules\post\models\Post;
-use humhub\modules\rest\components\BaseController;
 use humhub\modules\ui\menu\MenuLink;
+use humhub\modules\user\events\UserEvent;
 use humhub\modules\user\models\forms\Registration;
-use humhub\modules\user\models\User;
 use humhub\modules\user\widgets\AccountSettingsMenu;
 use humhub\widgets\FooterMenu;
 use humhub\widgets\LayoutAddons;
 use Yii;
 use yii\base\ActionEvent;
 use yii\helpers\Url;
-use yii\web\UserEvent;
 
 /**
  * @author luke
  */
 class Events
 {
-    public const SESSION_KEY_LEGAL_CHECK = 'legalModuleChecked';
     public const SESSION_KEY_LEGAL_AFTER_REGISTRATION = 'legalModuleAfterRegistration';
 
     public static function onFooterMenuInit($event)
@@ -79,77 +78,36 @@ class Events
 
     }
 
+    /**
+     * Registers the user gates of this module (see core docs/develop/user-gates.md).
+     * The gate replaces the former request interception of this handler.
+     *
+     * @since 1.8
+     */
+    public static function onGateInit(GateInitEvent $event): void
+    {
+        $event->manager->register(new LegalGate());
+    }
+
+    /**
+     * Presents the legal pages in the full screen login layout while checks are
+     * still open (the interception itself is handled by the LegalGate).
+     */
     public static function onBeforeControllerAction(ActionEvent $event)
     {
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || Yii::$app->request->isAjax) {
             return;
         }
 
-        // Legal already checked
-        if (!empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_CHECK))) {
-            return;
-        }
-
-        /** @var Module $module */
-        $module = Yii::$app->getModule('legal');
-
-        // Allow user delete action
-        if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'account' && $event->action->id === 'delete') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'auth') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'user' && $event->action->controller->id === 'must-change-password') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'mail' && $event->action->controller->id === 'mail') {
-            return;
-        }
-        if ($event->action->controller->id === 'poll') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'file' && $event->action->controller->id === 'file' && $event->action->id === 'download') {
-            return;
-        }
-        if ($event->action->controller instanceof BaseController) { // REST API request
-            return;
-        }
-        if ($event->action->controller->module->id === 'twofa' && $event->action->controller->id === 'check') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'termsbox' && $event->action->controller->id === 'index') {
-            return;
-        }
-        if ($event->action->controller->module->id === 'breakingnews' && $event->action->controller->id === 'index') {
+        $controller = $event->action->controller;
+        if ($controller->module->id !== 'legal' || $controller->id !== 'page') {
             return;
         }
 
         $registrationCheck = new RegistrationChecks(['user' => Yii::$app->user->getIdentity()]);
-        if (!$registrationCheck->hasOpenCheck()) {
-            Yii::$app->session->set(static::SESSION_KEY_LEGAL_CHECK, 'true');
-            Yii::$app->session->remove(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION);
-            return;
-        }
-
-        // Allow legal module usage
-        if ($event->action->controller->module->id === 'legal') {
-            if (Yii::$app->controller->id === 'page') {
-                $event->sender->layout = '@user/views/layouts/main';
-                $event->sender->subLayout = '@legal/views/page/layout_login';
-            }
-            return;
-        }
-
-        // Show legal update?
-        if (empty(Yii::$app->session->get(static::SESSION_KEY_LEGAL_AFTER_REGISTRATION)) && $module->isPageEnabled(Page::PAGE_KEY_LEGAL_UPDATE) && Page::getPage(Page::PAGE_KEY_LEGAL_UPDATE) !== null) {
-            $event->isValid = false;
-            $event->result = Yii::$app->response->redirect(['/legal/page/update']);
-        }
-        // Show legal pages in full screen with confirm form, one by one (after account creation)
-        elseif ($registrationCheck->showTermsCheck() || $registrationCheck->showPrivacyCheck()) {
-            $event->isValid = false;
-            $event->result = Yii::$app->response->redirect(['/legal/page/confirm']);
+        if ($registrationCheck->hasOpenCheck()) {
+            $event->sender->layout = '@user/views/layouts/main';
+            $event->sender->subLayout = '@legal/views/page/layout_login';
         }
     }
 
@@ -234,13 +192,13 @@ class Events
             return;
         }
 
-        /** @var User $user */
-        $user = $event->identity;
-
         /** @var Module $module */
         $module = Yii::$app->getModule('legal');
 
-        $model = new RegistrationChecks(['user' => $user, 'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false]);
+        $model = new RegistrationChecks([
+            'user' => $event->user,
+            'restrictToSettingKey' => $module->showPagesAfterRegistration() ? RegistrationChecks::SETTING_KEY_AGE : false,
+        ]);
         $model->load(Yii::$app->request->post());
         $model->save();
     }

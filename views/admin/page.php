@@ -56,11 +56,13 @@ use humhub\widgets\form\ActiveForm;
     <?php if ($pageKey === Page::PAGE_KEY_PRIVACY_PROTECTION): ?>
         <?= Button::danger(Yii::t('LegalModule.base', 'Reset confirmation'))
             ->link(['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_PRIVACY])
+            ->options(['data-method' => 'POST'])
             ->confirm(null, Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!'))
             ->sm()->right() ?>
     <?php elseif ($pageKey === Page::PAGE_KEY_TERMS): ?>
         <?= Button::danger(Yii::t('LegalModule.base', 'Reset confirmation'))
             ->link(['/legal/admin/reset', 'key' => RegistrationChecks::SETTING_KEY_TERMS])
+            ->options(['data-method' => 'POST'])
             ->confirm(null, Yii::t('LegalModule.base', 'Are you really sure? Please save changes before proceed!'))
             ->sm()->right() ?>
     <?php endif; ?>

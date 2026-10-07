@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.8.1 (Unreleased)
+------------------
+- Fix #124: Reset confirmation now re-evaluates running sessions (`GateManager::invalidate()`)
+
 1.8.0 (July 16, 2026)
 ---------------------
 - Enh: Migrated the request interception to the core user gate system (`LegalGate`, requires humhub/humhub#8291) — deterministic ordering towards other intercepting modules (password change → 2FA → legal), the hardcoded whitelist of other modules' routes is gone

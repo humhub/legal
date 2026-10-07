@@ -98,6 +98,10 @@ class AdminController extends Controller
             Yii::$app->cache->delete('settings-' . $module->id . '-' . $contentContainerId);
         }
 
+        // Re-evaluate running sessions, so that already logged-in users are asked to accept the reset document
+        // right away instead of only after their next login
+        Yii::$app->gateManager->invalidate();
+
         $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
         return $this->redirect(['index']);
     }

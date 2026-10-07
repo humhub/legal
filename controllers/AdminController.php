@@ -17,6 +17,7 @@ use humhub\modules\legal\Module;
 use humhub\modules\user\models\User;
 use Yii;
 use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class AdminController
@@ -31,7 +32,7 @@ class AdminController extends Controller
         $model = new ConfigureForm();
         $model->loadSettings();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveSettings()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->saveSettings()) {
             $this->view->saved();
             return $this->redirect(['index']);
         }
@@ -41,6 +42,10 @@ class AdminController extends Controller
 
     public function actionPage($pageKey)
     {
+        if (!array_key_exists($pageKey, Page::getPages())) {
+            throw new NotFoundHttpException();
+        }
+
         $pages = $this->getPages($pageKey);
 
         $saved = false;
@@ -82,6 +87,8 @@ class AdminController extends Controller
      */
     public function actionReset($key)
     {
+        $this->forcePostRequest();
+
         if (!in_array($key, [RegistrationChecks::SETTING_KEY_PRIVACY, RegistrationChecks::SETTING_KEY_TERMS])) {
             throw new HttpException(500, 'Invalid key!');
         }

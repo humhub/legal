@@ -31,8 +31,8 @@ class ConfigureForm extends Model
     public function rules()
     {
         return [
-            [['enabledPages'], 'in', 'range' => array_keys(Page::getPages())],
-            [['externalLinks'], 'in', 'range' => ['icon', 'modal']],
+            [['enabledPages'], 'in', 'range' => array_keys(Page::getPages()), 'allowArray' => true],
+            [['externalLinks'], 'in', 'range' => ['icon', 'modal'], 'allowArray' => true],
             [['defaultLanguage'], 'in', 'range' => array_keys(Yii::$app->i18n->getAllowedLanguages())],
             [['showPagesAfterRegistration', 'showAgeCheck', 'exportUserData'], 'boolean'],
             ['minimumAge', 'integer', 'min' => 16, 'max' => 99],

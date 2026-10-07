@@ -41,6 +41,8 @@ class ExportController extends BaseAccountController
 
     public function actionRequest()
     {
+        $this->forcePostRequest();
+
         if (ExportService::instance()->requestPackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The exporting of your data has been started, please wait some time.'));
         } else {
@@ -63,6 +65,8 @@ class ExportController extends BaseAccountController
 
     public function actionDelete()
     {
+        $this->forcePostRequest();
+
         if (ExportService::instance()->deletePackage()) {
             $this->view->success(Yii::t('LegalModule.base', 'The package has been deleted.'));
         } else {

@@ -6,6 +6,7 @@
  */
 
 use humhub\modules\legal\widgets\Content;
+use humhub\modules\user\services\UserSourceService;
 use humhub\widgets\bootstrap\Button;
 use humhub\widgets\bootstrap\Link;
 use humhub\widgets\form\ActiveForm;
@@ -51,7 +52,7 @@ use humhub\widgets\form\ActiveForm;
 
         <div class="clearfix">
             <div class="float-end">
-                <?php if (Yii::$app->user->getAuthClientUserService()->canDeleteAccount()): ?>
+                <?php if (UserSourceService::getForUser()->canDeleteAccount()): ?>
                     <?= Link::to(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], false)->right() ?>
                 <?php endif; ?>
             </div>

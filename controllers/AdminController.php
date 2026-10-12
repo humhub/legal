@@ -58,6 +58,9 @@ class AdminController extends Controller
         }
 
         if ($saved) {
+            // Re-evaluate the legal gate for all running sessions
+            Yii::$app->gateManager->invalidate();
+
             $this->view->saved();
             return $this->redirect(['page', 'pageKey' => $page->page_key, 'language' => $page->language]);
         }
@@ -101,6 +104,10 @@ class AdminController extends Controller
         foreach (User::find()->select('contentcontainer_id')->column() as $contentContainerId) {
             Yii::$app->cache->delete('settings-' . $module->id . '-' . $contentContainerId);
         }
+
+        // Re-evaluate running sessions, so that already logged-in users are asked to accept the reset document
+        // right away instead of only after their next login
+        Yii::$app->gateManager->invalidate();
 
         $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
         return $this->redirect(['index']);

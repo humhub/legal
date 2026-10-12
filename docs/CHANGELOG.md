@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.6.3 (Unreleased)
-------------------
+1.6.3 (October 12, 2026)
+------------------------
 - Enh: Automated code refactoring for HumHub 1.18 using Rector
 - Fix #123: Settings saved without validation; Reset and export request/delete now require POST; Unknown page key caused a 500 error
 

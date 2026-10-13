@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.8.1 (Unreleased)
-------------------
+1.8.1 (October 13, 2026)
+------------------------
 - Fix #124: Reset confirmation now re-evaluates running sessions (`GateManager::invalidate()`)
 - Fix #123: Settings saved without validation; Reset and export request/delete now require POST; Unknown page key caused a 500 error
 

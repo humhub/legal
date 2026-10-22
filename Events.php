@@ -134,7 +134,7 @@ class Events
         return false;
     }
 
-    public static function onRegistrationFormInit($event)
+    public static function onRegistrationAfterSetForm($event)
     {
         if (static::skipVerifying()) {
             return;

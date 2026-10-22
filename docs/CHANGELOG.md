@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.8.2 (Unreleased)
+-------------------------
+- Fix #109: Fix position of the checkboxes on the registration form
+
 1.8.1 (October 13, 2026)
 ------------------------
 - Fix #124: Reset confirmation now re-evaluates running sessions (`GateManager::invalidate()`)

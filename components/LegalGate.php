@@ -94,7 +94,7 @@ class LegalGate extends UserGate
         return [
             'legal',
             'user/auth',
-            'user/account/delete',
+            'user/security/delete',
             'mail/mail',
             'file/file/download',
             // transitional, see method docblock:

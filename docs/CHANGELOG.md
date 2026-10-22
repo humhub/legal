@@ -3,6 +3,7 @@ Changelog
 
 1.9.0 (Unreleased)
 ------------------
+- Enh: The personal data export is a group of "My Data" in the "Security & Privacy" account settings of the core 1.20, and the legal gate allows the moved account deletion (humhub/humhub#8611)
 - Enh: Cards instead of Bootstrap 3 panels of the core 1.20 (humhub/humhub#8777)
 - Enh: Colour tokens of the core 1.20 instead of the deprecated ones (humhub/humhub#8707)
 - Enh: Compatibility with the core picker that replaces Select2 (humhub/humhub#8677)

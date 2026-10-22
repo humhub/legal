@@ -10,9 +10,7 @@ use humhub\widgets\bootstrap\Button;
 
 /* @var ExportService $service */
 ?>
-<?php $this->beginContent('@user/views/account/_userSettingsLayout.php') ?>
-
-<div>
+<p class="text-body-secondary">
     <?php if ($service->hasPackage()) : ?>
         <?= Yii::t('LegalModule.base', 'Personal Data Package is available for download. The package will be deleted after {countDays} days.', [
             'countDays' => $service->getPackageDayLeft(),
@@ -24,30 +22,29 @@ use humhub\widgets\bootstrap\Button;
             'countDays' => $service->getModule()->getExportUserDays(),
         ]) ?>
     <?php endif; ?>
-</div>
+</p>
 
-<div class="clearfix mt-3">
-    <?php if ($service->hasPackage()) : ?>
-        <?= Button::accent(Yii::t('LegalModule.base', 'Download Package'))
-            ->icon('download')
-            ->link(['/legal/export/download'])
-            ->loader(false) ?>
-        <?= Button::danger(Yii::t('LegalModule.base', 'Delete Package'))
-            ->icon('trash')
-            ->link(['/legal/export/delete'])
-            ->options(['data-method' => 'POST'])
-            ->right()
-            ->confirm() ?>
-    <?php elseif ($service->isExporting()) : ?>
-        <?= Button::light(Yii::t('LegalModule.base', 'Data Package is generating...'))
-            ->icon('clock')
-            ->options(['disabled' => true])?>
-    <?php else : ?>
-        <?= Button::primary(Yii::t('LegalModule.base', 'Generate Package'))
-            ->icon('arrow-down')
-            ->link(['/legal/export/request'])
-            ->options(['data-method' => 'POST']) ?>
-    <?php endif; ?>
-</div>
-
-<?php $this->endContent() ?>
+<?php if ($service->hasPackage()) : ?>
+    <?= Button::accent(Yii::t('LegalModule.base', 'Download Package'))
+        ->icon('download')
+        ->link(['/legal/export/download'])
+        ->loader(false)
+        ->sm() ?>
+    <?= Button::danger(Yii::t('LegalModule.base', 'Delete Package'))
+        ->icon('trash')
+        ->link(['/legal/export/delete'])
+        ->options(['data-method' => 'POST'])
+        ->confirm()
+        ->sm() ?>
+<?php elseif ($service->isExporting()) : ?>
+    <?= Button::light(Yii::t('LegalModule.base', 'Data Package is generating...'))
+        ->icon('clock')
+        ->options(['disabled' => true])
+        ->sm() ?>
+<?php else : ?>
+    <?= Button::primary(Yii::t('LegalModule.base', 'Generate Package'))
+        ->icon('arrow-down')
+        ->link(['/legal/export/request'])
+        ->options(['data-method' => 'POST'])
+        ->sm() ?>
+<?php endif; ?>

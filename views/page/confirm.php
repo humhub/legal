@@ -50,7 +50,7 @@ use humhub\widgets\form\ActiveForm;
         <div class="clearfix">
             <div class="float-end">
                 <?php if (UserSourceService::getForUser()->canDeleteAccount()): ?>
-                    <?= Link::to(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/account/delete'], false)->right() ?>
+                    <?= Link::to(Yii::t('LegalModule.base', 'Delete my account including my personal data'), ['/user/security/delete'], false)->right() ?>
                 <?php endif; ?>
             </div>
         </div>

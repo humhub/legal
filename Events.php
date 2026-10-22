@@ -9,7 +9,6 @@
 namespace humhub\modules\legal;
 
 use humhub\components\gates\GateInitEvent;
-use humhub\helpers\ControllerHelper;
 use humhub\modules\admin\controllers\UserController;
 use humhub\modules\comment\models\Comment;
 use humhub\modules\content\widgets\richtext\ProsemirrorRichText;
@@ -18,11 +17,12 @@ use humhub\modules\legal\models\Page;
 use humhub\modules\legal\models\RegistrationChecks;
 use humhub\modules\legal\widgets\Content;
 use humhub\modules\legal\widgets\CookieNote;
+use humhub\modules\legal\widgets\ExportSection;
 use humhub\modules\post\models\Post;
 use humhub\modules\ui\menu\MenuLink;
 use humhub\modules\user\events\UserEvent;
 use humhub\modules\user\models\forms\Registration;
-use humhub\modules\user\widgets\AccountSettingsMenu;
+use humhub\modules\user\widgets\security\SecurityDataSections;
 use humhub\widgets\FooterMenu;
 use humhub\widgets\LayoutAddons;
 use Yii;
@@ -217,22 +217,11 @@ class Events
         }
     }
 
-    public static function onAccountSettingsMenuInit($event)
+    public static function onSecurityDataSectionsInit($event)
     {
-        /* @var AccountSettingsMenu $menu */
-        $menu = $event->sender;
-
-        /* @var Module $module */
-        $module = Yii::$app->getModule('legal');
-
-        if ($module->isEnabledExportUserData()) {
-            $menu->addEntry(new MenuLink([
-                'label' => Yii::t('LegalModule.base', 'Export personal data'),
-                'url' => ['/legal/export'],
-                'sortOrder' => 1000,
-                'isActive' => ControllerHelper::isActivePath('legal', 'export'),
-            ]));
-        }
+        /* @var SecurityDataSections $stack */
+        $stack = $event->sender;
+        $stack->addWidget(ExportSection::class, [], ['sortOrder' => 100]);
     }
 
     /**

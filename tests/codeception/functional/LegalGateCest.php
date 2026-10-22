@@ -86,6 +86,19 @@ class LegalGateCest
         $I->see('Dashboard');
     }
 
+    public function testAccountDeletionStaysReachable(FunctionalTester $I)
+    {
+        $I->wantTo('ensure that a user can delete the account instead of accepting the terms');
+
+        $I->amUser1();
+        $this->publishTerms();
+
+        $I->amOnRoute('/user/security/delete');
+
+        $I->dontSee('I have read and agree to the Terms and Conditions');
+        $I->see('Delete account');
+    }
+
     public function testLogoutStaysReachable(FunctionalTester $I)
     {
         $I->wantTo('ensure that logout works while a legal check is open');

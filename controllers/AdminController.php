@@ -17,6 +17,7 @@ use humhub\modules\legal\Module;
 use humhub\modules\user\models\User;
 use Yii;
 use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class AdminController
@@ -31,7 +32,7 @@ class AdminController extends Controller
         $model = new ConfigureForm();
         $model->loadSettings();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveSettings()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->saveSettings()) {
             $this->view->saved();
             return $this->redirect(['index']);
         }
@@ -41,6 +42,10 @@ class AdminController extends Controller
 
     public function actionPage($pageKey)
     {
+        if (!array_key_exists($pageKey, Page::getPages())) {
+            throw new NotFoundHttpException();
+        }
+
         $pages = $this->getPages($pageKey);
 
         $saved = false;
@@ -53,6 +58,9 @@ class AdminController extends Controller
         }
 
         if ($saved) {
+            // Re-evaluate the legal gate for all running sessions
+            Yii::$app->gateManager->invalidate();
+
             $this->view->saved();
             return $this->redirect(['page', 'pageKey' => $page->page_key, 'language' => $page->language]);
         }
@@ -82,6 +90,8 @@ class AdminController extends Controller
      */
     public function actionReset($key)
     {
+        $this->forcePostRequest();
+
         if (!in_array($key, [RegistrationChecks::SETTING_KEY_PRIVACY, RegistrationChecks::SETTING_KEY_TERMS])) {
             throw new HttpException(500, 'Invalid key!');
         }
@@ -94,6 +104,10 @@ class AdminController extends Controller
         foreach (User::find()->select('contentcontainer_id')->column() as $contentContainerId) {
             Yii::$app->cache->delete('settings-' . $module->id . '-' . $contentContainerId);
         }
+
+        // Re-evaluate running sessions, so that already logged-in users are asked to accept the reset document
+        // right away instead of only after their next login
+        Yii::$app->gateManager->invalidate();
 
         $this->view->success(Yii::t('LegalModule.base', 'Reset successful!'));
         return $this->redirect(['index']);
@@ -109,9 +123,7 @@ class AdminController extends Controller
 
         foreach (Yii::$app->i18n->getAllowedLanguages() as $langKey => $title) {
             $pages[$langKey] = Page::findOne(['page_key' => $pageKey, 'language' => $langKey]);
-            if ($pages[$langKey] === null) {
-                $pages[$langKey] = new Page(['page_key' => $pageKey, 'language' => $langKey]);
-            }
+            $pages[$langKey] ??= new Page(['page_key' => $pageKey, 'language' => $langKey]);
         }
 
         return $pages;

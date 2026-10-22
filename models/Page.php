@@ -132,9 +132,7 @@ class Page extends ActiveRecord
      */
     public static function getPage($pageKey, $language = null)
     {
-        if ($language === null) {
-            $language = Yii::$app->language;
-        }
+        $language ??= Yii::$app->language;
 
         $page = Page::findOne(['language' => $language, 'page_key' => $pageKey]);
         if ($page === null) {

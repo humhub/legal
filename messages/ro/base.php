@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Varsta minima',
     'More information: {link}' => 'Mai multe informații: {link}',
     'Page language:' => 'Limba paginii:',
-    'Page:' => 'Pagină:',
     'Privacy Policy' => 'Politica de Confidențialitate',
     'Reset confirmation' => 'Resetați confirmarea',
     'Reset successful!' => 'Resetați cu succes!',

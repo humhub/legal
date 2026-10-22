@@ -7,8 +7,8 @@
 
 use humhub\modules\legal\models\ConfigureForm;
 use humhub\modules\legal\models\Page;
+use humhub\widgets\bootstrap\Button;
 use humhub\widgets\form\ActiveForm;
-use yii\helpers\Html;
 
 /* @var $this \humhub\components\View */
 /* @var $module \humhub\modules\legal\Module */
@@ -40,9 +40,7 @@ foreach (Page::getPages() as $key => $title) {
     <?= $form->field($model, 'exportUserData')->checkbox(['disabled' => !$model->getModule()->isAllowedExportUserData()]) ?>
     <?= $form->field($model, 'exportUserDays')->textInput(['disabled' => !$model->getModule()->isAllowedExportUserData()]) ?>
 
-    <div class="mb-3">
-        <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary', 'data-ui-loader' => '']) ?>
-    </div>
+    <?= Button::save()->submit() ?>
 
     <?php ActiveForm::end(); ?>
 

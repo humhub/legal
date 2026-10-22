@@ -1,15 +1,42 @@
 Changelog
 =========
 
-1.6.2 (Unreleased)
+1.8.2 (Unreleased)
 -------------------------
 - Fix #109: Fix position of the checkboxes on the registration form
 
-1.6.1 (Unreleased)
--------------------------
+1.8.1 (October 13, 2026)
+------------------------
+- Fix #124: Reset confirmation now re-evaluates running sessions (`GateManager::invalidate()`)
+- Fix #123: Settings saved without validation; Reset and export request/delete now require POST; Unknown page key caused a 500 error
+
+1.8.0 (July 16, 2026)
+---------------------
+- Enh: Migrated the request interception to the core user gate system (`LegalGate`, requires humhub/humhub#8291) — deterministic ordering towards other intercepting modules (password change → 2FA → legal), the hardcoded whitelist of other modules' routes is gone
+- Enh: Publishing or changing legal pages now re-evaluates all running sessions (`GateManager::invalidate()`) — previously updated terms only reached logged-in users after a re-login (per-session `legalModuleChecked` flag, now removed)
+- Enh: Added a functional test suite (`LegalGateCest`)
+
+1.7.0 (June 5, 2026)
+--------------------
+- Enh #115: Update for HumHub 1.19
+
+1.6.3 (Unreleased)
+------------------
+- Enh: Automated code refactoring for HumHub 1.18 using Rector
+
+1.6.2 (May 28, 2026)
+--------------------
+- Enh #116: Set max version
+- Fix #117: Clean up empty (deleted/obsolete) records from personal export data
+
+1.6.1 (May 18, 2026)
+--------------------
 - Fix #75: Update module resources path
 - Enh #105: Improved Module Test GitHub Actions
 - Enh #106: Implemented `module-coding-standards`
+- Enh #113: Remove deprecations
+- Enh #114: Support export user for new file storage
+- Fix: Allow non-system-admin users with `ManageUsers` permission to create users from the admin back-office
 
 1.6.0 (July 26, 2025)
 ---------------------

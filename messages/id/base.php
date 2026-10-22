@@ -29,7 +29,6 @@ return [
     'Minimum age' => 'Usia minimal',
     'More information: {link}' => 'Informasi lebih lanjut: {link}',
     'Page language:' => 'Bahasa halaman:',
-    'Page:' => 'Halaman:',
     'Privacy Policy' => 'Rahasia pribadi',
     'Reset confirmation' => 'Setel ulang konfirmasi',
     'Reset successful!' => 'Berhasil mengatur ulang!',

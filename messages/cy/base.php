@@ -42,7 +42,6 @@ return [
     'More information: {link}' => '',
     'Number of days the downloadable data package will be retained before deletion' => '',
     'Page language:' => '',
-    'Page:' => '',
     'Personal Data Package is available for download. The package will be deleted after {countDays} days.' => '',
     'Personal Data Package is being generated. Please check back later.' => '',
     'Privacy Policy' => '',

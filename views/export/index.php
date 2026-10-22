@@ -38,6 +38,7 @@ use humhub\widgets\bootstrap\Button;
         <?= Button::danger(Yii::t('LegalModule.base', 'Delete Package'))
             ->icon('trash')
             ->link(['/legal/export/delete'])
+            ->options(['data-method' => 'POST'])
             ->right()
             ->confirm() ?>
     <?php elseif ($service->isExporting()) : ?>
@@ -47,7 +48,8 @@ use humhub\widgets\bootstrap\Button;
     <?php else : ?>
         <?= Button::primary(Yii::t('LegalModule.base', 'Generate Package'))
             ->icon('arrow-down')
-            ->link(['/legal/export/request']) ?>
+            ->link(['/legal/export/request'])
+            ->options(['data-method' => 'POST']) ?>
     <?php endif; ?>
 </div>
 

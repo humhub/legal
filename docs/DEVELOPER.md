@@ -26,7 +26,7 @@ public static function onLegalModuleUserDataExport(\humhub\modules\legal\events\
 
     $files = File::findAll(['created_by' => $event->user->id]);
     foreach ($files as $file) {
-        $event->addExportFile($file->file_name, $file->store->get());
+        $event->addExportFile($file->file_name, $file);
     }
 }
 ```

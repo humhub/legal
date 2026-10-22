@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.9.0 (Unreleased)
+------------------
+- Enh: The personal data export is a section of "My Data" in the new "Security & Privacy" account settings, and the legal gate allows the moved account deletion (requires humhub/humhub#8611)
+
 1.8.2 (Unreleased)
 -------------------------
 - Fix #109: Fix position of the checkboxes on the registration form

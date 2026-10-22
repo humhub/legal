@@ -34,9 +34,7 @@ class ExportController extends BaseAccountController
 
     public function actionIndex()
     {
-        return $this->render('index', [
-            'service' => ExportService::instance(),
-        ]);
+        return $this->redirect(['/user/security/data']);
     }
 
     public function actionRequest()
@@ -49,7 +47,7 @@ class ExportController extends BaseAccountController
             $this->view->error('Cannot start the exporting of your data, please try again.');
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/user/security/data']);
     }
 
     public function actionDownload()
@@ -73,6 +71,6 @@ class ExportController extends BaseAccountController
             $this->view->error('Cannot delete the package, please try again.');
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/user/security/data']);
     }
 }

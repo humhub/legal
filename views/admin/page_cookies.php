@@ -33,7 +33,7 @@ use humhub\widgets\form\ActiveForm;
 
     <div class="float-end">
         <strong><?= Yii::t('LegalModule.base', 'Box language:'); ?></strong>
-        <?= Html::dropDownList('lang', $defaultLanguage, $languages, ['class' => 'form-input', 'data-ui-select2' => '', 'id' => 'pageLangSelector']); ?>
+        <?= Html::dropDownList('lang', $defaultLanguage, $languages, ['class' => 'form-input', 'id' => 'pageLangSelector']); ?>
     </div>
 
     <br/>
@@ -52,9 +52,7 @@ use humhub\widgets\form\ActiveForm;
 
     <script <?= Html::nonce() ?>>
         showLanguage();
-        $("#pageLangSelector").select2().on("select2:select", function (e) {
-            showLanguage();
-        });
+        $("#pageLangSelector").on("change", showLanguage);
 
         function showLanguage() {
             const curLang = $('#pageLangSelector').val();

@@ -32,7 +32,7 @@ foreach (Page::getPages() as $key => $title) {
             'modal' => Yii::t('LegalModule.base', 'Show notice modal on external links in Posts and Comments')
         ])->label(false); ?>
     <?= $form->field($model, 'showPagesAfterRegistration')->checkbox(); ?>
-    <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages(), ['data-ui-select2' => '']); ?>
+    <?= $form->field($model, 'defaultLanguage')->dropDownList(Yii::$app->i18n->getAllowedLanguages()); ?>
 
     <?= $form->field($model, 'showAgeCheck')->checkbox(); ?>
     <?= $form->field($model, 'minimumAge')->textInput()->hint(\Yii::t('LegalModule.base', 'Please enter a number value.')); ?>

@@ -3,6 +3,7 @@ Changelog
 
 1.9.0 (Unreleased)
 ------------------
+- Enh: Colour tokens of the core 1.20 instead of the deprecated ones (humhub/humhub#8707)
 - Enh: Compatibility with the core picker that replaces Select2 (humhub/humhub#8677)
 
 1.8.2 (Unreleased)

@@ -96,6 +96,8 @@ class AcceptanceTester extends \AcceptanceTester
         $this->waitForText($checkText);
 
         $this->fillField('#page-en-us-title', $title);
+        // The rich text editor is booted after the page is rendered
+        $this->waitForElementVisible('#page-en-us-content .humhub-ui-richtext', 10);
         $this->fillField('#page-en-us-content .humhub-ui-richtext', $content);
         $this->click('Save');
         $this->seeSuccess();

@@ -45,7 +45,7 @@ use humhub\widgets\form\ActiveForm;
                 ->icon('check')
                 ->submit() ?>
             <?= Link::danger(Yii::t('LegalModule.base', 'Logout'))
-                ->icon('sign-out')
+                ->icon('logout')
                 ->post(['/user/auth/logout'])
                 ->right() ?>
         </div>

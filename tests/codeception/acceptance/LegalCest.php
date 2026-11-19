@@ -32,7 +32,7 @@ class LegalCest
         $I->waitForText('Edit this page', 10, '.panel-heading');
         $I->click('Edit this page');
         $I->waitForText('Legal module - administration');
-        $I->waitForText('Imprint', 10, '.tab-menu .active');
+        $I->waitForText('Imprint', 10, '.nav-pills .active');
     }
 
     public function testTermsAndConditions(AcceptanceTester $I)

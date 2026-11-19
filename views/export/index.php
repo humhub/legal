@@ -43,7 +43,7 @@ use humhub\widgets\bootstrap\Button;
             ->confirm() ?>
     <?php elseif ($service->isExporting()) : ?>
         <?= Button::light(Yii::t('LegalModule.base', 'Data Package is generating...'))
-            ->icon('clock-o')
+            ->icon('clock')
             ->options(['disabled' => true])?>
     <?php else : ?>
         <?= Button::primary(Yii::t('LegalModule.base', 'Generate Package'))

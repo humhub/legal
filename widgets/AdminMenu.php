@@ -10,12 +10,17 @@ namespace humhub\modules\legal\widgets;
 
 use humhub\helpers\ControllerHelper;
 use humhub\modules\legal\models\Page;
-use humhub\modules\ui\menu\MenuLink;
-use humhub\modules\ui\menu\widgets\TabMenu;
+use humhub\widgets\menu\MenuLink;
+use humhub\widgets\menu\PillTabs;
 use Yii;
 
-class AdminMenu extends TabMenu
+class AdminMenu extends PillTabs
 {
+    /**
+     * @inheritdoc
+     */
+    public string $variant = self::VARIANT_SECONDARY;
+
     public function init()
     {
         $this->addEntry(new MenuLink([

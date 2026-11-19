@@ -10,7 +10,7 @@ namespace humhub\modules\legal\assets;
 
 use humhub\components\assets\AssetBundle;
 use humhub\modules\legal\Module;
-use humhub\modules\ui\icon\widgets\Icon;
+use humhub\widgets\Icon;
 use Yii;
 
 class ContentAssets extends AssetBundle

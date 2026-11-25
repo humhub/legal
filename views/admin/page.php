@@ -22,7 +22,7 @@ use humhub\widgets\form\ActiveForm;
 
 
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
-<div class="panel-body">
+<div class="card-body">
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
     <br/>
     <?php if ($pageKey === Page::PAGE_KEY_LEGAL_UPDATE): ?>

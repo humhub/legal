@@ -12,10 +12,7 @@ use humhub\widgets\bootstrap\Button;
 ?>
 <?php $this->beginContent('@user/views/account/_userSettingsLayout.php') ?>
 
-<div class="panel-heading">
-    <?= Yii::t('LegalModule.base', '<strong>Personal</strong> Data Export') ?>
-</div>
-<div class="panel-body">
+<div>
     <?php if ($service->hasPackage()) : ?>
         <?= Yii::t('LegalModule.base', 'Personal Data Package is available for download. The package will be deleted after {countDays} days.', [
             'countDays' => $service->getPackageDayLeft(),
@@ -29,7 +26,7 @@ use humhub\widgets\bootstrap\Button;
     <?php endif; ?>
 </div>
 
-<div class="panel-body">
+<div class="clearfix mt-3">
     <?php if ($service->hasPackage()) : ?>
         <?= Button::accent(Yii::t('LegalModule.base', 'Download Package'))
             ->icon('download')

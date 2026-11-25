@@ -29,7 +29,7 @@ class LegalCest
         $I->waitForText($title, 10, '.footer-nav-default');
         $I->click($title, '.footer-nav-default');
         $I->waitForText($content);
-        $I->waitForText('Edit this page', 10, '.panel-heading');
+        $I->waitForText('Edit this page', 10, '.card-header');
         $I->click('Edit this page');
         $I->waitForText('Legal module - administration');
         $I->waitForText('Imprint', 10, '.nav-pills .active');
@@ -108,7 +108,7 @@ class LegalCest
 
         $I->amGoingTo('log in as user with already accepted ' . $page);
         $I->amUser1(true);
-        $I->dontSee($updatePage['title'], '.panel-heading');
+        $I->dontSee($updatePage['title'], '.card-header');
     }
 
     public function testAgeVerification(AcceptanceTester $I)
@@ -135,6 +135,6 @@ class LegalCest
 
         $I->amGoingTo('log in as user with already accepted age verification');
         $I->amUser1(true);
-        $I->dontSee($title, '.panel-heading');
+        $I->dontSee($title, '.card-header');
     }
 }

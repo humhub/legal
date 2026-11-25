@@ -18,11 +18,11 @@ use humhub\widgets\form\ActiveForm;
 /* @var $module \humhub\modules\legal\Module */
 ?>
 
-<div class="panel">
-    <div class="panel-heading">
-        <?= $page->title; ?>
+<div class="card content-card">
+    <div class="card-header">
+        <div class="card-title"><?= $page->title; ?></div>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?= Content::widget(['content' => $page->content]) ?>
 
         <br/>

@@ -22,7 +22,7 @@ foreach (Page::getPages() as $key => $title) {
 ?>
 
 <?php $this->beginContent('@legal/views/admin/layout.php') ?>
-<div class="panel-body">
+<div class="card-body">
 
     <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 

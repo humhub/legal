@@ -117,8 +117,8 @@ class AcceptanceTester extends \AcceptanceTester
         }
         $this->login('User1', 'user^humhub@PASS%worD!');
 
-        $this->waitForText($title, 10, '.panel-heading');
-        $this->waitForText($content, 10, '.panel-body');
+        $this->waitForText($title, 10, '.card-header');
+        $this->waitForText($content, 10, '.card-body');
     }
 
     /**
@@ -155,6 +155,6 @@ class AcceptanceTester extends \AcceptanceTester
 
         $this->amGoingTo('log in as user with already accepted ' . $page);
         $this->amUser1(true);
-        $this->dontSee($title, '.panel-heading');
+        $this->dontSee($title, '.card-header');
     }
 }

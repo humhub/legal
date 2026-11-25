@@ -13,17 +13,18 @@ use humhub\widgets\bootstrap\Button;
 /* @var $canManagePages boolean */
 ?>
 
-<div class="panel">
-    <div class="panel-heading">
+<div class="card content-card">
+    <div class="card-header">
+        <div class="card-title"><?= $page->title; ?></div>
         <?php if ($canManagePages): ?>
-            <?= Button::light(Yii::t('LegalModule.base', 'Edit this page'))
-                ->link(['/legal/admin/page', 'pageKey' => $page->page_key])
-                ->pjax(false)
-                ->right() ?>
+            <div class="card-header-actions">
+                <?= Button::light(Yii::t('LegalModule.base', 'Edit this page'))
+                    ->link(['/legal/admin/page', 'pageKey' => $page->page_key])
+                    ->pjax(false) ?>
+            </div>
         <?php endif; ?>
-        <?= $page->title; ?>
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <?= Content::widget(['content' => $page->content]) ?>
     </div>
 </div>

@@ -39,7 +39,6 @@ return [
     'Will be used as default, if the legal texts are not available in the users language.' => '법적 텍스트가 사용자 언어로 제공되지 않는 경우 기본값으로 사용됩니다.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => '법적 텍스트가 사용자의 언어로 제공되지 않는 경우 기본값으로 사용됩니다.',
     '<strong>External</strong> Link' => '',
-    '<strong>Personal</strong> Data Export' => '',
     'Add notice icons before external links in Posts and Comments' => '',
     'After clicking "Generate Package", the Personal Data Package will begin to generate. The package is in JSON format. Please note that collecting all of the data may take some time. While the package is being generated, you can continue using the app. Please check back later to see if the package is ready. The package will be deleted after {countDays} days.' => '',
     'Data Package is generating...' => '',

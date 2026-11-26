@@ -13,7 +13,6 @@ return [
     '(Disabled - please add content in default language!)' => '',
     '<strong>External</strong> Link' => '',
     '<strong>Legal</strong> module - administration' => '',
-    '<strong>Personal</strong> Data Export' => '',
     'Accept button label' => '',
     'Add notice icons before external links in Posts and Comments' => '',
     'Adds an overlay which informs the users about the use of cookies. You can add a different text for every available language.' => '',

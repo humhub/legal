@@ -4,7 +4,6 @@ return [
     '(Disabled - please add content in default language!)' => '（無効-デフォルト言語でコンテンツを追加してください！）',
     '<strong>External</strong> Link' => '<strong>外部</strong>リンク',
     '<strong>Legal</strong> module - administration' => '<strong>法務</strong>モジュール-管理',
-    '<strong>Personal</strong> Data Export' => '<strong>個人データ</strong>のエクスポート',
     'Accept' => '受け入れる',
     'Accept button label' => 'ボタンラベルを受け入れる',
     'Add notice icons before external links in Posts and Comments' => '投稿とコメントの外部リンクの前に通知アイコンを追加する',

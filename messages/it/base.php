@@ -45,7 +45,6 @@ return [
     'Title' => 'Titolo',
     'Will be used as default, if the legal texts are not available in the users language.' => 'Verrà utilizzato come predefinito, se i testi legali non sono disponibili nella lingua degli utenti.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Verrà utilizzato come predefinito, se i testi legali non sono disponibili nella lingua degli utenti.',
-    '<strong>Personal</strong> Data Export' => '',
     'After clicking "Generate Package", the Personal Data Package will begin to generate. The package is in JSON format. Please note that collecting all of the data may take some time. While the package is being generated, you can continue using the app. Please check back later to see if the package is ready. The package will be deleted after {countDays} days.' => '',
     'Data Package is generating...' => '',
     'Delete Package' => '',

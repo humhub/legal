@@ -4,7 +4,6 @@ return [
     '(Disabled - please add content in default language!)' => '(Uitgeschakeld - voeg inhoud toe in de standaardtaal!)',
     '<strong>External</strong> Link' => '<strong>Externe</strong> verwijziging',
     '<strong>Legal</strong> module - administration' => '<strong>Juridisch</strong> module-beheer',
-    '<strong>Personal</strong> Data Export' => '<strong>Persoonlijke</strong> gegevens exporteren',
     'Accept' => 'Aanvaarden',
     'Accept button label' => 'Aanvaarden-knoplabel',
     'Add notice icons before external links in Posts and Comments' => 'Berichtpictogrammen toevoegen vóór externe verwijzigingen in Berichten en opmerkingen',

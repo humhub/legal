@@ -45,7 +45,6 @@ return [
     'Title' => '標題',
     'Will be used as default, if the legal texts are not available in the users language.' => '如果合法文本在用户语言中不可用，将用作默认值。',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => '如果无法使用用户的语言提供合法文本，则将用作默认值。',
-    '<strong>Personal</strong> Data Export' => '',
     'After clicking "Generate Package", the Personal Data Package will begin to generate. The package is in JSON format. Please note that collecting all of the data may take some time. While the package is being generated, you can continue using the app. Please check back later to see if the package is ready. The package will be deleted after {countDays} days.' => '',
     'Data Package is generating...' => '',
     'Delete Package' => '',

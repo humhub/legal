@@ -4,7 +4,6 @@ return [
     '(Disabled - please add content in default language!)' => '(désactivé - merci de rajouter du contenu dans la langue par défaut)',
     '<strong>External</strong> Link' => 'Lien <strong>externe</strong>',
     '<strong>Legal</strong> module - administration' => 'Module <strong>Juridique</strong> module - administration',
-    '<strong>Personal</strong> Data Export' => 'Exportation des données <strong>personnelles</strong>',
     'Accept' => 'Accepter',
     'Accept button label' => 'Libellé du bouton Accepter',
     'Add notice icons before external links in Posts and Comments' => 'Ajouter une icône d\'avertissement devant les liens externes dans les publications et les commentaires',

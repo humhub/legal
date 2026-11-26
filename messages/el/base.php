@@ -40,7 +40,6 @@ return [
     'Will be used as default, if the legal texts are not available in the users language.' => 'Θα χρησιμοποιηθεί ως προεπιλογή, εάν τα νομικά κείμενα δεν είναι διαθέσιμα στη γλώσσα των χρηστών.',
     'Will be used as default, if the legal texts are not available in the user‘s language.' => 'Θα χρησιμοποιηθεί ως προεπιλογή, εάν τα νομικά κείμενα δεν είναι διαθέσιμα στη γλώσσα του χρήστη.',
     '<strong>External</strong> Link' => '',
-    '<strong>Personal</strong> Data Export' => '',
     'Add notice icons before external links in Posts and Comments' => '',
     'After clicking "Generate Package", the Personal Data Package will begin to generate. The package is in JSON format. Please note that collecting all of the data may take some time. While the package is being generated, you can continue using the app. Please check back later to see if the package is ready. The package will be deleted after {countDays} days.' => '',
     'Data Package is generating...' => '',

@@ -4,7 +4,6 @@ return [
     '(Disabled - please add content in default language!)' => '(Inaktiverad - lägg till innehåll på standardspråket!)',
     '<strong>External</strong> Link' => '<strong>Extern</strong> länk',
     '<strong>Legal</strong> module - administration' => '<strong>Juridisk</strong> modul - administration',
-    '<strong>Personal</strong> Data Export' => '<strong>Personlig</strong> dataexport',
     'Accept' => 'Acceptera',
     'Accept button label' => 'Etikett för Acceptera-knapp',
     'Add notice icons before external links in Posts and Comments' => 'Lägg till meddelandeikoner före externa länkar i inlägg och kommentarer',
